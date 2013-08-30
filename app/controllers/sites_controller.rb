@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  # before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_filter :load_site
 
   # GET /sites
   # GET /sites.json
@@ -10,7 +11,6 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @site = Site.where('domain = ?', request.host).first!
   end
 
   # GET /sites/new
@@ -62,11 +62,17 @@ class SitesController < ApplicationController
     end
   end
 
+
+def load_site
+  @site = Site.where('domain = ?', request.host).first!
+end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_site
-      @site = Site.find(params[:id])
-    end
+    # def set_site
+    #   @site = Site.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
