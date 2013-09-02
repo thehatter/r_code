@@ -1,22 +1,23 @@
 RCode::Application.routes.draw do
   # resources :sites
 
-  constraints(OwnDomain) do
-    match '/' => 'sites#show'
-    resources :sites
-  end
+  # class OwnDomain
+  #   def self.matches?(request)
+  #     request.subdomain.present? && request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
+  #   end
+  # end
 
-  class OwnDomain
-    def self.matches?(request)
-      request.subdomain.present? && request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
-    end
-  end
+  # constraints(OwnDomain) do
+  #   get '/' => 'sites#show'
+  # end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'sites#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

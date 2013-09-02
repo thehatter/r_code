@@ -63,12 +63,12 @@ class SitesController < ApplicationController
   end
 
 
-def load_site
-  @site = Site.where('domain = ?', request.host).first!
-end
-
 
   private
+
+    def load_site
+      @site = Site.where('domain = ?', request.host).first!
+    end
     # Use callbacks to share common setup or constraints between actions.
     # def set_site
     #   @site = Site.find(params[:id])
