@@ -1,15 +1,15 @@
 RCode::Application.routes.draw do
   # resources :sites
 
-  # class OwnDomain
-  #   def self.matches?(request)
-  #     request.subdomain.present? && request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
-  #   end
-  # end
+  class OwnDomain
+    def self.matches?(request)
+      request.subdomain.present? && request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
+    end
+  end
 
-  # constraints(OwnDomain) do
-  #   get '/' => 'sites#show'
-  # end
+  constraints(OwnDomain) do
+    get '/' => 'sites#show'
+  end
 
 
 
@@ -17,7 +17,7 @@ RCode::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sites#show'
+  # root 'sites#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
