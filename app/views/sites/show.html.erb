@@ -19,3 +19,10 @@
   <strong>User:</strong>
   <%= @site.user_id %>
 </p>
+
+<p>
+  <strong>Site pages:</strong>
+  <% @site.pages.each do |page| %>
+    <p><%= page.title %></p>
+  <% end %>
+</p>

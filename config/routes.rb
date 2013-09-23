@@ -1,9 +1,10 @@
 RCode::Application.routes.draw do
   # resources :sites
+  # resources :pages
 
   class OwnDomain
     def self.matches?(request)
-      request.subdomain.present? && request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
+      request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
     end
   end
 
