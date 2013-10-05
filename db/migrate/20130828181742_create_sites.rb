@@ -5,8 +5,10 @@ class CreateSites < ActiveRecord::Migration
       t.string :sub_domain
       t.string :name
       t.integer :user_id
+      t.integer :front_page_id
 
       t.timestamps
     end
+
   end
 end

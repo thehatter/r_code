@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20130830002319) do
     t.string   "sub_domain"
     t.string   "name"
     t.integer  "user_id"
+    t.integer  "front_page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

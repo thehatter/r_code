@@ -1,6 +1,9 @@
 RCode::Application.routes.draw do
-  # resources :sites
-  # resources :pages
+
+
+  resources :sites, path: '/admin/sites'
+
+
 
   class OwnDomain
     def self.matches?(request)
@@ -9,7 +12,7 @@ RCode::Application.routes.draw do
   end
 
   constraints(OwnDomain) do
-    get '/' => 'sites#show'
+    get '/' => 'pages#front'
   end
 
 
