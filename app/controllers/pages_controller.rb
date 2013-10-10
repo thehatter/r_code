@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
   # before_filter :load_page, :on => [:show]
 
-  # def show
-
-  # end
+  def show 
+    load_page
+  end
 
   def front
     @page = Page.find(current_site.front_page_id)
@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   private
 
-    # def load_page
-    #   @page = Page.where('domain = ?', request.host).first!
-    # end
+    def load_page
+      @page = current_site.pages.find(params[:id])
+    end
 end

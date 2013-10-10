@@ -13,6 +13,7 @@ RCode::Application.routes.draw do
 
   constraints(OwnDomain) do
     get '/' => 'pages#front'
+    get '/:id' => 'pages#show'
   end
 
 
