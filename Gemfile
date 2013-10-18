@@ -5,11 +5,17 @@ gem 'rails', '4.0.0'
 gem 'therubyracer'
 gem 'annotate'
 
+gem 'devise'
+gem 'slim'
+
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 group :development, :test do
   gem 'rspec-rails'
+
+  gem 'bootstrap-sass', :git => 'git@github.com:thomas-mcdonald/bootstrap-sass.git'
 end
 
 

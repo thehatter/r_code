@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:thomas-mcdonald/bootstrap-sass.git
+  revision: 6cc04bda62ed7ccf71d445fa82e706cb696b4fdb
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +36,7 @@ GEM
       rake
     arel (4.0.0)
     atomic (1.1.13)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -37,6 +45,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    devise (3.1.1)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
@@ -56,6 +70,7 @@ GEM
     mime-types (1.24)
     minitest (4.7.5)
     multi_json (1.7.9)
+    orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -96,6 +111,9 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    slim (2.0.1)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -106,6 +124,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.8)
+    temple (0.6.7)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -122,19 +141,24 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   annotate
+  bootstrap-sass!
   coffee-rails (~> 4.0.0)
+  devise
   jbuilder (~> 1.2)
   jquery-rails
   rails (= 4.0.0)
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  slim
   sqlite3
   therubyracer
   turbolinks

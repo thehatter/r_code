@@ -1,5 +1,8 @@
 class SitesController < ApplicationController
    before_action :set_site, only: [:show, :edit, :update, :destroy]
+   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+   before_filter :correct_user, :only => [:destroy, :edit , :update]
+
   # before_filter :load_site
 
   # GET /sites
@@ -27,15 +30,17 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(site_params)
+    @site = current_user.sites.new(site_params)
     
-    #create fron page for this site
-    @front_page = Page.create(site_id: @site.id, title: "Front page", body: "Site #{@site.name} front page")
-    #give front_page_id to this site
-    @site.update(front_page_id: @front_page.id)
 
     respond_to do |format|
       if @site.save
+        
+        #create front page for this site
+        @front_page = Page.create(site_id: @site.id, title: "Front page", body: "Site #{@site.name} front page")
+        #give front_page_id to this site
+        @site.update(front_page_id: @front_page.id)
+
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
         format.json { render action: 'show', status: :created, location: @site }
       else
@@ -81,6 +86,16 @@ class SitesController < ApplicationController
     def set_site
       @site = Site.find(params[:id])
     end
+
+
+    def correct_user
+      @corect_site = current_user.sites.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to root_url
+        flash[:error] = "current_user is not fk admin!"
+    end
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
