@@ -1,16 +1,15 @@
 RCode::Application.routes.draw do
 
 
-  root to: "welcome#index"
-  
   devise_for :users
-  resources :sites, path: '/admin/sites'
 
+  
 
+  resources :pages, except: :show
 
   class OwnDomain
     def self.matches?(request)
-      request.subdomain != "www" && request.host !~ /localhost|\.local|hostname\.com/
+      request.subdomain != "www" && request.host != 'r_code_main.com'   #!~ /localhost|\.local|hostname\.com/
     end
   end
 
@@ -19,6 +18,11 @@ RCode::Application.routes.draw do
     get '/:id' => 'pages#show'
   end
 
+  get '/:id', to: 'pages#show', as: :show_page
+
+  root to: "welcome#index"
+
+  resources :sites, path: '/admin/sites'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

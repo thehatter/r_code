@@ -1,0 +1,31 @@
+= form_for(@site) do |f|
+  - if @site.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@site.errors.count, "error") 
+        | prohibited this site from being saved:
+
+      ul
+        - @site.errors.full_messages.each do |msg|
+          = msg
+
+
+  .col-md-5
+    .field.form-group
+      = f.label :domain
+      = f.text_field :domain, :class => 'form-control'
+
+    .field.form-group
+      = f.label :sub_domain
+      = f.text_field :sub_domain, :class => 'form-control'
+
+    .field.form-group
+      = f.label :name
+      = f.text_field :name, :class => 'form-control'
+
+    .field.form-group
+      = f.label :user_id
+      = f.number_field :user_id, :class => 'form-control'
+
+    .actions
+      = f.submit 'Сохранить', :class => 'btn btn-success'

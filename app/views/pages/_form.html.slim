@@ -1,0 +1,13 @@
+= form_for(@page) do |f|
+
+  .col-md-5
+    .field.form-group
+      = f.label :title
+      = f.text_field :title, :class => 'form-control'
+
+    .field.form-group
+      = f.label :body
+      = f.text_area :body, :class => 'form-control'
+
+    .actions
+      = f.submit 'Сохранить', :class => 'btn btn-success'

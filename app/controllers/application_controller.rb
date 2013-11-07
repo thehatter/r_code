@@ -8,9 +8,25 @@ class ApplicationController < ActionController::Base
 private
 
   def current_site
-    @site = Site.where('domain = ?', request.host).first!
+    if request.host != 'r_code_main.com' && request.domain != 'lvh.me'
+      @site = Site.where('domain = ?', request.host).first!
+    else 
+      @site = Site.where('sub_domain = ?', request.subdomain).first!
+    end
   end
   helper_method :current_site
+
+  def correct_user
+    @corect_site = current_user.sites.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      if current_user.admin?
+      else
+        redirect_to root_url
+        flash[:error] = "current_user is not fk admin!"
+      end
+  end
+
+  helper_method :correct_user
 
 protected
 

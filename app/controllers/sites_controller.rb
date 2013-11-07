@@ -15,7 +15,6 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
 
-
   end
 
   # GET /sites/new
@@ -94,4 +93,6 @@ class SitesController < ApplicationController
     def site_params
       params.require(:site).permit(:domain, :sub_domain, :name, :user_id, :front_page_id)
     end
+ 
+
 end
