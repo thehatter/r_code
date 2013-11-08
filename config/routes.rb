@@ -5,7 +5,7 @@ RCode::Application.routes.draw do
 
   
 
-  resources :pages, except: :show
+  resources :pages
 
   class OwnDomain
     def self.matches?(request)
@@ -15,14 +15,40 @@ RCode::Application.routes.draw do
 
   constraints(OwnDomain) do
     get '/' => 'pages#front'
-    get '/:id' => 'pages#show'
   end
 
-  get '/:id', to: 'pages#show', as: :show_page
+  resources :pages
 
   root to: "welcome#index"
 
   resources :sites, path: '/admin/sites'
+
+
+
+
+
+  # resources :pages, except: :show
+
+  # class OwnDomain
+  #   def self.matches?(request)
+  #     request.subdomain != "www" && request.host != 'r_code_main.com'   #!~ /localhost|\.local|hostname\.com/
+  #   end
+  # end
+
+  # constraints(OwnDomain) do
+  #   get '/' => 'pages#front'
+  #   get '/:id' => 'pages#show'
+  # end
+
+  # get 'pages/:id', to: 'pages#show', as: :show_page
+
+
+  # root to: "welcome#index"
+
+  # resources :sites, path: '/admin/sites'
+
+
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.
