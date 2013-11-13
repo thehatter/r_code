@@ -40,6 +40,9 @@ class SitesController < ApplicationController
         #give front_page_id to this site
         @site.update(front_page_id: @front_page.id)
 
+
+        # @main_menu = @site.Page.create 
+
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
         format.json { render action: 'show', status: :created, location: @site }
       else

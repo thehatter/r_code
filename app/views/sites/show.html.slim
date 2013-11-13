@@ -1,0 +1,23 @@
+p#notice = notice
+
+p
+  strong Domain:
+  = @site.domain
+
+p
+  strongSub domain:
+  = @site.sub_domain
+
+
+p
+  strongName:
+  = @site.name
+
+p
+  strongUser:
+  = @site.user_id
+
+p
+  strong Site pages list:
+  - @site.pages.each do |page|
+    = page.title

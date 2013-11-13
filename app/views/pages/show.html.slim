@@ -1,11 +1,27 @@
 p
-  strong Title:
-  = @page.title
 
+  h1 = @page.title
+hr
+
+
+
+.main_menu
+  h3 Main menu
+  - @maim_menu = @menus.find_by block_id: 1
+  - @maim_menu.pages.each do |page|
+    = page.title
+     
+hr
+
+p
+  strong Site pages list:
+  - current_site.pages.each do |page|
+    = page.title
+hr
 p
   strong Body:
   = @page.body
 
-
-  strong Body:
+p
+  strong Page id:
   = @id

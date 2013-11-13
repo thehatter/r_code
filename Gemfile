@@ -7,6 +7,7 @@ gem 'annotate'
 
 gem 'devise'
 gem 'slim'
+gem 'cocoon'
 
 
 # Use sqlite3 as the database for Active Record

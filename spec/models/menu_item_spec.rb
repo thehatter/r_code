@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: pages
+# Table name: menu_items
 #
 #  id         :integer          not null, primary key
-#  site_id    :integer
+#  page_id    :integer
 #  menu_id    :integer
 #  title      :string(255)
-#  body       :text
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Page < ActiveRecord::Base
-  belongs_to :site
-  belongs_to :menu
+require 'spec_helper'
+
+describe MenuItem do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

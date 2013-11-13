@@ -7,6 +7,9 @@ class PagesController < ApplicationController
 
   def show 
     load_page
+    @pages = Page.all
+    # @menus = current_site.menus.find(1)
+    # @menu = Menu.first
   end
 
   def new
@@ -30,6 +33,7 @@ class PagesController < ApplicationController
 
   def front
     @page = Page.find(current_site.front_page_id)
+    @menus = current_site.menus
     render :show
   end
 

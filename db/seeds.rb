@@ -26,8 +26,10 @@ end
 
 den.save!
 
+
 site = Site.create( domain: "r-code.com", sub_domain: "r-code", name: "Redcod_1")
-front_page_1 = Page.create(site_id: site.id, title: "Front page", body: "Site #{site.name} front page")
+main_menu = site.menus.create( title: "Main menu", block_id: 1)
+front_page_1 = Page.create(site_id: site.id, menu_id: main_menu.id, title: "Front page", body: "Site #{site.name} front page")
 site.update(front_page_id: front_page_1.id)
 
 site_2 = Site.create( domain: "r-code2.com", sub_domain: "r-code2", name: "Redcod_2")

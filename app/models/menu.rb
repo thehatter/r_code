@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: pages
+# Table name: menus
 #
 #  id         :integer          not null, primary key
 #  site_id    :integer
-#  menu_id    :integer
 #  title      :string(255)
-#  body       :text
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Page < ActiveRecord::Base
+class Menu < ActiveRecord::Base
   belongs_to :site
-  belongs_to :menu
+  has_many :menu_item
+  has_many :pages
 end
