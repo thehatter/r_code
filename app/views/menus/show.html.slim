@@ -1,0 +1,11 @@
+h1 = @menu.title
+
+hr
+
+.menu_links
+  - @menu.pages.each do |page|
+    = link_to page.title, page_path(page)
+    br
+
+.add_links
+ = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"

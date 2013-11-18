@@ -4,6 +4,8 @@ class CreatePages < ActiveRecord::Migration
       t.integer :site_id
       t.integer :menu_id
       t.string :title
+      t.string :link_title
+      t.string :slug
       t.text :body
 
       t.timestamps
@@ -11,5 +13,6 @@ class CreatePages < ActiveRecord::Migration
 
     add_index :pages, :site_id
     add_index :pages, :menu_id
+    add_index :pages, :slug
   end
 end

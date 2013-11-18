@@ -7,18 +7,29 @@ class PagesController < ApplicationController
 
   def show 
     load_page
-    @pages = Page.all
-    # @menus = current_site.menus.find(1)
-    # @menu = Menu.first
+    load_menus
+
   end
 
   def new
     @page = Page.new
+    @menu = Menu.find(params[:menu_id])
   end
 
   def edit
+    load_page
+    @menu = Menu.find(@page.menu_id)
+  end
+
+  def update
+    load_page
+    if @page.update(page_params)
+      redirect_to @page
+    end
 
   end
+
+
 
   def create
     @page = current_site.pages.new(page_params)
@@ -33,7 +44,7 @@ class PagesController < ApplicationController
 
   def front
     @page = Page.find(current_site.front_page_id)
-    @menus = current_site.menus
+    load_menus
     render :show
   end
 
@@ -41,13 +52,17 @@ class PagesController < ApplicationController
 
   private
 
+    def load_menus
+      @menus = current_site.menus
+    end
+
     def load_page
       @page = current_site.pages.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :body, :site_id)
+      params.require(:page).permit(:title, :body, :site_id, :menu_id)
     end
  
 end

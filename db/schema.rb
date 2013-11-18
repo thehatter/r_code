@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20131108123454) do
     t.integer  "site_id"
     t.integer  "menu_id"
     t.string   "title"
+    t.string   "link_title"
+    t.string   "slug"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20131108123454) do
 
   add_index "pages", ["menu_id"], name: "index_pages_on_menu_id"
   add_index "pages", ["site_id"], name: "index_pages_on_site_id"
+  add_index "pages", ["slug"], name: "index_pages_on_slug"
 
   create_table "sites", force: true do |t|
     t.string   "domain"

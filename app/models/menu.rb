@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  site_id    :integer
 #  title      :string(255)
+#  block_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

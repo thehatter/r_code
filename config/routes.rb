@@ -3,21 +3,22 @@ RCode::Application.routes.draw do
 
   devise_for :users
 
-  
-
-  resources :pages
-
   class OwnDomain
     def self.matches?(request)
-      request.subdomain != "www" && request.host != 'r_code_main.com'   #!~ /localhost|\.local|hostname\.com/
+      # request.subdomain != "www" && request.host = 'r-code-main.com'   #!~ /localhost|\.local|hostname\.com/
+      request.domain.present? && request.domain != "r-code-main.com"
     end
   end
 
+
+
   constraints(OwnDomain) do
     get '/' => 'pages#front'
+    resources :pages
+    resources :menus
   end
 
-  resources :pages
+
 
   root to: "welcome#index"
 

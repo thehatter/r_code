@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 private
 
   def current_site
-    if request.host != 'r_code_main.com' && request.domain != 'lvh.me'
+    if request.host != 'r-code-main.com' && request.domain != 'lvh.me'
       @site = Site.where('domain = ?', request.host).first!
     else 
       @site = Site.where('sub_domain = ?', request.subdomain).first!

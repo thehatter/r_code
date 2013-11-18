@@ -9,5 +9,7 @@
       = f.label :body
       = f.text_area :body, :class => 'form-control'
 
+    = f.hidden_field :menu_id, :value => @menu.id
+
     .actions
       = f.submit 'Сохранить', :class => 'btn btn-success'
