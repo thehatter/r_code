@@ -21,7 +21,7 @@ p
     = link_to page.title, page_path(@page)
 hr
 
-= link_to "Редактировать страницу", edit_page_path, class: "btn btn-default"
+= link_to "Редактировать страницу", edit_page_path(@page), class: "btn btn-default"
 
 p
   strong Body:
