@@ -8,4 +8,5 @@ hr
     br
 
 .add_links
- = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
+  = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
+  = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default pull-right"

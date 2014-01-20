@@ -14,5 +14,6 @@ class MenuItem < ActiveRecord::Base
 
   belongs_to :menu
   belongs_to :page
+  belongs_to :catalog
 
 end

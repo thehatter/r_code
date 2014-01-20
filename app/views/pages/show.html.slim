@@ -5,14 +5,7 @@ hr
 
 
 .main_menu
-  h3 Main menu
-  - @main_menu = @menus.find_by block_id: 1
-  .menu_links
-    - @main_menu.pages.each do |page|
-      = link_to page.title, page_path(page)
-    .menu_config
-      = link_to 'Config menu', menu_path(@main_menu), class: "btn btn-default"
-     
+  = render 'menu', block_id: 1
 hr
 
 p

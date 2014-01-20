@@ -1,0 +1,11 @@
+= form_for(@catalog) do |f|
+  .col-md-5
+    .field.form-group
+      = f.label :title
+      = f.text_field :title, :class => 'form-control'
+
+
+    = f.hidden_field :menu_id, :value => @menu.id
+
+    .actions
+      = f.submit 'Сохранить', :class => 'btn btn-success'

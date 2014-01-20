@@ -52,6 +52,11 @@ class PagesController < ApplicationController
 
   private
 
+    def load_all_items
+      @items = current_site.menus
+      @items << current_site.catalogs
+    end
+
     def load_menus
       @menus = current_site.menus
     end

@@ -16,6 +16,7 @@ RCode::Application.routes.draw do
     get '/' => 'pages#front'
     resources :pages
     resources :menus
+    resources :catalogs
   end
 
 
