@@ -11,7 +11,6 @@ RCode::Application.routes.draw do
   end
 
 
-
   constraints(OwnDomain) do
     get '/' => 'pages#front'
     resources :pages
@@ -22,7 +21,6 @@ RCode::Application.routes.draw do
     end
 
   end
-
 
 
   root to: "welcome#index"
