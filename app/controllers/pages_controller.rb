@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   def show 
     load_page
     load_menus
-
   end
 
   def new
@@ -33,8 +32,10 @@ class PagesController < ApplicationController
 
   def create
     @page = current_site.pages.new(page_params)
+    
     respond_to do |format|
       if @page.save
+        @menu_item = MenuItem.create(link: page_url(@page), page_id: @page.id, menu_id: @page.menu_id, title: @page.title)
         format.html { redirect_to page_url(@page), notice: 'Page was successfully created.' }
       else
         flash[:error] = "there was a problem"
@@ -52,9 +53,8 @@ class PagesController < ApplicationController
 
   private
 
-    def load_all_items
-      @items = current_site.menus
-      @items << current_site.catalogs
+    def load_menu_items
+      @items = current_site.menu_items
     end
 
     def load_menus
@@ -62,12 +62,13 @@ class PagesController < ApplicationController
     end
 
     def load_page
-      @page = current_site.pages.find(params[:id])
+      # @page ||= current_site.pages.find_by_slug!(params[:id])
+      @page = current_site.pages.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :body, :site_id, :menu_id)
+      params.require(:page).permit(:title, :body, :site_id, :menu_id, :slug)
     end
  
 end
