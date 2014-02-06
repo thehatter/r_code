@@ -18,6 +18,7 @@ class CatalogsController < ApplicationController
     @catalog = current_site.catalogs.new(catalog_params)
     respond_to do |format|
       if @catalog.save
+        @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
         format.html { redirect_to catalog_url(@catalog), notice: 'Catalog was successfully created.' }
       else
         flash[:error] = "there was a problem"

@@ -3,7 +3,7 @@
 h3
   = @menu.title
 .menu_links
-  - @menu.pages.each do |page|
-    = link_to page.title, page_path(page)
+  - @menu.menu_items.order("weight").each do |item|
+    = link_to item.title, item.link
   .menu_config
     = link_to 'Config menu', menu_path(@menu), class: "btn btn-default"

@@ -14,6 +14,11 @@
 #
 
 class Page < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  has_many :menu_items
   belongs_to :site
   belongs_to :menu
+
 end
