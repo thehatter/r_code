@@ -1,0 +1,9 @@
+p
+
+  h1 = @catalog.title
+hr
+
+ul.catalog_categoryes
+  - @catalog.categories.order("weight").each do |item|
+    = content_tag_for :li, item
+      = link_to item.title, category_path(item)

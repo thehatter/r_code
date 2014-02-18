@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('.menu_links').sortable
-    axis: 'y'
-    update: ->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+  menuSorting = () ->
+    $('.menu_edit_page .menu_links').sortable
+      axis: 'y'
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
+
+  document.addEventListener("page:change", menuSorting);

@@ -26,6 +26,10 @@ class CatalogsController < ApplicationController
     end
   end
 
+  def edit
+    load_catalog
+  end
+
 
   private
 

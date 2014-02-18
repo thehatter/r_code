@@ -6,6 +6,7 @@
 #  page_id    :integer
 #  menu_id    :integer
 #  catalog_id :integer
+#  weight     :integer
 #  link       :string(255)
 #  title      :string(255)
 #  created_at :datetime

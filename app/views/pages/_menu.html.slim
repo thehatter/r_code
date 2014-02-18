@@ -5,5 +5,10 @@ h3
 .menu_links
   - @menu.menu_items.order("weight").each do |item|
     = link_to item.title, item.link
+    - if item.catalog_id
+      ul.catalog_categoryes
+        - item.catalog.categories.order("weight").each do |item|
+          = content_tag_for :li, item
+            = link_to item.title, category_path(item)
   .menu_config
     = link_to 'Config menu', menu_path(@menu), class: "btn btn-default"

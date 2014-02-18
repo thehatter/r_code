@@ -15,6 +15,7 @@
 class Catalog < ActiveRecord::Base
   has_many :section
   has_many :menu_items
+  has_many :categories
   belongs_to :menu
 
 end

@@ -1,13 +1,22 @@
-h1 = @menu.title
+.menu_edit_page
+  h1 = @menu.title
 
-hr
+  hr
 
 
-ul.menu_links.links data-update-url=sort_menu_items_url 
-  - @menu.menu_items.order("weight").each do |item|
-    = content_tag_for :li, item
-      = link_to item.title, item.link
+  ul.menu_links.links data-update-url=sort_menu_items_url 
+    - @menu.menu_items.order("weight").each do |item|
+      = content_tag_for :li, item
+        = link_to item.title, item.link
+        - if item.catalog_id
+          ul.catalog_categoryes
+            - item.catalog.categories.order("weight").each do |item|
+              = content_tag_for :li, item
+                = link_to item.title, category_path(item)
+                = link_to 'Добавить позицию', new_catalog_item_path(:category_id => item.id), class: "btn btn-default pull-right"
+          = link_to "Редактировать каталог", edit_catalog_path(item.catalog), class: "btn btn-default"
 
-.add_links
-  = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
-  = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
+
+  .add_links
+    = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
+    = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
