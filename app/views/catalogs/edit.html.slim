@@ -5,7 +5,7 @@ p
   = link_to 'Добавить категорию', new_category_path(:catalog_id => @catalog.id), class: "btn btn-default"
 hr
 
-ul.catalog_categoryes
+ul.catalog_categoryes data-update-url=sort_categories_url
   - @catalog.categories.order("weight").each do |item|
     = content_tag_for :li, item
       = link_to item.title, category_path(item)

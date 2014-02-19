@@ -2,12 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# jQuery ->
-#   menuSorting = () ->
-#     $('.catalog_categoryes .menu_links').sortable
-#       axis: 'y'
-#       update: ->
-#         $.post($(this).data('update-url'), $(this).sortable('serialize'))
+jQuery ->
+  catSorting = () ->
+    $('.catalog_categoryes').sortable
+      axis: 'y'
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
 
-#   document.addEventListener("page:change", menuSorting);
+  document.addEventListener("page:change", catSorting);

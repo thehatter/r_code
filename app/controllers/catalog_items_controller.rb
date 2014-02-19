@@ -21,6 +21,13 @@ class CatalogItemsController < ApplicationController
     end
   end
 
+  def sort
+    params[:catalog_item].each_with_index do |id, index|
+      CatalogItem.where(id: id).update_all(weight: index+1)
+    end
+    render nothing: true
+  end
+
   private
 
     def load_catalog_item

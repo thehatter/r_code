@@ -9,7 +9,7 @@
       = content_tag_for :li, item
         = link_to item.title, item.link
         - if item.catalog_id
-          ul.catalog_categoryes
+          ul.catalog_categoryes data-update-url=sort_categories_url
             - item.catalog.categories.order("weight").each do |item|
               = content_tag_for :li, item
                 = link_to item.title, category_path(item)

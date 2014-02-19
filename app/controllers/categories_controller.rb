@@ -23,6 +23,13 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def sort
+    params[:category].each_with_index do |id, index|
+      Category.where(id: id).update_all(weight: index+1)
+    end
+    render nothing: true
+  end
+
   private
 
     def load_category

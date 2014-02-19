@@ -17,8 +17,12 @@ RCode::Application.routes.draw do
     resources :pages
     resources :menus
     resources :catalogs
-    resources :categories
-    resources :catalog_items
+    resources :categories do
+      post :sort, on: :collection
+    end
+    resources :catalog_items do
+      post :sort, on: :collection
+    end
     resources :menu_items do
       post :sort, on: :collection
     end
