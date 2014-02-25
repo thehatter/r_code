@@ -10,6 +10,8 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'devise'
 gem 'slim'
 gem 'cocoon'
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 # Use sqlite3 as the database for Active Record

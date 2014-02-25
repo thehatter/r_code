@@ -23,6 +23,20 @@
       = f.label :name
       = f.text_field :name, :class => 'form-control'
 
+
+    fieldset.image
+      legend Картинка фирмы
+      p
+        = image_tag(@site.site_logo_url) if @site.site_logo?
+        - unless @site.new_record?
+          = f.check_box :remove_site_logo
+          = f.label :remove_site_logo, "remove site_logo"
+
+      p
+        = f.label :site_logo, "Загрузить картинку:"
+        = f.file_field :site_logo
+        = f.hidden_field :site_logo_cache
+
     .field.form-group
       = f.label :user_id
       = f.number_field :user_id, :class => 'form-control'

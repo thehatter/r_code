@@ -17,4 +17,8 @@ class Site < ActiveRecord::Base
   has_many :menus, dependent: :destroy
   has_many :catalogs, dependent: :destroy
   belongs_to :user
+
+
+  mount_uploader :site_logo, SiteLogoUploader
+
 end

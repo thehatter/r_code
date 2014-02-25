@@ -1,0 +1,40 @@
+// white theme css
+
+
+.logo_container {
+  float: left;
+}
+
+
+
+.header {
+  margin: 10px 0px;
+}
+
+
+// ==================== menu ====================
+
+.menu_links{
+  position: relative;
+  .menu_config {
+    position: absolute;
+    right: 0px; bottom: 0px;
+    // display: none;
+  }
+
+  li {
+    list-style: none;
+    float: left;
+
+    a {
+      display: block;
+      margin: 0 0 0 10px;
+    }
+  }
+}
+
+.menu_links:hover{
+  .menu_config {
+    display: block;
+  }
+}

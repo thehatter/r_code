@@ -6,12 +6,15 @@ class ApplicationController < ActionController::Base
 
 
 private
+# request.host != 'r-code-main.com' && request.domain != 'lvh.me'
 
   def current_site
-    if request.host != 'r-code-main.com' && request.domain != 'lvh.me'
-      @site = Site.where('domain = ?', request.host).first!
-    else 
+    if request.host == 'r-code-main.com' #|| request.domain = 'lvh.me'
+      @site = nil
+    elsif request.subdomain.present? && request.subdomain != "www"
       @site = Site.where('sub_domain = ?', request.subdomain).first!
+    else 
+      @site = Site.where('domain = ?', request.host).first!
     end
   end
   helper_method :current_site

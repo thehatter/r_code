@@ -4,10 +4,11 @@
   hr
 
 
-  ul.menu_links.links data-update-url=sort_menu_items_url 
+  ul.config_menu_links.links data-update-url=sort_menu_items_url 
     - @menu.menu_items.order("weight").each do |item|
       = content_tag_for :li, item
         = link_to item.title, item.link
+        = link_to 'Удалить', item, method: :delete, data: { confirm: 'Точно точно?' } 
         - if item.catalog_id
           ul.catalog_categoryes data-update-url=sort_categories_url
             - item.catalog.categories.order("weight").each do |item|

@@ -1,5 +1,14 @@
-h2  = current_site.name
 
-hr
 
-= yield
+.container
+  .header.clearfix
+    .logo_container
+      = link_to image_tag(@site.site_logo_url, :alt => current_site.name, :title => current_site.name), current_url, :class => 'dock-item' if @site.site_logo?
+
+    .header_menu.pull-right
+      = render 'menu', block_id: 1
+.container
+  
+  = yield
+
+  h2  = current_site.name

@@ -10,6 +10,25 @@ class MenuItemsController < ApplicationController
 
   end
 
+
+  def destroy
+    load_item
+    @menu = @menu_item.menu
+    @menu_item.destroy
+
+    respond_to do |format|
+      format.html { redirect_to menu_url(@menu), notice: 'Catalog item was successfully deleted!.'}
+      format.json { head :no_content }
+    end
+  end
+
+
+  private
+
+
+    def load_item
+      @menu_item = MenuItem.find(params[:id])
+    end
     # # Never trust parameters from the scary internet, only allow the white list through.
     # def catalog_params
     #   params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id)

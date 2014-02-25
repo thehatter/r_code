@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20140218114222) do
     t.string   "domain"
     t.string   "sub_domain"
     t.string   "name"
+    t.string   "site_logo"
     t.integer  "user_id"
     t.integer  "front_page_id"
     t.datetime "created_at"

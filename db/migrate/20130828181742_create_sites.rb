@@ -4,6 +4,7 @@ class CreateSites < ActiveRecord::Migration
       t.string :domain
       t.string :sub_domain
       t.string :name
+      t.string :site_logo
       t.integer :user_id
       t.integer :front_page_id
 

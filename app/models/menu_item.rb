@@ -16,7 +16,7 @@
 class MenuItem < ActiveRecord::Base
 
   belongs_to :menu
-  belongs_to :page
-  belongs_to :catalog
+  belongs_to :page, dependent: :destroy
+  belongs_to :catalog, dependent: :destroy
 
 end

@@ -11,9 +11,9 @@ html
     .container
       .row
         - if notice
-          p.notice = notice
+          p.notice.bg-success = notice
         - if alert
-          p.alert = alert
+          p.alert.bg-danger = alert
 
         = puts request.host
 

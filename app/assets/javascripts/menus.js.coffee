@@ -4,7 +4,7 @@
 
 jQuery ->
   menuSorting = () ->
-    $('.menu_edit_page .menu_links').sortable
+    $('.menu_edit_page .config_menu_links').sortable
       axis: 'y'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))

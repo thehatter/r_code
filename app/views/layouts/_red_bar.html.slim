@@ -13,5 +13,5 @@
         - else
           = link_to('Register', new_user_registration_path)
           
-    - if user_signed_in?
+    - if user_signed_in? && current_site
       = link_to 'Настройки сайта', edit_site_path(current_site), class: "btn btn-default pull-right"
