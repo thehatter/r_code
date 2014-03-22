@@ -3,6 +3,8 @@ class CreateCatalogItems < ActiveRecord::Migration
     create_table :catalog_items do |t|
       t.integer :category_id
       t.string :title
+      t.text :body
+      t.string :catalog_item_img
       t.string :slug
       t.integer :price
       t.integer :weight

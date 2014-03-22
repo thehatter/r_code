@@ -14,9 +14,22 @@
 #
 
 class MenuItem < ActiveRecord::Base
+  # before_update :update_item
+
 
   belongs_to :menu
-  belongs_to :page, dependent: :destroy
-  belongs_to :catalog, dependent: :destroy
+  belongs_to :page
+  belongs_to :catalog
+
+  # def update_item
+  #   if self.page_id
+  #     @page = self.page
+  #     self.title = @page.title
+  #     self.link = page_url(@page)
+  #   else
+  #     self.title = self.catalog.title
+  #     self.link = catalog_url(self.catalog)
+  #   end
+  # end
 
 end

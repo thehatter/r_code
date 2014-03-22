@@ -6,8 +6,10 @@
 #  domain        :string(255)
 #  sub_domain    :string(255)
 #  name          :string(255)
+#  site_logo     :string(255)
 #  user_id       :integer
 #  front_page_id :integer
+#  footer_text   :text
 #  created_at    :datetime
 #  updated_at    :datetime
 #

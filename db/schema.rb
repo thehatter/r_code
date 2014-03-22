@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218114222) do
+ActiveRecord::Schema.define(version: 20140226011311) do
 
   create_table "catalog_items", force: true do |t|
     t.integer  "category_id"
     t.string   "title"
+    t.text     "body"
+    t.string   "catalog_item_img"
     t.string   "slug"
     t.integer  "price"
     t.integer  "weight"
@@ -33,14 +35,35 @@ ActiveRecord::Schema.define(version: 20140218114222) do
     t.datetime "updated_at"
   end
 
+  add_index "catalogs", ["menu_id"], name: "index_catalogs_on_menu_id"
+  add_index "catalogs", ["site_id"], name: "index_catalogs_on_site_id"
+  add_index "catalogs", ["slug"], name: "index_catalogs_on_slug"
+
   create_table "categories", force: true do |t|
     t.integer  "catalog_id"
     t.string   "title"
+    t.string   "category_img"
     t.string   "slug"
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -105,6 +128,7 @@ ActiveRecord::Schema.define(version: 20140218114222) do
     t.string   "site_logo"
     t.integer  "user_id"
     t.integer  "front_page_id"
+    t.text     "footer_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

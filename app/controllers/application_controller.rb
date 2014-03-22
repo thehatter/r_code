@@ -31,6 +31,19 @@ private
 
   helper_method :correct_user
 
+  def current_site_menus
+    @menus = current_site.menus if current_site.menus
+  end
+
+  helper_method :current_site_menus
+
+
+  def current_url
+    request.protocol + request.host_with_port
+  end
+  
+  helper_method :current_url
+
 protected
 
   def configure_permitted_parameters

@@ -1,11 +1,44 @@
 = form_for(@category) do |f|
-  .col-md-5
-    .field.form-group
-      = f.label :title
-      = f.text_field :title, :class => 'form-control'
+  .field.form-group
+    = f.label :title
+    = f.text_field :title, :class => 'form-control'
+
+  / fieldset.image
+  /   legend Картинка категории
+  /   p
+  /     = image_tag(@category.category_img_url) if @category.category_img?
+  /     - unless @category.new_record?
+  /       = f.check_box :remove_category_img
+  /       = f.label :remove_category_img, "Удалить картинку"
+
+  /   p
+  /     = f.label :category_img, "Загрузить картинку:"
+  /     = f.file_field :category_img
+  /     = f.hidden_field :category_img_cache
 
 
-    = f.hidden_field :catalog_id, :value => @catalog.id
+  fieldset.image
+    legend Картинка категории
+    .form-group
+      = f.label :category_img, "Загрузить картинку:"
+      = f.file_field :category_img
+      = f.hidden_field :category_img_cache
+    .form-group
+      = image_tag(@category.category_img_url) if @category.category_img?
+    .form-group
+      - unless @category.new_record?
+        .checkbox
+          = content_tag :label
+            = f.check_box :remove_category_img
+            = label :remove_category_img, "Удалить картинку"
+      
 
-    .actions
-      = f.submit 'Сохранить', :class => 'btn btn-success'
+
+  hr
+
+  
+  = f.hidden_field :catalog_id, :value => @catalog.id if !@category.catalog_id?
+
+  .actions
+    .form-group
+      = f.submit 'Сохранить', :class => 'btn btn-lg btn-success pull-right'

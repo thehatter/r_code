@@ -14,11 +14,28 @@
 #
 
 class Page < ActiveRecord::Base
+  # after_save :upfate_munu_item
+
+  validates :title, presence: true
+  
+  validates :title,  uniqueness: { scope: :site_id,
+  message: "should happen once per year" }
+
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  has_many :menu_items
+  has_many :menu_items, dependent: :destroy
   belongs_to :site
   belongs_to :menu
 
+
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
+
+
+  # def upfate_munu_item
+  #   self.menu_items.each {|d| d.save! }
+  # end
 end

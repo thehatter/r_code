@@ -7,6 +7,8 @@ class CreateSites < ActiveRecord::Migration
       t.string :site_logo
       t.integer :user_id
       t.integer :front_page_id
+      t.text :footer_text
+
 
       t.timestamps
     end

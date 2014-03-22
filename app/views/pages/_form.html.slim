@@ -1,15 +1,25 @@
 = form_for(@page) do |f|
 
-  .col-md-5
-    .field.form-group
-      = f.label :title
-      = f.text_field :title, :class => 'form-control'
+  -if @page.errors.any?
+    .error_explanation
+      h2 
+        = pluralize(@page.errors.count, "error") 
+        |  prohibited this page from being saved:
+      - @page.errors.full_messages.each do |msg|
+        li = msg
 
-    .field.form-group
-      = f.label :body
-      = f.text_area :body, :class => 'form-control'
 
-    = f.hidden_field :menu_id, :value => @menu.id
+  .field.form-group
+    = f.label :title
+    = f.text_field :title, :class => 'form-control'
 
-    .actions
-      = f.submit 'Сохранить', :class => 'btn btn-success'
+  .field.form-group
+    = f.label :body
+    = cktext_area :page, :body, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '400'}
+
+  = f.hidden_field :menu_id, :value => @menu.id
+
+
+
+  .actions
+    = f.submit 'Сохранить', :class => 'btn btn-lg btn-success pull-right'

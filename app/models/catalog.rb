@@ -13,9 +13,17 @@
 #
 
 class Catalog < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   has_many :section
-  has_many :menu_items
-  has_many :categories
+  has_many :menu_items, dependent: :destroy
+  has_many :categories, dependent: :destroy
   belongs_to :menu
+  belongs_to :site
+
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
 
 end

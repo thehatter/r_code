@@ -13,6 +13,8 @@ gem 'cocoon'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'ckeditor'
+
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

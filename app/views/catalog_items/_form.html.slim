@@ -1,11 +1,30 @@
 = form_for(@catalog_item) do |f|
-  .col-md-5
-    .field.form-group
-      = f.label :title
-      = f.text_field :title, :class => 'form-control'
 
+  .field.form-group
+    = f.label :title
+    = f.text_field :title, :class => 'form-control'
 
+  fieldset.image
+    legend Картинка товара
+    .form-group
+      = f.label :catalog_item_img, "Загрузить картинку:"
+      = f.file_field :catalog_item_img
+      = f.hidden_field :catalog_item_img_cache
+    .form-group
+      = image_tag(@catalog_item.catalog_item_img_url(:thumb)) if @catalog_item.catalog_item_img?
+    .form-group
+      - unless @catalog_item.new_record?
+        .checkbox
+          = content_tag :label
+            = f.check_box :remove_catalog_item_img
+            = label :remove_catalog_item_img, "Удалить картинку"
+
+  .field.form-group
+    = f.label :body
+    = cktext_area :catalog_item, :body, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '400'}
+
+  - if @catalog_item.new_record?
     = f.hidden_field :category_id, :value => @category.id
 
-    .actions
-      = f.submit 'Сохранить', :class => 'btn btn-success'
+  .actions
+    = f.submit 'Сохранить', :class => 'btn btn-success'

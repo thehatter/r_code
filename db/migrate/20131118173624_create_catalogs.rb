@@ -12,5 +12,8 @@ class CreateCatalogs < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :catalogs, :site_id
+    add_index :catalogs, :menu_id
+    add_index :catalogs, :slug
   end
 end

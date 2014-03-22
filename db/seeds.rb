@@ -31,6 +31,8 @@ site = Site.create( domain: "r-code.com", sub_domain: "r-code", name: "Redcod_1"
 main_menu = site.menus.create( title: "Main menu", block_id: 1)
 front_page_1 = Page.create(site_id: site.id, menu_id: main_menu.id, slug: "main", link_title: 'Главная', title: "Front page", body: "Site #{site.name} front page")
 site.update(front_page_id: front_page_1.id)
+menu_item_1 = MenuItem.create(page_id: front_page_1.id, title: front_page_1.title, menu_id: main_menu.id, link: '/')
+
 
 site_2 = Site.create( domain: "r-code2.com", sub_domain: "r-code2", name: "Redcod_2")
 main_menu2 = site_2.menus.create( title: "Main menu", block_id: 1)

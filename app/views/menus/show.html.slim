@@ -1,23 +1,43 @@
-.menu_edit_page
-  h1 = @menu.title
+= render 'layouts/home_button'
+.container
+  .row
+    .col-md-12
+      .menu_edit_page
+        h1 = @menu.title
 
-  hr
-
-
-  ul.config_menu_links.links data-update-url=sort_menu_items_url 
-    - @menu.menu_items.order("weight").each do |item|
-      = content_tag_for :li, item
-        = link_to item.title, item.link
-        = link_to 'Удалить', item, method: :delete, data: { confirm: 'Точно точно?' } 
-        - if item.catalog_id
-          ul.catalog_categoryes data-update-url=sort_categories_url
-            - item.catalog.categories.order("weight").each do |item|
-              = content_tag_for :li, item
-                = link_to item.title, category_path(item)
-                = link_to 'Добавить позицию', new_catalog_item_path(:category_id => item.id), class: "btn btn-default pull-right"
-          = link_to "Редактировать каталог", edit_catalog_path(item.catalog), class: "btn btn-default"
+        hr
 
 
-  .add_links
-    = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
-    = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default pull-right"
+        ul.config_menu_links.links data-update-url=sort_menu_items_url 
+          - @menu.menu_items.order("weight").each do |item|
+            = content_tag_for :li, item, class: "clearfix"
+              span.glyphicon.glyphicon-move
+              = link_to item.title, item.link, class: "link_title"
+              .btn-group.pull-right
+                - if item.catalog_id
+                  = link_to 'Добавить категорию', new_category_path(:catalog_id => item.catalog_id), class: "btn btn-success"
+                  = link_to "Редактировать каталог", edit_catalog_path(item.catalog), class: "btn btn-default"
+                  = link_to 'Удалить', item.catalog, method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger"
+                - else
+                  = link_to 'Редактировать страницу', edit_page_path(item.page), class: "btn btn-default"
+                  = link_to 'Удалить', item.page, method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger"
+
+              - if item.catalog_id
+                .catalog_categoryes_container
+                  ul.catalog_categoryes data-update-url=sort_categories_url
+                    - item.catalog.categories.order("weight").each do |item|
+                      = content_tag_for :li, item, class: "clearfix"
+                        span.glyphicon.glyphicon-move
+                        = link_to item.title, category_path(item), class: "link_title"
+                        .btn-group.pull-right
+                          = link_to 'Добавить позицию', new_catalog_item_path(:category_id => item.id), class: "btn btn-success"
+                          = link_to 'Редактировать', edit_category_path(item), class: "btn btn-default"
+                          = link_to 'Удалить', category_path(item), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn  btn-danger"
+                
+
+        br
+
+        .add_links.well.clearfix
+          .btn-group.pull-right
+            = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-success"
+            = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default"

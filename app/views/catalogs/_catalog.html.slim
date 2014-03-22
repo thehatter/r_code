@@ -1,9 +1,10 @@
-p
+/ - @catalog = catalog if defined? catalog
+.img_catalog
 
-  h1 = @catalog.title
-hr
+  h1 = catalog.title
 
-ul.catalog_categoryes data-update-url=sort_categories_url
-  - @catalog.categories.order("weight").each do |item|
-    = content_tag_for :li, item
-      = link_to item.title, category_path(item)
+  .row
+    - catalog.categories.order("weight").each do |item|
+      .col-md-3
+        = link_to image_tag(item.category_img_url(:thumb), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass' if item.category_img?
+        = link_to item.title, category_path(item)

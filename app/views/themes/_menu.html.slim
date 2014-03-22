@@ -1,0 +1,21 @@
+- @menu = current_site_menus.find_by block_id: block_id
+
+.menu_links
+  ul.nav.nav-pills
+    - @menu.menu_items.order("weight").each do |item|
+      - if item.catalog_id
+        = content_tag_for :li, item,  :class => "dropdown"
+          = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
+            = item.title 
+            <b class= 'caret'></b>
+          ul.catalog_categoryes.dropdown-menu
+            - item.catalog.categories.order("weight").each do |item|
+              = content_tag_for :li, item
+                = link_to item.title, category_path(item)
+      - else
+        = content_tag_for :li, item
+          = link_to item.title, item.link
+
+
+  .menu_config
+    = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"

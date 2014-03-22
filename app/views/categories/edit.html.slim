@@ -1,0 +1,8 @@
+= render 'layouts/home_button'
+.container
+  .row
+    .col-md-12
+      h2 Редактировать категорию!
+      = render 'form'
+      h4 имя каталога
+      = @category.catalog.title 

@@ -11,9 +11,11 @@ class MenuItemsController < ApplicationController
   end
 
 
+
   def destroy
     load_item
     @menu = @menu_item.menu
+
     @menu_item.destroy
 
     respond_to do |format|
