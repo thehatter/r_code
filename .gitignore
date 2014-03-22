@@ -20,4 +20,4 @@
 /.ruby-version
 
 # Igrone uploads
-/public/uploads/*
+/public/uploads/**
