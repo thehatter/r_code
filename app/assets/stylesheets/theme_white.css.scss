@@ -1,5 +1,7 @@
 // white theme css
 
+@import "bootstrap";
+
 @mixin radius_5 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -7,11 +9,6 @@
 }
 
 
-
-
-.field_with_errors {
-  background: red;
-}
 
 
 
@@ -132,4 +129,34 @@
   .edit_page_button {
     display: block;
   }
+}
+
+
+// ==================== catalog ====================
+
+.catalog_category {
+  .title {
+    a {
+      display: block;
+      text-align: center;
+      padding: 5px 0;
+    }
+  }
+}
+
+.catalog_item {
+  .title {
+    a {
+      display: block;
+      text-align: center;
+      padding: 5px 0;
+    }
+  }
+}
+
+
+
+
+.field_with_errors {
+  @extend .has-error
 }

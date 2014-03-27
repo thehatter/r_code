@@ -4,5 +4,6 @@ h1 = @category.title
   .row
     - @category.catalog_items.order("weight").each do |item|
       .catalog_item.col-md-3
-        = link_to image_tag(item.catalog_item_img_url(:thumb), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass' if item.catalog_item_img?
-        = link_to item.title, catalog_item_path(item)
+        .img
+          = link_to image_tag(item.catalog_item_img_url(:thumb), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass' if item.catalog_item_img?
+        .title = link_to item.title, catalog_item_path(item)
