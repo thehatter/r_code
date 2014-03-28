@@ -110,7 +110,7 @@ namespace :deploy do
       #must create mkdir /usr/local/nginx/conf/
       sudo "rm -f /usr/local/nginx/conf/nginx.conf"
       sudo "ln -s #{shared_path}/nginx.conf /usr/local/nginx/conf/nginx.conf"
-      sudo 'service nginx start'
+      sudo 'service nginx start -c /usr/local/nginx/conf/nginx.conf'
 
     end
   end
