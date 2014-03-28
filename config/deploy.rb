@@ -97,7 +97,7 @@ namespace :deploy do
       execute "mkdir  /var/www/apps/#{application}/log/"
       execute "mkdir  /var/www/apps/#{application}/socket/"
       execute "mkdir #{shared_path}/system"
-      execute "mkdir /var/www/log" #make???????????
+      # execute "mkdir /var/www/log" #make???????????
       sudo "ln -s /var/log/upstart /var/www/log/upstart"
 
       upload!('shared/database.yml', "#{shared_path}/config/database.yml")
@@ -112,13 +112,18 @@ namespace :deploy do
       sudo "ln -s #{shared_path}/nginx.conf /usr/local/nginx/conf/nginx.conf"
       sudo 'service nginx start'
 
+    end
+  end
+
+  desc 'Create_db'
+  task :create_db do
+    on roles(:all) do
+
       within release_path do
         with rails_env: fetch(:rails_env) do
           execute :rake, "db:create"
         end
       end
-
-
 
     end
   end
@@ -163,6 +168,7 @@ namespace :deploy do
   # after :updating, 'deploy:symlink'
 
   after :setup, 'deploy:symlink'
+  after :setup, 'deploy:create_db'
   after :setup, 'deploy:foreman_init'
 
   after :foreman_init, 'foreman:start'
