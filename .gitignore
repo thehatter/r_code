@@ -21,3 +21,8 @@
 
 # Igrone uploads
 /public/uploads/**
+
+/config/database.yml
+/Procfile
+/config/deploy
+/shared
