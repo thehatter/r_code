@@ -10,7 +10,7 @@ application = 'r_code'
 
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.1-p76'
+set :rvm_ruby_version, '2.1.1'
 
 set :deploy_to, '/var/www/apps/r_code'
 
@@ -97,6 +97,7 @@ namespace :deploy do
       execute "mkdir  /var/www/apps/#{application}/log/"
       execute "mkdir  /var/www/apps/#{application}/socket/"
       execute "mkdir #{shared_path}/system"
+      execute "mkdir /var/www/log" #make???????????
       sudo "ln -s /var/log/upstart /var/www/log/upstart"
 
       upload!('shared/database.yml', "#{shared_path}/config/database.yml")
@@ -105,10 +106,11 @@ namespace :deploy do
 
 
       upload!('shared/nginx.conf', "#{shared_path}/nginx.conf")
-      sudo 'stop nginx'
+      sudo 'service nginx stop'
+      #must create mkdir /usr/local/nginx/conf/
       sudo "rm -f /usr/local/nginx/conf/nginx.conf"
       sudo "ln -s #{shared_path}/nginx.conf /usr/local/nginx/conf/nginx.conf"
-      sudo 'start nginx'
+      sudo 'service nginx start'
 
       within release_path do
         with rails_env: fetch(:rails_env) do
@@ -158,8 +160,9 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
   after :finishing, 'deploy:restart'
 
-  after :updating, 'deploy:symlink'
+  # after :updating, 'deploy:symlink'
 
+  after :setup, 'deploy:symlink'
   after :setup, 'deploy:foreman_init'
 
   after :foreman_init, 'foreman:start'

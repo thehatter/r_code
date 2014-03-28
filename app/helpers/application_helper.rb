@@ -15,9 +15,5 @@ module ApplicationHelper
   #   'http://' + dom if dom
   # end
 
-  def current_url
-    request.protocol + request.host_with_port
-  end
-
 
 end
