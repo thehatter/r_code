@@ -156,6 +156,13 @@ namespace :deploy do
     end
   end
 
+  desc "compiles assets locally"
+  task :compile_assets_locally do
+    run_locally do
+      execute "RAILS_ENV=#{fetch(:rails_env)} bundle exec rake assets:precompile"
+    end
+  end
+
 
   desc 'Restart application'
   task :restart do
@@ -181,7 +188,7 @@ namespace :deploy do
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
 
-
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   # before :deploy, 'git:deploy'
 
 

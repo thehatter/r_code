@@ -212,6 +212,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.0.0)
   devise
+  execjs
   foreman
   friendly_id (~> 5.0.0)
   jbuilder (~> 1.2)
