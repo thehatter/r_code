@@ -102,7 +102,7 @@ namespace :deploy do
       # execute "mkdir /var/www/log" #make???????????
       sudo "ln -s /var/log/upstart /var/www/log/upstart"
 
-      # upload!('shared/database.yml', "#{shared_path}/config/database.yml")
+      upload!('shared/database.yml', "#{shared_path}/config/database.yml")
       
       upload!('shared/Procfile', "#{shared_path}/Procfile")
 
