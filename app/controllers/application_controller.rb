@@ -9,7 +9,7 @@ private
 # request.host != 'r-code-main.com' && request.domain != 'lvh.me'
 
   def current_site
-    if request.host == 'r-code-main.com' #|| request.domain = 'lvh.me'
+    if request.host == 'snowboarding.by' #|| request.domain = 'lvh.me'
       @site = nil
     elsif request.subdomain.present? && request.subdomain != "www"
       @site = Site.where('sub_domain = ?', request.subdomain).first!
