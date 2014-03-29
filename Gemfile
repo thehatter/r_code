@@ -22,10 +22,12 @@ gem 'sqlite3'
 
 gem 'foreman'
 
+gem 'bootstrap-sass', :git => 'git@github.com:thomas-mcdonald/bootstrap-sass.git'
+
 group :development, :test do
   gem 'rspec-rails'
 
-  gem 'bootstrap-sass', :git => 'git@github.com:thomas-mcdonald/bootstrap-sass.git'
+
 
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 4.0.0'
