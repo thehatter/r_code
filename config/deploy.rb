@@ -9,6 +9,8 @@ set :application, 'r_code'
 application = 'r_code'
 
 
+set :linked_files, %w{config/database.yml}
+
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.1'
 
@@ -180,7 +182,7 @@ namespace :deploy do
   before :setup, 'bundler:install'
 
 
-  before :deploy, 'git:deploy'
+  # before :deploy, 'git:deploy'
 
 
 
