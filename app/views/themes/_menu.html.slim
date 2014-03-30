@@ -2,19 +2,22 @@
 
 .menu_links
   ul.nav.nav-pills
-    - @menu.menu_items.order("weight").each do |item|
-      - if item.catalog_id
-        = content_tag_for :li, item,  :class => "dropdown"
-          = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
-            = item.title 
-            <b class= 'caret'></b>
-          ul.catalog_categoryes.dropdown-menu
-            - item.catalog.categories.order("weight").each do |item|
-              = content_tag_for :li, item
-                = link_to item.title, category_path(item)
-      - else
-        = content_tag_for :li, item
-          = link_to item.title, item.link
+    - if @menu.menu_items
+      - @menu.menu_items.order("weight").each do |item|
+        - if item.catalog_id
+          = content_tag_for :li, item,  :class => "dropdown"
+            = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
+              = item.title 
+              <b class= 'caret'></b>
+            ul.catalog_categoryes.dropdown-menu
+              - item.catalog.categories.order("weight").each do |item|
+                = content_tag_for :li, item
+                  = link_to item.title, category_path(item)
+        - else
+          = content_tag_for :li, item
+            = link_to item.title, item.link
+    - else
+      | menu empty 
 
 
   .menu_config
