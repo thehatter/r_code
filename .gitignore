@@ -21,6 +21,8 @@
 
 # Igrone uploads
 /public/uploads/**
+# Igrone uploads
+/public/assets/**
 
 /config/database.yml
 /Procfile
