@@ -19,6 +19,6 @@
     - else
       | menu empty or no menu
 
-
-  .menu_config
-    = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"
+  - if @menu
+    .menu_config
+      = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"
