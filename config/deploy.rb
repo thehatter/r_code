@@ -227,7 +227,7 @@ namespace :deploy do
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
 
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  # after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
 
   # before "deploy:assets:precompile", "deploy:post_symlink"

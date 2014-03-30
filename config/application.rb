@@ -30,7 +30,5 @@ module RCode
 
 
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-    config.assets.initialize_on_precompile = false
-
   end
 end
