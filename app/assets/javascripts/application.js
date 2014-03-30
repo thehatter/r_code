@@ -21,7 +21,8 @@
 //= require jquery.ui.position
 //= require jquery.ui.sortable
 
-//= require ckeditor/init
 //= require ckeditor/override
+//= require ckeditor/init
+
 
 //= require_tree .

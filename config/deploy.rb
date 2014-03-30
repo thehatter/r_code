@@ -227,8 +227,21 @@ namespace :deploy do
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
 
-  # after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
+
+
+  # desc 'copy ckeditor nondigest assets'
+  # task :copy_nondigest_assets do
+  #   on roles(:app) do
+  #     run "cd #{release_path} && #{rake} RAILS_ENV=#{rails_env} ckeditor:create_nondigest_assets"
+  #   end
+  # end
+
+  # after 'deploy:compile_assets_locally', 'copy_nondigest_assets'
+
+
+  
 
   # before "deploy:assets:precompile", "deploy:post_symlink"
 
@@ -250,5 +263,8 @@ namespace :deploy do
   #     # end
   #   end
   # end
+
+
+
 
 end

@@ -16,6 +16,8 @@ gem 'mini_magick'
 
 gem 'ckeditor'
 
+#fuck yeah! 
+gem "non-stupid-digest-assets" 
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
