@@ -9,7 +9,7 @@ set :application, 'r_code'
 application = 'r_code'
 
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml} #comment on setup
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.1'
@@ -89,7 +89,46 @@ end
 # set :keep_releases, 5
 
 
+
 namespace :deploy do
+
+  # namespace :assets do
+  #   desc 'Run the precompile task locally and rsync with shared'
+  #   task :precompile do
+  #     on roles(:web) do
+  #       %x{bundle exec rake assets:precompile}
+  #       %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{host}:#{shared_path}}
+  #       %x{bundle exec rake assets:clean}
+  #     end
+  #   end
+  # end
+
+  # namespace :assets do
+  #   task :precompile do
+  #     on roles(:web) do
+  #       from = source.next_revision(current_revision)
+  #       if capture("cd #{current_path} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
+  #         run_locally("rake assets:clean && rake assets:precompile")
+  #         run_locally "cd public && tar -jcf assets.tar.bz2 assets"
+  #         top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
+  #         run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
+  #         run_locally "rm public/assets.tar.bz2"
+  #         run_locally("rake assets:clean")
+  #       else
+  #         logger.info "Skipping asset precompilation because there were no asset changes"
+  #       end
+  #     end
+  #   end
+
+  #   task :symlink do 
+  #     on roles(:web) do
+  #       run ("rm -rf #{current_path}/public/assets &&
+  #             mkdir -p #{current_path}/public &&
+  #             mkdir -p #{shared_path}/assets &&
+  #             ln -s #{shared_path}/assets #{current_path}/public/assets")
+  #     end
+  #   end
+  # end
 
   desc 'Setup'
   task :setup do
@@ -187,6 +226,14 @@ namespace :deploy do
   before :setup, 'deploy:starting'
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
+
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  after :finishing, 'deploy:cleanup'
+
+  # before "deploy:assets:precompile", "deploy:post_symlink"
+
+  # before :deploy, 'deploy:assets:symlink'
+  # before :deploy, 'deploy:assets:precompile'
 
   # after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   # before :deploy, 'git:deploy'
