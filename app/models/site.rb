@@ -15,6 +15,8 @@
 #
 
 class Site < ActiveRecord::Base
+  after_save :create_menus
+
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :catalogs, dependent: :destroy
@@ -22,5 +24,10 @@ class Site < ActiveRecord::Base
 
 
   mount_uploader :site_logo, SiteLogoUploader
+
+
+  def create_menus
+    @main_menu = self.menus.create( title: "Главное меню", block_id: 1)
+  end
 
 end
