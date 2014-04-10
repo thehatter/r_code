@@ -1,0 +1,27 @@
+= form_for(current_site, remote: true) do |f|
+  .modal-body
+    - if current_site.errors.any?
+      #error_explanation
+        h2
+          = pluralize(current_site.errors.count, "error") 
+          | prohibited this site from being saved:
+
+        ul
+          - current_site.errors.full_messages.each do |msg|
+            = msg
+
+
+    fieldset.image
+      .form-group
+        = f.label :site_logo, "Загрузить логотип:"
+        = f.file_field :site_logo
+        = f.hidden_field :site_logo_cache
+      .form-group
+        = image_tag(current_site.site_logo_url) if current_site.site_logo?
+
+
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+
+  .modal-footer
+    button type="button" class="btn btn-default" data-dismiss="modal" Close
+    = f.submit 'Сохранить', :class => 'btn btn-success'

@@ -24,7 +24,7 @@
       = f.file_field :category_img
       = f.hidden_field :category_img_cache
     .form-group
-      = image_tag(@category.category_img_url) if @category.category_img?
+      = image_tag(@category.category_img_url(:thumb_263x263)) if @category.category_img?
     .form-group
       - unless @category.new_record?
         .checkbox

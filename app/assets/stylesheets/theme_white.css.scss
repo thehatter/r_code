@@ -10,18 +10,31 @@
 
 
 
-
-
-.logo_container {
-  float: left;
-}
-
 // ==================== Hedader ====================
 
 .header {
   margin: 20px 0px;
   padding-bottom: 20px;
   border-bottom: 2px solid #E5E5E5;
+}
+
+
+// ==================== Logo ====================
+
+
+.logo_container {
+  position: relative;
+  float: left;
+  .config_cog {
+    position: absolute;
+    right: 0px; top: -10px;
+    display: none;
+  }
+}
+.logo_container:hover {
+  .config_cog {
+    display: block;
+  }
 }
 
 

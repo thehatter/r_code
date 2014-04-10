@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   # before_filter :load_page, :on => [:show]
+  # before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_filter :correct_user, :only => [:destroy, :edit , :update]
 
   def index
     @pages = Page.all
@@ -17,7 +19,7 @@ class PagesController < ApplicationController
 
   def edit
     load_page
-    @menu = Menu.find(@page.menu_id)
+    # @menu = Menu.find(@page.menu_id)
   end
 
 
@@ -46,7 +48,7 @@ class PagesController < ApplicationController
 
   def destroy
     load_page
-    @menu = @page.menu
+    @menu = @page.menu if @page.menu
 
     @redirect_url = params[:redirectto]
 
@@ -78,7 +80,7 @@ class PagesController < ApplicationController
 
     def load_page
       # @page ||= current_site.pages.find_by_slug!(params[:id])
-      @page = current_site.pages.friendly.find(params[:id])
+      @page = current_site.pages.friendly.find_by_slug(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

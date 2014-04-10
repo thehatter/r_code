@@ -34,13 +34,6 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        
-        #create front page for this site
-        @front_page = Page.create(site_id: @site.id, title: "Front page", body: "Site #{@site.name} front page")
-        #give front_page_id to this site
-        @site.update(front_page_id: @front_page.id)
-
-
         # @main_menu = @site.Page.create 
 
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
@@ -57,7 +50,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to page_url(@site.front_page_id), notice: 'Site was successfully updated.' }
+        format.html { redirect_to current_url, notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

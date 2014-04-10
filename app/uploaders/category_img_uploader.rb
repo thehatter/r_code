@@ -38,7 +38,7 @@ class CategoryImgUploader < CarrierWave::Uploader::Base
   #   process :scale => [50, 50]
   # end
 
-  version :thumb do
+  version :thumb_263x263 do
     process :resize_to_fill => [263, 263]
   end
 
@@ -50,6 +50,10 @@ class CategoryImgUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  def default_url
+    ActionController::Base.helpers.asset_path("/default_img/" + [version_name, "def_img.gif"].compact.join('_'))
   end
 
   # Override the filename of the uploaded files:

@@ -15,7 +15,7 @@
 #
 
 class Site < ActiveRecord::Base
-  after_save :create_menus
+  after_save :init_site
 
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
@@ -26,8 +26,13 @@ class Site < ActiveRecord::Base
   mount_uploader :site_logo, SiteLogoUploader
 
 
-  def create_menus
-    @main_menu = self.menus.create( title: "Главное меню", block_id: 1)
+  def init_site
+    @main_menu = self.menus.create(title: "Главное меню", block_id: 1)
+
+    #create front page for this site
+    @front_page = self.pages.create(title: "Главная страница", body: "Сайт #{self.name} текст главной страницы")
+    self.update(front_page_id: @front_page.id)
+
   end
 
 end

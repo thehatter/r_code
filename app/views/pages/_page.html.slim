@@ -4,10 +4,13 @@
   = link_to 'Удалить страницу', page_path(@page, :redirectto => 1), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-default pull-right edit_page_button"
 
 
-  h1 = @page.title
+  - if is_front? && current_site.catalogs.any?
+    - for catalog in current_site.catalogs
+      = render 'catalogs/catalog', catalog: catalog
 
-  - if is_front? && current_site.catalogs.first
-    = render 'catalogs/catalog', catalog: current_site.catalogs.first
+  - unless current_site.catalogs.any?
+    h1 = @page.title 
+
 
   p
     = @page.body.html_safe

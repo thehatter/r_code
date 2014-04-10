@@ -7,5 +7,5 @@
     - catalog.categories.order("weight").each do |item|
       .col-md-3.catalog_category
         .img 
-          = link_to image_tag(item.category_img_url(:thumb), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass' if item.category_img?
+          = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
         .title = link_to item.title, category_path(item)

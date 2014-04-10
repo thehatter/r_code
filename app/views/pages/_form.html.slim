@@ -16,8 +16,8 @@
   .field.form-group
     = f.label :body
     = cktext_area :page, :body, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '400'}
-
-  = f.hidden_field :menu_id, :value => @menu.id
+  - if @menu
+    = f.hidden_field :menu_id, :value => @menu.id
 
 
 

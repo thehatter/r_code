@@ -9,27 +9,40 @@ private
 # request.host != 'r-code-main.com' && request.domain != 'lvh.me'
 
   def current_site
-    if request.domain == 'snowboarding.by' #|| request.domain = 'lvh.me'
-      @site = nil
+    if request.domain == 'r-code-main.com'#'snowboarding.by' #|| request.domain = 'lvh.me'
+      if request.subdomain.present?
+        @site = Site.where('sub_domain = ?', request.subdomain).first!
+      else
+        @site = nil
+      end
     elsif request.subdomain.present? && request.subdomain != "www"
       @site = Site.where('sub_domain = ?', request.subdomain).first!
     else 
       @site = Site.where('domain = ?', request.domain).first!
     end
   end
+
   helper_method :current_site
 
   def correct_user
-    @corect_site = current_user.sites.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      if current_user.admin?
-      else
-        redirect_to root_url
-        flash[:error] = "current_user is not fk admin!"
+    if authenticate_user!
+      begin
+        @corect_site = current_user.sites.find(current_site)
+      rescue ActiveRecord::RecordNotFound
+        if current_user.admin?
+        else
+          redirect_to root_url
+          flash[:error] = "current_user is not fk admin!"
+        end
       end
+    else
+      redirect_to root_url
+      flash[:error] = "current_user is not registred!"
+    end
   end
 
   helper_method :correct_user
+
 
   def current_site_menus
     @menus = current_site.menus if current_site.menus
