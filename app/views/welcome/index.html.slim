@@ -27,6 +27,10 @@
     .panel.panel-default
       .panel-body
         = render "devise/shared/links"
+    .panel.panel-default
+      .panel-body  
+        p = request.subdomain
+        p = request.domain
 
 - if user_signed_in?
   .col-md-4.col-md-offset-4 
