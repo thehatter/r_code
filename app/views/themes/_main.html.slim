@@ -25,6 +25,10 @@
   .row
     .col-md-12
       = yield
+
+      p = request.subdomain
+      p = request.domain
+
       hr
       .footer
         = current_site.footer_text.html_safe if current_site.footer_text
