@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+# lock '3.1.0'
 
 set :application, 'r_code'
 set :repo_url, 'git@example.com:me/my_repo.git'
