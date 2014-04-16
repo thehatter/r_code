@@ -9,7 +9,7 @@ html
     = render 'layouts/red_bar'
 
     - flash.each do |name, msg|
-      div class= "alert alert-#{name == :notice ? "success" : "danger"}"
+      div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
         = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
 
     = puts request.host
