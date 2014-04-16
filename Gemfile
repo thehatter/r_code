@@ -41,7 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   # capistrano deploy
-  gem 'capistrano'
+  gem 'capistrano', '3.1.0'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
