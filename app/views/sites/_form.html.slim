@@ -39,7 +39,22 @@
           = content_tag :label
             = f.check_box :remove_site_logo
             = label :remove_site_logo, "Удалить логотип сайта"
-        
+
+
+  fieldset.image
+    legend Большая картинка сайта
+    .form-group
+      = f.label :image_slot_1, "Загрузить картинку:"
+      = f.file_field :image_slot_1
+      = f.hidden_field :image_slot_1_cache
+    .form-group
+      = image_tag(@site.image_slot_1_url) if @site.image_slot_1?
+    .form-group
+      - unless @site.new_record?
+        .checkbox
+          = content_tag :label
+            = f.check_box :remove_image_slot_1
+            = label :remove_image_slot_1, "Удалить картинку"
 
 
 

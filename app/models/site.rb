@@ -24,6 +24,7 @@ class Site < ActiveRecord::Base
 
 
   mount_uploader :site_logo, SiteLogoUploader
+  mount_uploader :image_slot_1, ImageSlotOneUploader
 
 
   def init_site

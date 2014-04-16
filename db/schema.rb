@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226011311) do
+ActiveRecord::Schema.define(version: 20140416102712) do
 
   create_table "catalog_items", force: true do |t|
     t.integer  "category_id"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140226011311) do
     t.text     "footer_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_slot_1"
   end
 
   create_table "users", force: true do |t|
