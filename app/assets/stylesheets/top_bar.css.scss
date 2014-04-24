@@ -1,0 +1,29 @@
+.top_bar_container {
+  background: #999;
+  .logo {
+    margin: 12px 0 0 5px;
+  }
+
+  ul {
+    margin: 0;
+    background: url('/other_img/gradient_border.png') right repeat-y;
+    li {
+      float: left;
+      list-style: none;
+    }
+  }
+
+
+  a {
+    display: block;
+    text-decoration: none;
+    text-transform: lowercase;
+    float: left;
+    color: #fff;
+    padding: 20px 20px;
+    background: url('/other_img/gradient_border.png') left repeat-y;
+  }
+  a:hover {
+    background: #666;
+  }
+}

@@ -12,9 +12,15 @@
 #  footer_text   :text
 #  created_at    :datetime
 #  updated_at    :datetime
+#  image_slot_1  :string(255)
+#  theme         :string(255)
 #
 
 class Site < ActiveRecord::Base
+
+  Site::THEMES = %w(white portfolio)
+  validates :theme, inclusion: {in: Site::THEMES}
+
   after_save :init_site
 
   has_many :pages, dependent: :destroy

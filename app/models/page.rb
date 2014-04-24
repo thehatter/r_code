@@ -14,7 +14,6 @@
 #
 
 class Page < ActiveRecord::Base
-  # after_save :upfate_munu_item
 
   validates :title, presence: true
   
@@ -34,8 +33,4 @@ class Page < ActiveRecord::Base
     slug.blank? || title_changed?
   end
 
-
-  # def upfate_munu_item
-  #   self.menu_items.each {|d| d.save! }
-  # end
 end

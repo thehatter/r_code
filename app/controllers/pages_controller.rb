@@ -38,11 +38,16 @@ class PagesController < ApplicationController
 
   def update
     load_page
-    if @page.update(page_params)
-      @page.menu_items.update_all(link: page_url(@page), title: @page.title)
-      redirect_to @page
+    respond_to do |format|
+      if @page.update(page_params)
+        @page.menu_items.update_all(link: page_url(@page), title: @page.title)
+        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @page.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
 

@@ -6,7 +6,7 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
-    = render 'layouts/red_bar'
+    = render 'layouts/top_bar' if correct_view
 
     - flash.each do |name, msg|
       div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
@@ -15,3 +15,5 @@ html
     = puts request.host
 
     = yield
+
+    = render 'layouts/login_corner' if ! correct_view

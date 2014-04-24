@@ -24,6 +24,10 @@
     = f.text_field :name, :class => 'form-control'
 
   hr
+  .field.form-group
+    = f.label :theme
+    = f.select :theme, options_for_select(site_theme_select_options, f.object.theme), {}, :class => 'form-control'
+  
 
   fieldset.image
     legend Логотип сайта
@@ -32,7 +36,7 @@
       = f.file_field :site_logo
       = f.hidden_field :site_logo_cache
     .form-group
-      = image_tag(@site.site_logo_url) if @site.site_logo?
+      = image_tag(@site.site_logo_url(:thumb_200x400)) if @site.site_logo?
     .form-group
       - unless @site.new_record?
         .checkbox
@@ -48,7 +52,7 @@
       = f.file_field :image_slot_1
       = f.hidden_field :image_slot_1_cache
     .form-group
-      = image_tag(@site.image_slot_1_url) if @site.image_slot_1?
+      = image_tag(@site.image_slot_1_url(:thumb_200x400)) if @site.image_slot_1?
     .form-group
       - unless @site.new_record?
         .checkbox

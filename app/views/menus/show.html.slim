@@ -29,15 +29,23 @@
                       = content_tag_for :li, item, class: "clearfix"
                         span.glyphicon.glyphicon-move
                         = link_to item.title, category_path(item), class: "link_title"
+                        a href="#" data-toggle="tooltip" data-placement="top" title="Количество товаров в категории"
+                          span.badge  = item.catalog_items.count 
                         .btn-group.pull-right
                           = link_to 'Добавить позицию', new_catalog_item_path(:category_id => item.id), class: "btn btn-success"
                           = link_to 'Редактировать', edit_category_path(item), class: "btn btn-default"
-                          = link_to 'Удалить', category_path(item), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn  btn-danger"
-                
+                          = link_to 'Удалить', category_path(item), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger"
 
         br
 
         .add_links.well.clearfix
           .btn-group.pull-right
-            = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-success"
-            = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default"
+            / = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "btn btn-success"
+            / = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "btn btn-default"
+
+            = link_to content_tag(:span, "", class: "glyphicon glyphicon-file") + "Добавить страницу", new_page_path(:menu_id => @menu.id), class: "btn btn-success gl_indent"
+            = link_to content_tag(:span, "", class: "glyphicon glyphicon-folder-open") + "Добавить каталог", new_catalog_path(:menu_id => @menu.id), class: "btn btn-default gl_indent"
+
+
+
+

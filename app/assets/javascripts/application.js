@@ -26,3 +26,11 @@
 
 
 //= require_tree .
+
+
+
+
+// initialize bootstrap tooltips
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});

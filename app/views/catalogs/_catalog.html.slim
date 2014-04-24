@@ -1,4 +1,4 @@
-/ - @catalog = catalog if defined? catalog
+- catalog = @catalog if defined? @catalog
 .img_catalog
 
   h1 = catalog.title
@@ -9,3 +9,5 @@
         .img 
           = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
         .title = link_to item.title, category_path(item)
+        - if correct_view
+          = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_category_path(item), class: "btn btn-default config_cog"

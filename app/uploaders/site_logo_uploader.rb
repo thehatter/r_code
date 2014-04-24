@@ -39,6 +39,10 @@ class SiteLogoUploader < CarrierWave::Uploader::Base
   #   process :scale => [50, 50]
   # end
 
+  version :thumb_200x400 do
+    process :resize_to_fit => [200, 400]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
@@ -48,6 +52,7 @@ class SiteLogoUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
@@ -60,7 +65,7 @@ class SiteLogoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("/default_img/" + [version_name, "def_img_230x100.gif"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("/default_img/def_img_230x100.gif")
   end
 
 end

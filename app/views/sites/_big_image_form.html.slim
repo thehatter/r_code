@@ -1,0 +1,27 @@
+= form_for(current_site, remote: true) do |f|
+  .modal-body
+    - if current_site.errors.any?
+      #error_explanation
+        h2
+          = pluralize(current_site.errors.count, "error") 
+          | prohibited this site from being saved:
+
+        ul
+          - current_site.errors.full_messages.each do |msg|
+            = msg
+
+
+    fieldset.image
+      .form-group
+        = f.label :image_slot_1, "Загрузить картинку:"
+        = f.file_field :image_slot_1
+        = f.hidden_field :image_slot_1_cache
+      .form-group
+        = image_tag(current_site.image_slot_1_url(:thumb_200x400)) if current_site.image_slot_1?
+
+
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+
+  .modal-footer
+    button type="button" class="btn btn-default" data-dismiss="modal" Close
+    = f.submit 'Сохранить', :class => 'btn btn-success'

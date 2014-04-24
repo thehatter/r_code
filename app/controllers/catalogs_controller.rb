@@ -19,7 +19,7 @@ class CatalogsController < ApplicationController
     respond_to do |format|
       if @catalog.save
         @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
-        format.html { redirect_to catalog_url(@catalog), notice: 'Catalog was successfully created.' }
+        format.html { redirect_to menu_url(@catalog.menu), notice: 'Catalog was successfully created.' }
       else
         flash[:error] = "there was a problem"
       end
@@ -35,7 +35,7 @@ class CatalogsController < ApplicationController
     load_catalog
     if @catalog.update(catalog_params)
       @catalog.menu_items.update_all(link: catalog_url(@catalog), title: @catalog.title)
-      redirect_to @catalog
+      redirect_to menu_url(@catalog.menu)
     end
 
   end

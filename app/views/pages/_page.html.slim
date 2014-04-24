@@ -1,8 +1,10 @@
 .page_container
+  - if correct_view
+    = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + " Редактировать страницу", edit_page_path(@page), class: "btn btn-default pull-right edit_page_button"
+    = link_to 'Удалить страницу', page_path(@page, :redirectto => 1), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-default pull-right edit_page_button"
 
-  = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + " Редактировать страницу", edit_page_path(@page), class: "btn btn-default pull-right edit_page_button"
-  = link_to 'Удалить страницу', page_path(@page, :redirectto => 1), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-default pull-right edit_page_button"
 
+  h1 = @page.title if !is_front?
 
   - if is_front? && current_site.catalogs.any?
     - for catalog in current_site.catalogs

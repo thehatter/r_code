@@ -1,0 +1,23 @@
+= form_for(current_site) do |f|
+  .modal-body
+    - if current_site.errors.any?
+      #error_explanation
+        h2
+          = pluralize(current_site.errors.count, "error") 
+          | prohibited this site from being saved:
+
+        ul
+          - current_site.errors.full_messages.each do |msg|
+            = msg
+
+
+    .field.form-group
+      = f.label :footer_text
+      = f.cktext_area :footer_text, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru'}
+
+
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+
+  .modal-footer
+    button type="button" class="btn btn-default" data-dismiss="modal" Close
+    = f.submit 'Сохранить', :class => 'btn btn-success'

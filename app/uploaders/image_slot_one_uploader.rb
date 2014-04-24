@@ -37,6 +37,10 @@ class ImageSlotOneUploader < CarrierWave::Uploader::Base
   #   process :scale => [50, 50]
   # end
 
+  version :thumb_200x400 do
+    process :resize_to_fit => [200, 400]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
