@@ -15,13 +15,24 @@
 #
 
 class CatalogItem < ActiveRecord::Base
-  
-  extend FriendlyId
-  friendly_id :title, use: :slugged
-  
+
   belongs_to :category
+  belongs_to :site
 
   mount_uploader :catalog_item_img, CatalogItemImgUploader
+
+
+  extend FriendlyId
+  # friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, :use => :scoped, :scope => :site
+
+    def slug_candidates
+      [
+        :title,
+        [:title, Random.rand(1..10)],
+        [:title, Random.rand(10..99)]
+      ]
+    end
 
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?

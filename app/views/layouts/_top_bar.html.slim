@@ -6,6 +6,7 @@
           .logo 
             img src="/other_img/red_manager_logo.png" 
       .col-md-3
+        -if current_site
           = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки сайта", edit_site_path(current_site), class: "gl_indent"
       .col-md-7
           ul.pull-right    

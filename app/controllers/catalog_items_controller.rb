@@ -11,7 +11,7 @@ class CatalogItemsController < ApplicationController
 
 
   def create
-    @catalog_item = CatalogItem.new(catalog_item_params)
+    @catalog_item = current_site.catalog_items.new(catalog_item_params)
     respond_to do |format|
       if @catalog_item.save
         format.html { redirect_to catalog_item_url(@catalog_item), notice: 'Catalog item was successfully created.' }

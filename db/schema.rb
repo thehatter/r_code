@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140418181604) do
 
   create_table "catalog_items", force: true do |t|
     t.integer  "category_id"
+    t.integer  "site_id"
     t.string   "title"
     t.text     "body"
     t.string   "catalog_item_img"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140418181604) do
 
   create_table "categories", force: true do |t|
     t.integer  "catalog_id"
+    t.integer  "site_id"
     t.string   "title"
     t.string   "category_img"
     t.string   "slug"

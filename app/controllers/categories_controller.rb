@@ -13,7 +13,8 @@ class CategoriesController < ApplicationController
 
 
   def create
-    @category = Category.new(category_params)
+    @category = current_site.categories.new(category_params)
+    
     respond_to do |format|
       if @category.save
         format.html { redirect_to menu_url(@category.catalog.menu), notice: 'Category was successfully created.' }
