@@ -6,7 +6,7 @@
 h1 = @catalog_item.title
 
 
-= image_tag(@catalog_item.catalog_item_img_url(:thumb), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
+= image_tag(@catalog_item.catalog_item_img_url(:thumb_263x263), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
 
 
 = @catalog_item.body.html_safe if @catalog_item.body

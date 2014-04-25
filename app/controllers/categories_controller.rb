@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_site.categories.new(category_params)
-    
+
     respond_to do |format|
       if @category.save
         format.html { redirect_to menu_url(@category.catalog.menu), notice: 'Category was successfully created.' }
@@ -72,7 +72,7 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :catalog_id, :weight, :slug, :category_img, :category_img_cache)
+      params.require(:category).permit(:title, :catalog_id, :site_id, :weight, :slug, :category_img, :category_img_cache)
     end
 
 
