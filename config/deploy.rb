@@ -10,11 +10,14 @@ application = 'r_code'
 
 
 set :linked_files, %w{config/database.yml} #comment on setup
+set :linked_dirs, %w{public/uploads} #uploads dir
+set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}# mb comment on setup
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.1'
 
 set :deploy_to, '/var/www/apps/r_code'
+
 
 namespace :foreman do
   desc 'Start server'
@@ -195,12 +198,12 @@ namespace :deploy do
     end
   end
 
-  desc "compiles assets locally"
-  task :compile_assets_locally do
-    run_locally do
-      execute "RAILS_ENV=#{fetch(:rails_env)} bundle exec rake assets:precompile"
-    end
-  end
+  # desc "compiles assets locally"
+  # task :compile_assets_locally do
+  #   run_locally do
+  #     execute "RAILS_ENV=#{fetch(:rails_env)} bundle exec rake assets:precompile"
+  #   end
+  # end
 
 
   desc 'Restart application'
