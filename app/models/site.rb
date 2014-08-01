@@ -1,3 +1,4 @@
+# encoding: utf-8
 # == Schema Information
 #
 # Table name: sites
@@ -28,7 +29,7 @@ class Site < ActiveRecord::Base
   has_many :catalogs, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :catalog_items, dependent: :destroy
-  
+
   belongs_to :user
 
 

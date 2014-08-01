@@ -2,13 +2,13 @@ RCode::Application.routes.draw do
 
 
   mount Ckeditor::Engine => '/ckeditor'
-  
+
   devise_for :users
 
   class OwnDomain
     def self.matches?(request)
       # request.subdomain != "www" && request.host = 'r-code-main.com'   #!~ /localhost|\.local|hostname\.com/
-      (request.domain.present? && request.domain != "snowboarding.by") || request.subdomain.present? && request.subdomain != "www" #{"snowboarding.by"}
+      (request.domain.present? && request.domain != "dev.me") || request.subdomain.present? && request.subdomain != "www" #{"snowboarding.by"}
     end
   end
 
@@ -62,7 +62,7 @@ RCode::Application.routes.draw do
   # resources :sites, path: '/admin/sites'
 
 
-  
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -105,7 +105,7 @@ RCode::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

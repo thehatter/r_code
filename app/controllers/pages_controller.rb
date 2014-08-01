@@ -1,3 +1,4 @@
+# encoding: utf-8
 class PagesController < ApplicationController
   # before_filter :load_page, :on => [:show]
   # before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
@@ -7,7 +8,7 @@ class PagesController < ApplicationController
     @pages = Page.all
   end
 
-  def show 
+  def show
     load_page
   end
 
@@ -92,5 +93,5 @@ class PagesController < ApplicationController
     def page_params
       params.require(:page).permit(:title, :body, :site_id, :menu_id, :slug, :redirectto)
     end
- 
+
 end

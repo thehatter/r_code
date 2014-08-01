@@ -16,8 +16,8 @@ gem 'mini_magick'
 
 gem 'ckeditor'
 
-#fuck yeah! 
-gem "non-stupid-digest-assets" 
+#fuck yeah!
+gem "non-stupid-digest-assets"
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -25,7 +25,7 @@ gem 'sqlite3'
 
 gem 'foreman'
 
-gem 'bootstrap-sass', :git => 'git@github.com:thomas-mcdonald/bootstrap-sass.git'
+gem 'bootstrap-sass', :git => 'https://github.com/thomas-mcdonald/bootstrap-sass'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
