@@ -30,11 +30,11 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = current_user.sites.new(site_params)
-    
+
 
     respond_to do |format|
       if @site.save
-        # @main_menu = @site.Page.create 
+        # @main_menu = @site.Page.create
 
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
         format.json { render action: 'show', status: :created, location: @site }
@@ -89,6 +89,6 @@ class SitesController < ApplicationController
     def site_params
       params.require(:site).permit(:domain, :sub_domain, :name, :theme, :user_id, :front_page_id, :remove_site_logo, :site_logo, :site_logo_cache, :image_slot_1_cache, :image_slot_1, :footer_text)
     end
- 
+
 
 end
