@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # == Schema Information
 #
 # Table name: catalog_items
@@ -15,6 +16,13 @@
 #
 
 class CatalogItem < ActiveRecord::Base
+
+  validates_presence_of     :title
+  validates_presence_of     :body
+  validates_length_of       :title, minimum: 5, too_short: 'Название товара не может быть короче 5 символов'
+  validates_length_of       :body, minimum: 10, too_short: 'Название товара не может быть короче 10 символов'
+  validates_numericality_of :price
+
 
   belongs_to :category
   belongs_to :site

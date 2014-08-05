@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CatalogsController < ApplicationController
 
 
@@ -5,7 +6,7 @@ class CatalogsController < ApplicationController
     @catalogs = Catalog.all
   end
 
-  def show 
+  def show
     load_catalog
   end
 
@@ -16,12 +17,13 @@ class CatalogsController < ApplicationController
 
   def create
     @catalog = current_site.catalogs.new(catalog_params)
+    @menu = Menu.find(params[:catalog][:menu_id])
     respond_to do |format|
       if @catalog.save
         @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
         format.html { redirect_to menu_url(@catalog.menu), notice: 'Catalog was successfully created.' }
       else
-        flash[:error] = "there was a problem"
+        format.html { render action: 'new', :menu_id => @menu.id }
       end
     end
   end

@@ -14,6 +14,8 @@
 
 class Category < ActiveRecord::Base
 
+  validates_presence_of :title
+
   belongs_to :catalog
   belongs_to :site
   has_many :catalog_items, dependent: :destroy

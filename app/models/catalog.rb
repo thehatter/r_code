@@ -13,6 +13,9 @@
 #
 
 class Catalog < ActiveRecord::Base
+
+  validates_presence_of :title
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 

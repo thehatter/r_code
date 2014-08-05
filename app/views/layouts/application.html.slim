@@ -15,5 +15,6 @@ html
     = puts request.host
 
     = yield
+    = debug(params) if Rails.env.development?
 
     = render 'layouts/login_corner' if ! correct_view

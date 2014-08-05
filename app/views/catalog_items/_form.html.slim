@@ -1,8 +1,21 @@
 = form_for(@catalog_item) do |f|
 
+  -if @catalog_item.errors.any?
+    .error_explanation.bg-danger
+      h2
+        = pluralize(@catalog_item.errors.count, "error")
+        |  prohibited this page from being saved:
+      - @catalog_item.errors.full_messages.each do |msg|
+        li = msg
+
+
   .field.form-group
     = f.label :title
     = f.text_field :title, :class => 'form-control'
+
+  .field.form-group
+    = f.label :price
+    = f.text_field :price, :class => 'form-control'
 
   fieldset.image
     legend Картинка товара

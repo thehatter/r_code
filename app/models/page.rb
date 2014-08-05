@@ -1,3 +1,4 @@
+# encoding: utf-8
 # == Schema Information
 #
 # Table name: pages
@@ -16,10 +17,11 @@
 class Page < ActiveRecord::Base
 
   validates :title, presence: true
-  
+
   validates :title,  uniqueness: { scope: :site_id,
   message: "should happen once per year" }
-
+  validates_presence_of :body
+  validates_length_of   :body, minimum: 10, too_short: 'Название товара не может быть короче 10 символов'
 
   extend FriendlyId
   friendly_id :title, use: :slugged
