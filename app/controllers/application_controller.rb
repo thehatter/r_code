@@ -30,7 +30,7 @@ private
         if current_user.admin?
         else
           redirect_to root_url
-          flash[:error] = "current_user is not fk admin!"
+          flash[:error] = "#{current_user.username} is not fk admin!"
         end
       end
     else
@@ -54,6 +54,15 @@ private
   end
 
   helper_method :current_url
+
+  # метод нужен для сокрытия ненужных элементов
+  def owner_user
+    if authenticate_user!
+      (current_user.id == current_site.user_id || current_user.admin?) ? true : false
+    end
+  end
+
+ helper_method :owner_user
 
 protected
 

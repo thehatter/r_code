@@ -1,4 +1,5 @@
 class CatalogItemsController < ApplicationController
+  before_filter :correct_user, :only => [:destroy, :edit , :update]
 
   def show
     load_catalog_item

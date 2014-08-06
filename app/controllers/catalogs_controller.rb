@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CatalogsController < ApplicationController
-
+  before_filter :correct_user, :only => [:destroy, :edit , :update]
 
   def index
     @catalogs = Catalog.all

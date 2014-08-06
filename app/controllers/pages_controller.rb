@@ -74,10 +74,6 @@ class PagesController < ApplicationController
       render :show
   end
 
-
-
-
-
   private
 
     def load_menu_items
