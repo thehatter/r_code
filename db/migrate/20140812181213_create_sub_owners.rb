@@ -4,6 +4,7 @@ class CreateSubOwners < ActiveRecord::Migration
 
     	t.integer :user_id
     	t.integer :site_id
+    	t.string	:password
 
       t.timestamps
     end

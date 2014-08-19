@@ -22,6 +22,14 @@ p
   - @site.pages.each do |page|
     = page.title
 
+p
+  strong sub owner:
+  = User.find(SubOwner.find_by_site_id(params[:id]).user_id).username
+
+p
+  strong password:
+  = SubOwner.find_by_site_id(params[:id]).password
+
 = link_to 'back', sites_path
 br
 = link_to 'edit', edit_site_path(@site)

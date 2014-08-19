@@ -27,7 +27,7 @@ private
       begin
         @corect_site = current_user.sites.find(current_site)
       rescue ActiveRecord::RecordNotFound
-        if current_user.admin?
+        if current_user.admin? || owner_user
         else
           redirect_to root_url
           flash[:error] = "#{current_user.username} is not fk admin!"
@@ -58,11 +58,19 @@ private
   # метод нужен для сокрытия ненужных элементов
   def owner_user
     if authenticate_user!
-      (current_user.id == current_site.user_id || current_user.admin?) ? true : false
+      (current_user.id == current_site.user_id || current_user.admin? || subowner?) ? true : false
     end
   end
 
  helper_method :owner_user
+
+  def subowner?
+    user_id = SubOwner.where('site_id = ?', current_site.id).pluck(:user_id)
+
+    true if user_id.include?(current_user.id)
+  end
+
+helper_method :subowner?
 
 protected
 

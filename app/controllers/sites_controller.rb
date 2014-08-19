@@ -2,6 +2,7 @@ class SitesController < ApplicationController
    before_action :set_site, only: [:show, :edit, :update, :destroy]
    before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
    before_filter :correct_user, :only => [:destroy, :edit , :update]
+#   before_filter :owner_user, :only => [:destroy, :edit , :update]
 
   # before_filter :load_site
 

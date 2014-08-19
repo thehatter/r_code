@@ -55,6 +55,7 @@ class Site < ActiveRecord::Base
     subowner = SubOwner.new
     subowner.user_id = user.id
     subowner.site_id = self.id
+    subowner.password = user.password
     subowner.save
   end
 end

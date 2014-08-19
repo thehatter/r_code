@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
 
   attr_accessor :login
+  attr_accessor :unhashed_password
 
   has_many :sites
 

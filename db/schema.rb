@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20140812181213) do
   create_table "sub_owners", force: true do |t|
     t.integer  "user_id"
     t.integer  "site_id"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
