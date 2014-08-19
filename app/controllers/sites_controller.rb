@@ -24,6 +24,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
+    @site = Site.find(params[:id])
   end
 
   # POST /sites
@@ -62,6 +63,7 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.json
   def destroy
+    @site = Site.find(params[:id])
     @site.destroy
     respond_to do |format|
       format.html { redirect_to sites_url }

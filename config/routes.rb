@@ -28,7 +28,6 @@ RCode::Application.routes.draw do
     resources :menu_items do
       post :sort, on: :collection
     end
-
   end
 
 
@@ -36,8 +35,8 @@ RCode::Application.routes.draw do
   root to: "welcome#index"
 
   resources :sites, path: '/admin/sites'
-
-
+  get "admin/list_for_add_owner", to: "sub_owners#list_for_add_owner"
+  get "admin/add_owner", to: "sub_owners#add_owner"
 
 
 

@@ -40,5 +40,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.generate_login
+    login = [('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(8).join
+  end
 
+  def self.generate_password
+    password = [('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(10).join
+  end
+
+  def self.generate_email
+    email = "#{[('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(8).join}@random.by"
+  end
 end
+

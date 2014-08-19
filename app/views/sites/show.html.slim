@@ -1,4 +1,4 @@
-p#notice = notice
+#notice = notice
 
 p
   strong Domain:
@@ -21,3 +21,7 @@ p
   strong Site pages list:
   - @site.pages.each do |page|
     = page.title
+
+= link_to 'back', sites_path
+br
+= link_to 'edit', edit_site_path(@site)

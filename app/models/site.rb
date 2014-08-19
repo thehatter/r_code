@@ -23,6 +23,7 @@ class Site < ActiveRecord::Base
   validates :theme, inclusion: {in: Site::THEMES}
 
   after_save :init_site
+  before_save :create_subowner
 
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
@@ -43,7 +44,17 @@ class Site < ActiveRecord::Base
     #create front page for this site
     @front_page = self.pages.create(title: "Главная страница", body: "Сайт #{self.name} текст главной страницы")
     self.update(front_page_id: @front_page.id)
-
   end
 
+  def self.create_random_user
+    user = User.create(email: User.generate_email, username: User.generate_login, password: User.generate_password)
+  end
+
+  def create_subowner
+    user = Site.create_random_user
+    subowner = SubOwner.new
+    subowner.user_id = user.id
+    subowner.site_id = self.id
+    subowner.save
+  end
 end
