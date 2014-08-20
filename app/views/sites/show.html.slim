@@ -23,12 +23,22 @@ p
     = page.title
 
 p
-  strong sub owner:
-  = User.find(SubOwner.find_by_site_id(params[:id]).user_id).username
+  strong List of owners:
+  - users_list = Site.get_list_of_owners(params[:id])
+  br
+  - users_list.each do |user_id|
+    |Username --
+    = User.find(user_id).username
+    br
+    | Password --
+    = SubOwner.find_by_site_id(params[:id]).password
 
 p
-  strong password:
+  strong Main owner's password:
   = SubOwner.find_by_site_id(params[:id]).password
+
+p
+  strong List of sub o
 
 = link_to 'back', sites_path
 br

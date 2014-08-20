@@ -27,7 +27,7 @@ private
       begin
         @corect_site = current_user.sites.find(current_site)
       rescue ActiveRecord::RecordNotFound
-        if current_user.admin? || owner_user
+        if owner_user
         else
           redirect_to root_url
           flash[:error] = "#{current_user.username} is not fk admin!"

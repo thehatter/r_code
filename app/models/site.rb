@@ -58,4 +58,8 @@ class Site < ActiveRecord::Base
     subowner.password = user.password
     subowner.save
   end
+
+  def self.get_list_of_owners(site_id)
+    user_list = SubOwner.where('site_id = ?', site_id).pluck(:user_id)
+  end
 end
