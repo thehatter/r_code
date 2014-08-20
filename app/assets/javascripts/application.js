@@ -25,7 +25,7 @@
 //= require ckeditor/init
 
 
-//= require_tree .
+//= require_directory .
 
 
 

@@ -33,13 +33,6 @@ p
     | Password --
     = SubOwner.find_by_site_id(params[:id]).password
 
-p
-  strong Main owner's password:
-  = SubOwner.find_by_site_id(params[:id]).password
-
-p
-  strong List of sub o
-
 = link_to 'back', sites_path
 br
 = link_to 'edit', edit_site_path(@site)
