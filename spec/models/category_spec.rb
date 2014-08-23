@@ -4,6 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  catalog_id   :integer
+#  site_id      :integer
 #  title        :string(255)
 #  category_img :string(255)
 #  slug         :string(255)

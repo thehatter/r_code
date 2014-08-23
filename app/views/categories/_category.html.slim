@@ -9,3 +9,4 @@ h1 = @category.title
         .title = link_to item.title, catalog_item_path(item)
         - if correct_view
           = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_catalog_item_path(item), class: "btn btn-default config_cog"
+        = button_to 'Add to cart', line_items_path(catalog_item_id: item)

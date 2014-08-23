@@ -5,6 +5,7 @@
 #
 #  id               :integer          not null, primary key
 #  category_id      :integer
+#  site_id          :integer
 #  title            :string(255)
 #  body             :text
 #  catalog_item_img :string(255)
@@ -26,6 +27,9 @@ class CatalogItem < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :site
+  has_many   :line_items
+
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   mount_uploader :catalog_item_img, CatalogItemImgUploader
 
@@ -44,6 +48,17 @@ class CatalogItem < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
+  end
+
+private
+
+  def ensure_not_referenced_by_any_line_item
+    if line_items.empty?
+      return true
+    else
+      errors.add(:base, 'Существуют товарные позиции')
+      return false
+    end
   end
 
 end

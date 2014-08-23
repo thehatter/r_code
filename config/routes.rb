@@ -38,7 +38,8 @@ RCode::Application.routes.draw do
   get "admin/list_for_add_owner", to: "sub_owners#list_for_add_owner"
   get "admin/add_owner", to: "sub_owners#add_owner"
 
-
+  resources :line_items
+  resources :carts
 
   # resources :pages, except: :show
 
