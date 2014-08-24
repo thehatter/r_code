@@ -31,3 +31,5 @@ h3 Общая стоимость
 	= 'UAH'
 
 = button_to 'Очистить корзину', @cart, method: :delete, data: {confirm: 'Вы уверены? Действие необратимо'}
+= button_to 'Оформить заказ', new_order_path, method: :get
+= link_to 'Back', request.referer

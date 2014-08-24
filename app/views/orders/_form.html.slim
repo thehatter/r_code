@@ -1,0 +1,25 @@
+/encoding: UTF-8
+= form_for(@order) do |f|
+
+  -if @order.errors.any?
+    .error_explanation.bg-danger
+      h2
+        = pluralize(@order.errors.count, "error")
+        |  prohibited this page from being saved:
+      - @order.errors.full_messages.each do |msg|
+        li = msg
+
+  .field.form-group
+    = f.label :name
+    = f.text_field :name
+
+  .field.form-group
+    = f.label :address
+    = f.text_field :address
+
+  .field.form-group
+    = f.label :email
+    = f.text_field :email
+
+  .actions
+    = f.submit 'Подтвердить', :class => 'btn btn-success'
