@@ -1,0 +1,17 @@
+/encoding: UTF-8
+h2 Корзина
+br
+- @cart.line_items.each do |item|
+	= item.quantity
+	|&times;
+	= item.catalog_item.title
+	|&nbsp
+	= item.total_price
+	|рублей
+	br
+
+h3 Общая стоимость
+= @cart.total_price
+|рублей
+
+= button_to 'Очистить корзину', @cart, method: :delete, data: {confirm: 'Вы уверены? Действие необратимо'}
