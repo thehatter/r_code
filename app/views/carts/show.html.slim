@@ -8,27 +8,13 @@ br
 	|&nbsp
 	= item.total_price
 	|&nbsp
-	- if item.currency == 'Доллары США'
-		= 'USD'
-		- elsif item.currency == 'Беларусские рубли'
-		= 'BYR'
-		- elsif item.currency == 'Российские рубли'
-		= 'RUB'
-		- elsif item.currency == 'Гривны'
-		= 'UAH'
+	= item.currency
 	br
 
 h3 Общая стоимость
 = @cart.total_price
 |&nbsp
-- if @cart.line_items.first.currency == 'Доллары США'
-	= 'USD'
-	- elsif @cart.line_items.first.currency == 'Беларусские рубли'
-	= 'BYR'
-	- elsif @cart.line_items.first.currency == 'Российские рубли'
-	= 'RUB'
-	- elsif @cart.line_items.first.currency == 'Гривны'
-	= 'UAH'
+= @cart.line_items.first.currency
 
 = button_to 'Очистить корзину', @cart, method: :delete, data: {confirm: 'Вы уверены? Действие необратимо'}
 = button_to 'Оформить заказ', new_order_path, method: :get

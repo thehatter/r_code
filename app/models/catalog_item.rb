@@ -31,7 +31,7 @@ class CatalogItem < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  CURRENCY = ['Доллары США', 'Беларусские рубли', 'Российские рубли', 'Гривны']
+  CURRENCY = ['USD', 'BYR', 'RUB', 'UAH']
 
   mount_uploader :catalog_item_img, CatalogItemImgUploader
 

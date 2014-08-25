@@ -13,11 +13,4 @@ h1 = @catalog_item.title
 = @catalog_item.body.html_safe if @catalog_item.body
 = @catalog_item.price
 |&nbsp
-- if @catalog_item.currency == 'Доллары США'
-		= 'USD'
-		- elsif @catalog_item.currency == 'Беларусские рубли'
-		= 'BYR'
-		- elsif @catalog_item.currency == 'Российские рубли'
-		= 'RUB'
-		- elsif @catalog_item.currency == 'Гривны'
-		= 'UAH'
+= @catalog_item.currency
