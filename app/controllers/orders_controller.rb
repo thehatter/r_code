@@ -1,5 +1,14 @@
 #encoding: UTF-8
 class OrdersController < ApplicationController
+	def index
+		@orders = Order.order("created_at DESC").page(params[:page]).per(25)
+
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @orders }
+		end
+	end
+
 	def new
 		@cart = current_cart
 		if @cart.line_items.empty?
