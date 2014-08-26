@@ -1,0 +1,4 @@
+#encoding: UTF-8
+<%= sprintf("%2d x %s",
+						line_item.quantity,
+						truncate(line_item.catalog_item.title, length: 50)) %>
