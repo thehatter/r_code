@@ -1,0 +1,7 @@
+#Encoding: UTF-8
+В вашем магазине <%= @current_site.name %> новый заказ
+<p></p>
+Покупатель <%= @order.name %> заказал:
+<%= render @order.line_items %>
+<p></p>
+Заказ нужно доставить по адресу: <%= @order.address %>

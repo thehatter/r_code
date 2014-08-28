@@ -13,6 +13,12 @@ class OrderNotifier < ActionMailer::Base
     mail to: order.email, subject: 'Подтверждение заказа'
   end
 
+  def information(order, current_site)
+    @current_site = current_site
+    @order = order
+
+    mail to: current_site.owner_email, subject: 'Новый заказ'
+  end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

@@ -1,7 +1,7 @@
 #encoding: UTF-8
+class OrdersController < ApplicationController
 before_filter :shop_activate?
 
-class OrdersController < ApplicationController
 	def index
 		@orders = Order.order("created_at DESC").page(params[:page]).per(25)
 
@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
 				Cart.destroy(session[:cart_id])
 				session[:cart_id] = nil
 				OrderNotifier.received(@order).deliver
+				OrderNotifier.information(@order, current_site).deliver
 				format.html { redirect_to root_url,
 						notice: 'Спасибо за Ваш заказ' }
 				format.json { render json: @order, status: :created, location: @order }
