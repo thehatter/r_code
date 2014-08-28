@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -62,7 +63,7 @@ private
     end
   end
 
- helper_method :owner_user
+  helper_method :owner_user
 
   def subowner?
     user_id = SubOwner.where('site_id = ?', current_site.id).pluck(:user_id)
@@ -70,7 +71,7 @@ private
     true if user_id.include?(current_user.id)
   end
 
-helper_method :subowner?
+  helper_method :subowner?
 
   def current_cart
     Cart.find(session[:cart_id])
@@ -79,6 +80,15 @@ helper_method :subowner?
     session[:cart_id] = cart.id
     cart
   end
+
+  def shop_activate?
+    if !current_site.shop_active
+      redirect_to root_url
+      flash[:error] = "Невозможно"
+    end
+  end
+
+  helper_method :shop_activate?
 
 protected
 

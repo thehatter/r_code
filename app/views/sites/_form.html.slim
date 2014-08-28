@@ -2,7 +2,7 @@
   - if @site.errors.any?
     #error_explanation
       h2
-        = pluralize(@site.errors.count, "error") 
+        = pluralize(@site.errors.count, "error")
         | prohibited this site from being saved:
 
       ul
@@ -23,11 +23,15 @@
     = f.label :name
     = f.text_field :name, :class => 'form-control'
 
+  .field.form-group
+    = f.label :shop_active
+    = f.check_box(:shop_active)
+
   hr
   .field.form-group
     = f.label :theme
     = f.select :theme, options_for_select(site_theme_select_options, f.object.theme), {}, :class => 'form-control'
-  
+
 
   fieldset.image
     legend Логотип сайта
@@ -76,8 +80,8 @@
   .actions
     .form-group
       = f.submit 'Сохранить', :class => 'btn btn-lg btn-success pull-right'
-  
+
   br
   br
-  
+
   hr

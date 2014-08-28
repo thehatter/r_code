@@ -1,5 +1,6 @@
 #encoding: UTF-8
 class CartsController < ApplicationController
+before_action :shop_activate?, only: :show
 
 	def show
 		@cart = Cart.find(params[:id])

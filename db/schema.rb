@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824133625) do
+ActiveRecord::Schema.define(version: 20140828155922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,8 @@ ActiveRecord::Schema.define(version: 20140824133625) do
     t.datetime "updated_at"
     t.string   "image_slot_1"
     t.string   "theme"
+    t.string   "owner_email"
+    t.boolean  "shop_active",   default: false
   end
 
   create_table "sub_owners", force: true do |t|

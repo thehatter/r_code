@@ -1,11 +1,6 @@
 #encoding: UTF-8
 class LineItemsController < ApplicationController
-
-	def index
-	end
-
-	def new
-	end
+before_action :shop_activate?, only: [:create]
 
 	def create
 		@cart = current_cart
@@ -24,18 +19,6 @@ class LineItemsController < ApplicationController
 	    			status: :unprocessable_entity }
 	    end
   	end
-	end
-
-	def show
-	end
-
-	def edit
-	end
-
-	def update
-	end
-
-	def destroy
 	end
 
 private

@@ -1,4 +1,6 @@
 #encoding: UTF-8
+before_filter :shop_activate?
+
 class OrdersController < ApplicationController
 	def index
 		@orders = Order.order("created_at DESC").page(params[:page]).per(25)
