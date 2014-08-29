@@ -1,12 +1,19 @@
-.node_controls
-  .btn-group.pull-right
-    = link_to '<span class="glyphicon glyphicon-cog"></span> Редактировать товар'.html_safe, edit_catalog_item_path(@catalog_item), class: "btn btn-default edit_page_button"
-    = link_to 'Удалить товар', catalog_item_path(@catalog_item), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger edit_page_button"
+.catalog_item_page
+  - if correct_view
+    .node_controls
+      .btn-group.pull-right
+        = link_to '<span class="glyphicon glyphicon-cog"></span> Редактировать товар'.html_safe, edit_catalog_item_path(@catalog_item), class: "btn btn-default edit_page_button"
+        = link_to 'Удалить товар', catalog_item_path(@catalog_item), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger edit_page_button"
 
-h1 = @catalog_item.title
+  .row
+    .col-md-3
+      = image_tag(@catalog_item.catalog_item_img_url(:thumb_263x263), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
+    .col-md-9
 
+      h1 = @catalog_item.title
+      - if @catalog_item.price
+        .price 
+          | Цена: 
+          span = @catalog_item.price
 
-= image_tag(@catalog_item.catalog_item_img_url(:thumb_263x263), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
-
-
-= @catalog_item.body.html_safe if @catalog_item.body
+      = @catalog_item.body.html_safe if @catalog_item.body

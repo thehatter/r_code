@@ -3,6 +3,11 @@
   .field.form-group
     = f.label :title
     = f.text_field :title, :class => 'form-control'
+  .row
+    .col-md-4
+      .field.form-group
+        = f.label :price
+        = f.text_field :price, :class => 'form-control'
 
   fieldset.image
     legend Картинка товара
@@ -11,7 +16,7 @@
       = f.file_field :catalog_item_img
       = f.hidden_field :catalog_item_img_cache
     .form-group
-      = image_tag(@catalog_item.catalog_item_img_url(:thumb)) if @catalog_item.catalog_item_img?
+      = image_tag(@catalog_item.catalog_item_img_url(:thumb_263x263)) if @catalog_item.catalog_item_img?
     .form-group
       - unless @catalog_item.new_record?
         .checkbox

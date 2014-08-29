@@ -1,0 +1,68 @@
+<!-- Modal -->
+.modal.fade id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить логотип
+      = render 'sites/logo_form'
+
+
+<!-- Modal -->
+.modal.fade id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить подвал
+      = render 'sites/footer_form'
+
+
+<!-- Modal -->
+.modal.fade id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить подвал
+      = render 'sites/big_image_form'
+
+
+.container
+  .row
+    .header_container.col-md-12.clearfix
+      .header.clearfix
+        .logo_container
+          = link_to image_tag(current_site.site_logo_url(:thumb_200x400), :alt => current_site.name, :title => current_site.name), current_url, :class => 'dock-item'
+          - if correct_view
+            button.config_cog.btn data-toggle="modal" data-target="#myModal"
+              span.glyphicon.glyphicon-cog
+
+
+        .header_menu.pull-right
+          = render "themes/#{current_site.theme}/menu", block_id: 1
+
+- if is_front? && current_site.image_slot_1?
+  .big_image
+    = image_tag(current_site.image_slot_1_url) if current_site.image_slot_1?
+    - if correct_view
+      button.config_cog.btn data-toggle="modal" data-target="#myModal_3"
+        span.glyphicon.glyphicon-cog
+- else
+  .line_div_2px
+
+.container
+  .row
+    .col-md-12
+      = yield
+
+.footer#footer
+  .container
+    .row
+      .col-md-12
+        = current_site.footer_text.html_safe if current_site.footer_text
+        - if correct_view
+          button.config_cog.btn data-toggle="modal" data-target="#myModal2"
+            span.glyphicon.glyphicon-cog
+
+  / h2  = current_site.name

@@ -2,10 +2,11 @@ doctype html
 html
   head
     title RCode
-    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "themes/theme_#{current_site.theme if current_site.theme}", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  body
+  body class="#{current_site.theme if current_site.theme}"
     = render 'layouts/top_bar' if correct_view
 
     - flash.each do |name, msg|

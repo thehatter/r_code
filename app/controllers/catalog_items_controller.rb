@@ -62,7 +62,7 @@ class CatalogItemsController < ApplicationController
     end
 
     def catalog_item_params
-      params.require(:catalog_item).permit(:title, :category_id, :site_id, :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache)
+      params.require(:catalog_item).permit(:title, :price, :category_id, :site_id, :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache)
     end
 
 end

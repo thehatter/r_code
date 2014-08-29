@@ -18,7 +18,7 @@
 
 class Site < ActiveRecord::Base
 
-  Site::THEMES = %w(white portfolio)
+  Site::THEMES = %w(white minimum)
   validates :theme, inclusion: {in: Site::THEMES}
 
   after_save :init_site
