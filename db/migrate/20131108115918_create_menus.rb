@@ -5,7 +5,7 @@ class CreateMenus < ActiveRecord::Migration
       t.integer :site_id
       t.string :title
 
-      t.integer :block_id
+      t.integer :region_id
 
       t.timestamps
     end

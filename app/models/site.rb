@@ -39,7 +39,7 @@ class Site < ActiveRecord::Base
 
 
   def init_site
-    @main_menu = self.menus.create(title: "Главное меню", block_id: 1)
+    @main_menu = self.menus.create(title: "Главное меню", region_id: 1)
 
     #create front page for this site
     @front_page = self.pages.create(title: "Главная страница", body: "Сайт #{self.name} текст главной страницы")
