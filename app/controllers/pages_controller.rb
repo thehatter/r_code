@@ -71,6 +71,7 @@ class PagesController < ApplicationController
 
   def front
       @page = Page.find(current_site.front_page_id)
+      @front = true
       render :show
   end
 

@@ -41,6 +41,9 @@ RCode::Application.routes.draw do
   resources :line_items
   resources :carts
   resources :orders
+
+  get 'personal_orders', to: 'orders#personal_orders'
+
   # resources :pages, except: :show
 
   # class OwnDomain

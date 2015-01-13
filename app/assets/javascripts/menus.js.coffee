@@ -4,10 +4,15 @@
 
 jQuery ->
   menuSorting = () ->
-    $('.menu_edit_page .config_menu_links').sortable
+    $('.vertical_menu .config_menu_links').sortable
       axis: 'y'
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize'))
+    $('.horizontal_menu .config_menu_links').sortable
+      axis: 'x'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
 
   document.addEventListener("page:change", menuSorting);
+

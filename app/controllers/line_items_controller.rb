@@ -10,7 +10,7 @@ before_action :shop_activate?, only: [:create]
 	  respond_to do |format|
 	    if @line_item.save
 	    	format.html { redirect_to @line_item.cart }
-
+        format.js
 	    	format.json { render json: @line_item,
 	    			status: :created, location: @line_item }
 	    else

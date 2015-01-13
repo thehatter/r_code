@@ -46,6 +46,16 @@ before_filter :shop_activate?
 		end
 	end
 
+
+	def personal_orders
+		@orders = current_user.orders.order("created_at DESC").page(params[:page]).per(25)
+
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @orders }
+		end
+	end
+
 private
 
   def order_params

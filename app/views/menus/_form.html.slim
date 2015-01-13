@@ -1,0 +1,21 @@
+= form_for(@menu) do |f|
+  - if @menu.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@menu.errors.count, "error")
+        | prohibited this site from being saved:
+
+      ul
+        - @menu.errors.full_messages.each do |msg|
+          = msg
+
+  .field.form-group
+    = f.label :show_on_front
+    = f.check_box(:show_on_front)
+
+  .actions
+    .form-group
+      = f.submit 'Сохранить', :class => 'btn btn-lg btn-success pull-right'
+
+  br
+  br

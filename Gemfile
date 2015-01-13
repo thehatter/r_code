@@ -5,7 +5,7 @@ gem 'sprockets', '2.11.0'
 gem 'rails', '4.1.0'
 gem 'therubyracer'
 gem 'russian'
-gem 'annotate'
+gem 'annotate', github: 'ctran/annotate_models'
 
 gem 'friendly_id', '~> 5.0.0'
 gem 'devise'
@@ -66,6 +66,8 @@ end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+    # jquery-ui-rails (4.2.0)
+    #   railties (>= 3.2.16)
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

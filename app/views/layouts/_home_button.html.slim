@@ -1,4 +1,5 @@
 .container
   .row
-    .col-md-12.home_button
-       = link_to '<span class="glyphicon glyphicon-arrow-left"></span>'.html_safe, current_url, class: "btn btn-lg btn-default"
+    .col-md-12.home_button.btn-group
+       = link_to '<span class="glyphicon glyphicon-arrow-left"></span>'.html_safe, :back, class: "btn btn-lg btn-default"
+       = link_to '<span class="glyphicon glyphicon-home"></span>'.html_safe, current_url, class: "btn btn-lg btn-default"

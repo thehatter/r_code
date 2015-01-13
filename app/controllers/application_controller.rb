@@ -73,6 +73,8 @@ private
 
   helper_method :subowner?
 
+
+  #TODO recreate more complex cart & use this method http://apidock.com/rails/ActiveRecord/Relation/find_or_create_by
   def current_cart
     Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound
@@ -80,6 +82,7 @@ private
     session[:cart_id] = cart.id
     cart
   end
+  helper_method :current_cart
 
   def shop_activate?
     if !current_site.shop_active

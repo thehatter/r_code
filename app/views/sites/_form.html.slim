@@ -11,75 +11,95 @@
 
 
 
-  .field.form-group
-    = f.label :domain
-    = f.text_field :domain, :class => 'form-control'
+  .panel-group
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+            | Основные настройки
+      #collapseOne.panel-collapse.collapse.in
+        .panel-body
+          .field.form-group
+            label Имя сайта
+            = f.text_field :name, :class => 'form-control'
+          .field.form-group
+            label E-mail владельца
+            = f.text_field :owner_email, :class => 'form-control'
 
-  .field.form-group
-    = f.label :sub_domain
-    = f.text_field :sub_domain, :class => 'form-control'
+          fieldset.image
+            legend Логотип сайта
+            .form-group
+              = f.label :site_logo, "Загрузить логотип:"
+              = f.file_field :site_logo
+              = f.hidden_field :site_logo_cache
+            .form-group
+              = image_tag(@site.site_logo_url(:thumb_200x400)) if @site.site_logo?
+            .form-group
+              - unless @site.new_record?
+                .checkbox
+                  = content_tag :label
+                    = f.check_box :remove_site_logo
+                    = label :remove_site_logo, "Удалить логотип сайта"
 
-  .field.form-group
-    = f.label :name
-    = f.text_field :name, :class => 'form-control'
-
-  .field.form-group
-    = f.label :owner_email
-    = f.text_field :owner_email, :class => 'form-control'
-
-  .field.form-group
-    = f.label :shop_active
-    = f.check_box(:shop_active)
-
-  hr
-  .field.form-group
-    = f.label :theme
-    = f.select :theme, options_for_select(site_theme_select_options, f.object.theme), {}, :class => 'form-control'
-
-
-  fieldset.image
-    legend Логотип сайта
-    .form-group
-      = f.label :site_logo, "Загрузить логотип:"
-      = f.file_field :site_logo
-      = f.hidden_field :site_logo_cache
-    .form-group
-      = image_tag(@site.site_logo_url(:thumb_200x400)) if @site.site_logo?
-    .form-group
-      - unless @site.new_record?
-        .checkbox
-          = content_tag :label
-            = f.check_box :remove_site_logo
-            = label :remove_site_logo, "Удалить логотип сайта"
-
-
-  fieldset.image
-    legend Большая картинка сайта
-    .form-group
-      = f.label :image_slot_1, "Загрузить картинку:"
-      = f.file_field :image_slot_1
-      = f.hidden_field :image_slot_1_cache
-    .form-group
-      = image_tag(@site.image_slot_1_url(:thumb_200x400)) if @site.image_slot_1?
-    .form-group
-      - unless @site.new_record?
-        .checkbox
-          = content_tag :label
-            = f.check_box :remove_image_slot_1
-            = label :remove_image_slot_1, "Удалить картинку"
+          .field.form-group
+            = f.label :shop_active
+            = f.check_box(:shop_active)
 
 
 
-  hr
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+            | Настройки домена
+      #collapseTwo.panel-collapse.collapse
+        .panel-body
+          .field.form-group
 
-  .field.form-group
-    = f.label :footer_text
-    = f.cktext_area :footer_text, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru'}
+            = f.label :domain
+            = f.text_field :domain, :class => 'form-control'
+
+          .field.form-group
+            = f.label :sub_domain
+            = f.text_field :sub_domain, :class => 'form-control'
 
 
-  / .field.form-group
-  /   = f.label :user_id
-  /   = f.number_field :user_id, :class => 'form-control'
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+            | Дополнительные настройки
+      #collapse3.panel-collapse.collapse
+        .panel-body
+          .field.form-group
+              .field.form-group
+                = f.label :theme
+                = f.select :theme, options_for_select(site_theme_select_options, f.object.theme), {}, :class => 'form-control'
+
+              fieldset.image
+                legend Большая картинка сайта
+                .form-group
+                  = f.label :image_slot_1, "Загрузить картинку:"
+                  = f.file_field :image_slot_1
+                  = f.hidden_field :image_slot_1_cache
+                .form-group
+                  = image_tag(@site.image_slot_1_url(:thumb_200x400)) if @site.image_slot_1?
+                .form-group
+                  - unless @site.new_record?
+                    .checkbox
+                      = content_tag :label
+                        = f.check_box :remove_image_slot_1
+                        = label :remove_image_slot_1, "Удалить картинку"
+
+              hr
+
+              .field.form-group
+                = f.label :footer_text
+                = f.cktext_area :footer_text, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru'}
+
+
+
+
 
   .actions
     .form-group
@@ -87,5 +107,3 @@
 
   br
   br
-
-  hr

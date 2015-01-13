@@ -6,6 +6,28 @@ class MenusController < ApplicationController
     load_menu
   end
 
+  def new
+    @site = Site.new
+  end
+
+  # GET /sites/1/edit
+  def edit
+    load_menu
+  end
+
+  def update
+    load_menu
+    respond_to do |format|
+      if @menu.update(menu_params)
+        format.html { redirect_to current_url, notice: 'Меню успешно обновлено' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @menu.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     def load_menu
@@ -14,8 +36,8 @@ class MenusController < ApplicationController
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def site_params
-      params.require(:menu).permit(:title, :site_id, :block_id)
+    def menu_params
+      params.require(:menu).permit(:title, :site_id, :block_id, :show_on_front)
     end
 
 

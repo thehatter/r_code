@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  address    :string(255)
+#  email      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Order < ActiveRecord::Base
 	validates_presence_of :name
 	validates_presence_of :address

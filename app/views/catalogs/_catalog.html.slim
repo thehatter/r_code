@@ -3,11 +3,18 @@
 
   h1 = catalog.title
 
+  - if correct_view
+    = link_to 'Добавить категорию', new_category_path(:catalog_id => catalog.id), class: "btn btn-success"
+
   .row
-    - catalog.categories.order("weight").each do |item|
-      .col-md-3.catalog_category
-        .img 
-          = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
-        .title = link_to item.title, category_path(item)
-        - if correct_view
-          = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_category_path(item), class: "btn btn-default config_cog"
+    .big_catalog_categoryes data-update-url=sort_categories_url
+      - catalog.categories.order("weight").each do |item|
+        = content_tag_for :div, item, class: "catalog_category col-md-4 col-lg-3"
+          - if correct_view
+            .editing_links
+              = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_category_path(item), class: "btn btn-default config_cog"
+              = link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),  new_catalog_item_path(:category_id => item.id), class: "btn btn-default"
+              = link_to content_tag(:span, "", class: "glyphicon glyphicon-remove"),  category_path(item), data: { confirm: 'Точно точно?' }, method: :delete, class: "btn btn-danger", :title => "Удалить"
+          .img 
+            = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
+          .title = link_to item.title, category_path(item)

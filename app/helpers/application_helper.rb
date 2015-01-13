@@ -18,6 +18,10 @@ module ApplicationHelper
   def correct_view
     true if user_signed_in? && (current_user.admin? ||  current_site.user == current_user)
   end
+
+  def is_front
+    @front 
+  end 
   # for has_and_belongs_to_many must use current_site.include?(current_user)
 
 end

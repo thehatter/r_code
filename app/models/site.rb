@@ -15,6 +15,8 @@
 #  updated_at    :datetime
 #  image_slot_1  :string(255)
 #  theme         :string(255)
+#  owner_email   :string(255)
+#  shop_active   :boolean          default(FALSE)
 #
 
 class Site < ActiveRecord::Base
@@ -40,6 +42,7 @@ class Site < ActiveRecord::Base
 
   def init_site
     @main_menu = self.menus.create(title: "Главное меню", region_id: 1)
+    @side_menu = self.menus.create(title: "Дополнительное меню", region_id: 2)
 
     #create front page for this site
     @front_page = self.pages.create(title: "Главная страница", body: "Сайт #{self.name} текст главной страницы")

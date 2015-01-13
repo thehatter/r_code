@@ -9,8 +9,9 @@ html
 
     = javascript_include_tag "themes/#{current_site.theme}/#{current_site.theme}", "data-turbolinks-track" => true if current_site
     = csrf_meta_tags
-  body
-    = render 'layouts/top_bar'
+  body class="#{controller.controller_name}"
+    / - if user_signed_in?
+    /   = render 'layouts/top_bar'
 
     - flash.each do |name, msg|
       div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
@@ -19,6 +20,6 @@ html
     = puts request.host
 
     = yield
-    = debug(params) if Rails.env.development?
+    / = debug(params) if Rails.env.development?
 
     = render 'layouts/login_corner'
