@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sprockets', '2.11.0'
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.0'
 gem 'therubyracer'
 gem 'russian'
 gem 'annotate', github: 'ctran/annotate_models'
@@ -12,7 +12,7 @@ gem 'devise'
 gem 'slim', '2.0.0'
 gem 'cocoon'
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mini_magick', '~> 3.8.1' 
 
 gem 'ckeditor'
 

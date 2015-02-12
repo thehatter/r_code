@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CatalogsController < ApplicationController
-  before_filter :correct_user, :only => [:destroy, :edit , :update]
+  before_filter :correct_user, :only => [:destroy, :edit , :update, :sort]
 
   def index
     @catalogs = Catalog.all
@@ -54,7 +54,12 @@ class CatalogsController < ApplicationController
     end
   end
 
-
+  def sort
+    params[:catalog].each_with_index do |id, index|
+      Catalog.where(id: id).update_all(weight: index+1)
+    end
+    render nothing: true
+  end
 
   private
 

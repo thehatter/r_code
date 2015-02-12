@@ -4,6 +4,7 @@ class CatalogItemImgUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -39,7 +40,7 @@ class CatalogItemImgUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb_263x263 do
-    process :resize_to_fill => [263, 263]
+    process :resize_to_fit => [263, 263]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

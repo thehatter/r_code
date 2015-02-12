@@ -39,7 +39,7 @@ class CategoryImgUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb_263x263 do
-    process :resize_to_fill => [263, 263]
+    process :resize_and_pad => [263, 263]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

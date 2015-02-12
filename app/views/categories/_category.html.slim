@@ -8,7 +8,8 @@ h1 = @category.title
           .img
             = link_to image_tag(item.catalog_item_img_url(:thumb_263x263), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass'
           .title = link_to item.title, catalog_item_path(item)
+          .price = item.price if item.price
           - if correct_view
             = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_catalog_item_path(item), class: "btn btn-default config_cog"
           - if current_site.shop_active
-          	= button_to 'Add to cart', line_items_path(catalog_item_id: item), remote: true
+          	= button_to 'Добавить в корзину', line_items_path(catalog_item_id: item), remote: true

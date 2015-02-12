@@ -23,7 +23,6 @@
 //= require jquery-ui/effect-shake
 //= require jquery-ui/effect-bounce
 
-//= require ckeditor/override
 //= require ckeditor/init
 
 

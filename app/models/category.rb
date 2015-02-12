@@ -40,4 +40,10 @@ class Category < ActiveRecord::Base
     ]
   end
 
+  def recreate_category_v
+    Category.find_each do |user|
+      user.category_img.recreate_versions! if user.category_img?
+    end
+  end
+
 end
