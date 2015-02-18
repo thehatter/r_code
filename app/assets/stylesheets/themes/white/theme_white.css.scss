@@ -48,6 +48,24 @@ a.gl_indent .glyphicon {
   padding: 0 6px 0 0px;
 }
 
+
+
+// ==================== universal config right top links ====================
+
+.config_right_top_links_container {
+  position: relative;
+}
+.config_right_top_links {
+  position:absolute;
+  top: 0px;
+  right: 0px;
+  display: none;
+}
+.config_right_top_links_container:hover .config_right_top_links {
+  display: block;
+}
+
+
 // ==================== Header  ====================
 
 .header {
@@ -68,7 +86,7 @@ a.gl_indent .glyphicon {
   position: absolute;
   right: 0; top: 0;
   bottom: 0;
-  background: #C00072;
+  background: #999;
   color: #fff;
   min-width: 160px;
   text-align: center;
@@ -130,7 +148,9 @@ div:hover > .config_cog{
 }
 .editing_links {
   position:absolute;
+  right: 0;
   display: none;
+
 }
 .contain_editing_links:hover .editing_links {
   display: block;
@@ -306,6 +326,20 @@ div:hover > .config_cog{
 
 // ==================== catalog ====================
 
+.img_catalog {
+  position: relative;
+}
+.catalog_config_links {
+  position:absolute;
+  top: 10px;
+  right: 0px;
+  display: none;
+}
+.img_catalog:hover .catalog_config_links {
+  display: block;
+}
+
+
 .catalog_category {
   .img {
     img {
@@ -331,9 +365,17 @@ div:hover > .config_cog{
     a {
       display: block;
       text-align: center;
-      padding: 5px 0;
+      padding: 5px 0 2px 0;
     }
   }
+  .price {
+      text-align: center;
+      padding: 0px 0 2px 0;
+  }
+  .button_to {
+    text-align: center;
+  }
+
 }
 
 

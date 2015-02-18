@@ -3,20 +3,21 @@
 #
 # Table name: sites
 #
-#  id            :integer          not null, primary key
-#  domain        :string(255)
-#  sub_domain    :string(255)
-#  name          :string(255)
-#  site_logo     :string(255)
-#  user_id       :integer
-#  front_page_id :integer
-#  footer_text   :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  image_slot_1  :string(255)
-#  theme         :string(255)
-#  owner_email   :string(255)
-#  shop_active   :boolean          default(FALSE)
+#  id             :integer          not null, primary key
+#  domain         :string(255)
+#  sub_domain     :string(255)
+#  name           :string(255)
+#  site_logo      :string(255)
+#  user_id        :integer
+#  front_page_id  :integer
+#  footer_text    :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  image_slot_1   :string(255)
+#  theme          :string(255)
+#  owner_email    :string(255)
+#  shop_active    :boolean          default("f")
+#  big_image_text :string(255)
 #
 
 class Site < ActiveRecord::Base
@@ -32,6 +33,7 @@ class Site < ActiveRecord::Base
   has_many :catalogs, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :catalog_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   belongs_to :user
 

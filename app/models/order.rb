@@ -8,6 +8,7 @@
 #  email      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 class Order < ActiveRecord::Base
@@ -15,6 +16,7 @@ class Order < ActiveRecord::Base
 	validates_presence_of :address
 	validates_presence_of :email
 
+  belongs_to :user
 	has_many :line_items, dependent: :destroy
 
 	def add_line_items_from_cart(cart)

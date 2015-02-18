@@ -10,6 +10,7 @@
 #  slug       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  weight     :integer
 #
 
 class Catalog < ActiveRecord::Base

@@ -40,9 +40,12 @@ class CatalogItemImgUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb_263x263 do
-    process :resize_to_fit => [263, 263]
+    process :resize_and_pad => [263, 263]
   end
 
+  version :thumb_60x60 do
+    process :resize_and_pad => [60, 60]
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

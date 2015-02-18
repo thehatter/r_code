@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212165716) do
+ActiveRecord::Schema.define(version: 20150218104749) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 20150212165716) do
     t.string   "email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "site_id"
   end
 
   create_table "pages", force: :cascade do |t|

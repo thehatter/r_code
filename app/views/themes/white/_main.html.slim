@@ -26,6 +26,8 @@
                 ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"
                   li = link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + "Редактировать учетную запись", edit_user_registration_path, class: "gl_indent"
                   li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки сайта", edit_site_path(current_site), class: "gl_indent"
+                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Мои заказы", personal_orders_path, class: "gl_indent"
+                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Все заказы сайта", orders_path, class: "gl_indent"
                   li.divider
                   li = link_to('Выйти', destroy_user_session_path, :method => :delete)
             - else

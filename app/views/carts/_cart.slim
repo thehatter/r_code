@@ -1,21 +1,33 @@
 /encoding: UTF-8
 h2 Корзина
 br
-- @cart.line_items.each do |item|
-	= item.quantity
-	|&times;
-	= item.catalog_item.title
-	|&nbsp
-	= item.total_price
-	|&nbsp
-	= item.currency
-	br
 
-h3 Общая стоимость
-= @cart.total_price
-|&nbsp
-= @cart.line_items.first.currency
+table.table
+  - if @cart.line_items.any?
+    - @cart.line_items.each do |item|
+      tr
+        td
+          .img
+            = link_to image_tag(item.catalog_item.catalog_item_img_url(:thumb_60x60), :alt => item.catalog_item.title, :title => item.catalog_item.title), catalog_item_path(item.catalog_item), :class => 'noclass'
+        td
+          = item.quantity
+          |&times;
+          = item.catalog_item.title
+          |&nbsp
+          = item.total_price
+          |&nbsp
+          = item.currency
+  - else
+   h2 Ваша корзина пуста
 
-= button_to 'Очистить корзину', @cart, method: :delete, data: {confirm: 'Вы уверены? Действие необратимо'}
-= button_to 'Оформить заказ', new_order_path, method: :get
-= link_to 'Back', request.referer
+
+h4
+  | Общая стоимость 
+  strong
+    = @cart.total_price
+    / = @cart.line_items.first.currency
+.pull-right
+  .btn-group role="group"
+    = link_to 'Очистить корзину', @cart, method: :delete, data: {confirm: 'Вы уверены? Действие необратимо'}, class: "btn btn-default"
+    = link_to 'Оформить заказ', new_order_path, method: :get, class: "btn btn-default"
+    = link_to 'Назад', request.referer, class: "btn btn-default"
