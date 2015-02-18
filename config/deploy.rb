@@ -14,7 +14,7 @@ set :linked_dirs, %w{public/uploads} #uploads dir
 set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}# mb comment on setup
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.1'
+set :rvm_ruby_version, '2.2.0'
 
 set :deploy_to, '/var/www/apps/r_code'
 
