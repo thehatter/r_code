@@ -1,25 +1,38 @@
-- @menu = current_site_menus.find_by block_id: block_id
+- @menu = current_site_menus.find_by region_id: region_id
+- if @menu
 
-.menu_links
-  ul.nav.nav-pills
-    - if @menu.menu_items.any?
-      - @menu.menu_items.order("weight").each do |item|
-        - if item.catalog_id
-          = content_tag_for :li, item,  :class => "dropdown"
-            = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
-              = item.title 
-              <b class= 'caret'></b>
-            ul.catalog_categoryes.dropdown-menu
-              - item.catalog.categories.order("weight").each do |item|
-                = content_tag_for :li, item
-                  = link_to item.title, category_path(item)
-        - else
-          = content_tag_for :li, item
-            = link_to item.title, item.link
-    - else
-      | Меню постое!
+  .menu_links
+    ul.nav.nav-pills.config_menu_links.links data-update-url=sort_menu_items_url 
+      - if @menu.menu_items.any?
+        - @menu.menu_items.order("weight").each do |item|
+
+          // if item is catalog do
+          - if item.catalog_id
+            - if region_id == 1
+              = content_tag_for :li, item,  :class => "dropdown"
+                = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
+                  = item.title 
+                  <b class= 'caret'></b>
+                ul.catalog_categoryes.dropdown-menu data-update-url=sort_categories_url
+                  - item.catalog.categories.order("weight").each do |item|
+                    = content_tag_for :li, item
+                      = link_to item.title, category_path(item)
+            - else
+              = content_tag_for :li, item, class: "catalog_menu_item"
+                h4 = item.title
+                ul.catalog_categoryes data-update-url=sort_categories_url
+                  - item.catalog.categories.order("weight").each do |item|
+                    = content_tag_for :li, item
+                      = link_to item.title, category_path(item)
+
+          // if item is NOT catalog      
+          - else
+            = content_tag_for :li, item
+              = link_to item.title, item.link
+      - else
+        | Меню постое!
 
 
-  - if @menu && correct_view
-    .menu_config
-      = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"
+    - if @menu && correct_view
+      .menu_config
+        = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"

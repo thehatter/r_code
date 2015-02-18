@@ -1,11 +1,12 @@
+# encoding: utf-8
 class CatalogsController < ApplicationController
-
+  before_filter :correct_user, :only => [:destroy, :edit , :update, :sort]
 
   def index
     @catalogs = Catalog.all
   end
 
-  def show 
+  def show
     load_catalog
   end
 
@@ -16,12 +17,13 @@ class CatalogsController < ApplicationController
 
   def create
     @catalog = current_site.catalogs.new(catalog_params)
+    @menu = Menu.find(params[:catalog][:menu_id])
     respond_to do |format|
       if @catalog.save
         @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
         format.html { redirect_to menu_url(@catalog.menu), notice: 'Catalog was successfully created.' }
       else
-        flash[:error] = "there was a problem"
+        format.html { render action: 'new', :menu_id => @menu.id }
       end
     end
   end
@@ -52,7 +54,12 @@ class CatalogsController < ApplicationController
     end
   end
 
-
+  def sort
+    params[:catalog].each_with_index do |id, index|
+      Catalog.where(id: id).update_all(weight: index+1)
+    end
+    render nothing: true
+  end
 
   private
 

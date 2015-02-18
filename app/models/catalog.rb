@@ -10,9 +10,13 @@
 #  slug       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  weight     :integer
 #
 
 class Catalog < ActiveRecord::Base
+
+  validates_presence_of :title
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 

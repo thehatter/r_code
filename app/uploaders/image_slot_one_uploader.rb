@@ -58,7 +58,7 @@ class ImageSlotOneUploader < CarrierWave::Uploader::Base
   # end
 
   def filename
-    original_filename.parameterize if original_filename
+    original_filename.parameterize + "." + file.extension if original_filename
   end
 
 end

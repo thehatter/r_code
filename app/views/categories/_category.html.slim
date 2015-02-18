@@ -1,5 +1,12 @@
-h1 = @category.title
+.category.config_right_top_links_container
+  h1 = @category.title
+  .config_right_top_links
+    .btn-group.pull-right
+      = link_to 'Добавить позицию', new_catalog_item_path(:category_id => @category.id), class: "btn btn-success"
+      = link_to 'Редактировать', edit_category_path(@category), class: "btn btn-default"
+      = link_to 'Удалить', category_path(@category), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger"
 
+<<<<<<< HEAD
 .category_catalog_items.clearfix
   .row
     - @category.catalog_items.order("weight").each do |item|
@@ -10,3 +17,18 @@ h1 = @category.title
         .price = item.price
         - if correct_view
           = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_catalog_item_path(item), class: "btn btn-default config_cog"
+=======
+  .clearfix
+    .row
+      .category_catalog_items.clearfix data-update-url=sort_catalog_items_url
+        - @category.catalog_items.order("weight").each do |item|
+          = content_tag_for :div, item, class: "catalog_item col-md-4 col-lg-3"
+            .img
+              = link_to image_tag(item.catalog_item_img_url(:thumb_263x263), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass'
+            .title = link_to item.title, catalog_item_path(item)
+            .price = item.price if item.price
+            - if correct_view
+              = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_catalog_item_path(item), class: "btn btn-default config_cog"
+            - if current_site.shop_active
+            	= button_to 'Добавить в корзину', line_items_path(catalog_item_id: item), remote: true, class: "btn btn-default"
+>>>>>>> dev

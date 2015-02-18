@@ -1,6 +1,7 @@
 class CatalogItemsController < ApplicationController
+  before_filter :correct_user, :only => [:destroy, :edit , :update, :sort]
 
-  def show 
+  def show
     load_catalog_item
   end
 
@@ -12,11 +13,12 @@ class CatalogItemsController < ApplicationController
 
   def create
     @catalog_item = current_site.catalog_items.new(catalog_item_params)
+    @category = Category.find(params[:catalog_item][:category_id])
     respond_to do |format|
       if @catalog_item.save
         format.html { redirect_to catalog_item_url(@catalog_item), notice: 'Catalog item was successfully created.' }
       else
-        flash[:error] = "there was a problem"
+        format.html { render action: 'new', :category_id => @category.id }
       end
     end
   end
@@ -62,7 +64,11 @@ class CatalogItemsController < ApplicationController
     end
 
     def catalog_item_params
+<<<<<<< HEAD
       params.require(:catalog_item).permit(:title, :price, :category_id, :site_id, :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache)
+=======
+      params.require(:catalog_item).permit(:title, :category_id, :site_id, :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache, :price, :currency)
+>>>>>>> dev
     end
 
 end

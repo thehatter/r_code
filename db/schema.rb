@@ -11,49 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418181604) do
+ActiveRecord::Schema.define(version: 20150218104749) do
 
-  create_table "catalog_items", force: true do |t|
-    t.integer  "category_id"
-    t.integer  "site_id"
-    t.string   "title"
-    t.text     "body"
-    t.string   "catalog_item_img"
-    t.string   "slug"
-    t.integer  "price"
-    t.integer  "weight"
+  create_table "carts", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs", force: true do |t|
+  create_table "catalog_items", force: :cascade do |t|
+    t.integer  "category_id"
     t.integer  "site_id"
-    t.integer  "menu_id"
-    t.string   "title"
-    t.string   "link_title"
-    t.string   "slug"
+    t.string   "title",            limit: 255
+    t.text     "body"
+    t.string   "catalog_item_img", limit: 255
+    t.string   "slug",             limit: 255
+    t.integer  "price"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency",         limit: 255
+  end
+
+  create_table "catalogs", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "menu_id"
+    t.string   "title",      limit: 255
+    t.string   "link_title", limit: 255
+    t.string   "slug",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "weight"
   end
 
   add_index "catalogs", ["menu_id"], name: "index_catalogs_on_menu_id"
   add_index "catalogs", ["site_id"], name: "index_catalogs_on_site_id"
   add_index "catalogs", ["slug"], name: "index_catalogs_on_slug"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.integer  "catalog_id"
     t.integer  "site_id"
-    t.string   "title"
-    t.string   "category_img"
-    t.string   "slug"
+    t.string   "title",        limit: 255
+    t.string   "category_img", limit: 255
+    t.string   "slug",         limit: 255
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ckeditor_assets", force: true do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
     t.integer  "data_file_size"
     t.integer  "assetable_id"
     t.string   "assetable_type",    limit: 30
@@ -67,11 +74,11 @@ ActiveRecord::Schema.define(version: 20140418181604) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
-  create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -80,31 +87,52 @@ ActiveRecord::Schema.define(version: 20140418181604) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "menu_items", force: true do |t|
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "catalog_item_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity",                    default: 1
+    t.string   "currency",        limit: 255
+    t.integer  "order_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
     t.integer  "page_id"
     t.integer  "menu_id"
     t.integer  "catalog_id"
     t.integer  "weight"
-    t.string   "link"
-    t.string   "title"
+    t.string   "link",       limit: 255
+    t.string   "title",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "menus", force: true do |t|
+  create_table "menus", force: :cascade do |t|
     t.integer  "site_id"
-    t.string   "title"
-    t.integer  "block_id"
+    t.string   "title",         limit: 255
+    t.integer  "region_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "show_on_front"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "orders", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "address",    limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "site_id"
+  end
+
+  create_table "pages", force: :cascade do |t|
     t.integer  "site_id"
     t.integer  "menu_id"
-    t.string   "title"
-    t.string   "link_title"
-    t.string   "slug"
+    t.string   "title",      limit: 255
+    t.string   "link_title", limit: 255
+    t.string   "slug",       limit: 255
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -114,44 +142,55 @@ ActiveRecord::Schema.define(version: 20140418181604) do
   add_index "pages", ["site_id"], name: "index_pages_on_site_id"
   add_index "pages", ["slug"], name: "index_pages_on_slug"
 
-  create_table "sections", force: true do |t|
+  create_table "sections", force: :cascade do |t|
     t.integer  "catalog_id"
     t.integer  "section_id"
-    t.string   "name"
-    t.string   "slug"
+    t.string   "name",       limit: 255
+    t.string   "slug",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sites", force: true do |t|
-    t.string   "domain"
-    t.string   "sub_domain"
-    t.string   "name"
-    t.string   "site_logo"
+  create_table "sites", force: :cascade do |t|
+    t.string   "domain",         limit: 255
+    t.string   "sub_domain",     limit: 255
+    t.string   "name",           limit: 255
+    t.string   "site_logo",      limit: 255
     t.integer  "user_id"
     t.integer  "front_page_id"
     t.text     "footer_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_slot_1"
-    t.string   "theme"
+    t.string   "image_slot_1",   limit: 255
+    t.string   "theme",          limit: 255
+    t.string   "owner_email",    limit: 255
+    t.boolean  "shop_active",                default: false
+    t.string   "big_image_text", limit: 255
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+  create_table "sub_owners", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "site_id"
+    t.string   "password",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
-    t.boolean  "admin",                  default: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username",               limit: 255
+    t.boolean  "admin",                              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

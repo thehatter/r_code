@@ -4,6 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  catalog_id   :integer
+#  site_id      :integer
 #  title        :string(255)
 #  category_img :string(255)
 #  slug         :string(255)
@@ -13,6 +14,8 @@
 #
 
 class Category < ActiveRecord::Base
+
+  validates_presence_of :title
 
   belongs_to :catalog
   belongs_to :site
@@ -35,6 +38,12 @@ class Category < ActiveRecord::Base
       [:title, Random.rand(1..10)],
       [:title, Random.rand(10..99)]
     ]
+  end
+
+  def recreate_category_v
+    Category.find_each do |user|
+      user.category_img.recreate_versions! if user.category_img?
+    end
   end
 
 end

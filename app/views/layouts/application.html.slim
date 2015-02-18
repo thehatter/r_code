@@ -2,12 +2,26 @@ doctype html
 html
   head
     title RCode
+<<<<<<< HEAD
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "themes/theme_#{current_site.theme if current_site.theme}", media: "all", "data-turbolinks-track" => true
+=======
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+
+    = stylesheet_link_tag "themes/#{current_site.theme}/#{current_site.theme}", media: "all", "data-turbolinks-track" => true if current_site
+>>>>>>> dev
     = javascript_include_tag "application", "data-turbolinks-track" => true
+
+    = javascript_include_tag "themes/#{current_site.theme}/#{current_site.theme}", "data-turbolinks-track" => true if current_site
     = csrf_meta_tags
+<<<<<<< HEAD
   body class="#{current_site.theme if current_site.theme}"
     = render 'layouts/top_bar' if correct_view
+=======
+  body class="#{controller.controller_name}"
+    / - if user_signed_in?
+    /   = render 'layouts/top_bar'
+>>>>>>> dev
 
     - flash.each do |name, msg|
       div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
@@ -16,5 +30,6 @@ html
     = puts request.host
 
     = yield
+    / = debug(params) if Rails.env.development?
 
-    = render 'layouts/login_corner' if ! correct_view
+    = render 'layouts/login_corner'

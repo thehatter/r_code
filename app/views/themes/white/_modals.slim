@@ -1,0 +1,28 @@
+<!-- Modal -->
+.modal.fade id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить логотип
+      = render 'sites/logo_form'
+
+
+<!-- Modal -->
+.modal.fade id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить подвал
+      = render 'sites/footer_form'
+
+
+<!-- Modal -->
+.modal.fade id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        h4.modal-title#myModalLabel Изменить большую картинку на главной
+      = render 'sites/big_image_form'

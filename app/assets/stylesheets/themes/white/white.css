@@ -9,6 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+<<<<<<< HEAD:app/assets/stylesheets/application.css
  *= require bootstrap
  *= require top_bar
+=======
+ *= require_directory .
+>>>>>>> dev:app/assets/stylesheets/themes/white/white.css
  */

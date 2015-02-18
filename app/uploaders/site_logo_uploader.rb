@@ -61,7 +61,7 @@ class SiteLogoUploader < CarrierWave::Uploader::Base
   # end
 
   def filename
-    original_filename.parameterize if original_filename
+    original_filename.parameterize + "." + file.extension if original_filename
   end
 
   def default_url

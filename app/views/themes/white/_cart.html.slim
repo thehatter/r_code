@@ -1,0 +1,4 @@
+
+= link_to content_tag(:span, "", class: "glyphicon glyphicon-shopping-cart") + " Корзина", current_cart, class: "link_to_cart"
+.items_count
+  = current_cart.line_items.map(&:quantity).sum

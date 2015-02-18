@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -9,13 +10,17 @@ private
 # request.host != 'r-code-main.com' && request.domain != 'lvh.me'
 
   def current_site
+<<<<<<< HEAD
     if request.domain == 'r-code-main.com'#'snowboarding.by' #|| request.domain = 'lvh.me'
+=======
+    if request.domain == 'r-code-main.com'#'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
+>>>>>>> dev
       if request.subdomain.present?
         @site = Site.where('sub_domain = ?', request.subdomain.sub(/^www./,'')).first!
       else
         @site = nil
       end
-    else 
+    else
       @site = Site.where('domain = ?', request.domain).first!
     end
   end
@@ -27,10 +32,10 @@ private
       begin
         @corect_site = current_user.sites.find(current_site)
       rescue ActiveRecord::RecordNotFound
-        if current_user.admin?
+        if owner_user
         else
           redirect_to root_url
-          flash[:error] = "current_user is not fk admin!"
+          flash[:error] = "#{current_user.username} is not fk admin!"
         end
       end
     else
@@ -52,8 +57,45 @@ private
   def current_url
     request.protocol + request.host_with_port
   end
-  
+
   helper_method :current_url
+
+  # метод нужен для сокрытия ненужных элементов
+  def owner_user
+    if authenticate_user!
+      (current_user.admin? || current_user.id == current_site.user_id || subowner?) ? true : false
+    end
+  end
+
+  helper_method :owner_user
+
+  def subowner?
+    user_id = SubOwner.where('site_id = ?', current_site.id).pluck(:user_id)
+
+    true if user_id.include?(current_user.id)
+  end
+
+  helper_method :subowner?
+
+
+  #TODO recreate more complex cart & use this method http://apidock.com/rails/ActiveRecord/Relation/find_or_create_by
+  def current_cart
+    Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    cart = Cart.create
+    session[:cart_id] = cart.id
+    cart
+  end
+  helper_method :current_cart
+
+  def shop_activate?
+    if !current_site.shop_active
+      redirect_to root_url
+      flash[:error] = "Невозможно"
+    end
+  end
+
+  helper_method :shop_activate?
 
 protected
 

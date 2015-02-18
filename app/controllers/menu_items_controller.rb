@@ -1,4 +1,6 @@
 class MenuItemsController < ApplicationController
+  before_filter :correct_user, :only => [:destroy, :sort]
+
 
   def sort
     params[:menu_item].each_with_index do |id, index|

@@ -1,23 +1,38 @@
-p#notice = notice
+#notice = notice
 
 p
   strong Domain:
   = @site.domain
 
 p
-  strongSub domain:
+  strong Sub domain:
   = @site.sub_domain
 
 
 p
-  strongName:
+  strong Name:
   = @site.name
 
 p
-  strongUser:
+  strong User:
   = @site.user_id
 
 p
   strong Site pages list:
   - @site.pages.each do |page|
     = page.title
+
+p
+  strong List of owners:
+  - users_list = Site.get_list_of_owners(params[:id])
+  br
+  - users_list.each do |user_id|
+    |Username --
+    = User.find(user_id).username
+    br
+    | Password --
+    = SubOwner.find_by_site_id(params[:id]).password
+
+= link_to 'back', sites_path
+br
+= link_to 'edit', edit_site_path(@site)

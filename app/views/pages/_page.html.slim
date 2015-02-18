@@ -7,8 +7,11 @@
   h1 = @page.title if !is_front?
 
   - if is_front? && current_site.catalogs.any?
-    - for catalog in current_site.catalogs
-      = render 'catalogs/catalog', catalog: catalog
+    .catalog_on_page.clearfix data-update-url=sort_catalogs_url
+      - for catalog in current_site.catalogs.order("weight")
+        = render 'catalogs/catalog', catalog: catalog
+
+
 
   - unless current_site.catalogs.any?
     h1 = @page.title 

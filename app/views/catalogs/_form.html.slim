@@ -1,4 +1,13 @@
 = form_for(@catalog) do |f|
+
+  -if @catalog.errors.any?
+    .error_explanation.bg-danger
+      h2
+        = pluralize(@catalog.errors.count, "error")
+        |  prohibited this page from being saved:
+      - @catalog.errors.full_messages.each do |msg|
+        li = msg
+
   .col-md-5
     .field.form-group
       = f.label :title

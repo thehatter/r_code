@@ -1,0 +1,18 @@
+/encoding: UTF-8
+h2 
+ | Заказы пользователя 
+ = current_user.username
+
+= paginate @orders
+br
+
+- @orders.each do |order|
+	= order.name
+	|&nbsp
+	|&nbsp
+	= order.email
+	|&nbsp
+	|&nbsp
+	= order.address
+
+	br

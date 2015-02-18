@@ -13,19 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-sprockets
 
-//= require jquery.ui.core
-//= require jquery.ui.widget
-//= require jquery.ui.mouse
-//= require jquery.ui.position
-//= require jquery.ui.sortable
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/position
+//= require jquery-ui/sortable
+//= require jquery-ui/effect-shake
+//= require jquery-ui/effect-bounce
 
-//= require ckeditor/override
 //= require ckeditor/init
 
 
-//= require_tree .
+//= require_directory .
 
 
 

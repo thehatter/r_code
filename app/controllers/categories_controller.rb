@@ -1,8 +1,7 @@
 class CategoriesController < ApplicationController
+  before_filter :correct_user, :only => [:destroy, :edit , :update, :sort]
 
-
-
-  def show 
+  def show
     load_category
   end
 
@@ -56,7 +55,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
-  
+
 
   def sort
     params[:category].each_with_index do |id, index|

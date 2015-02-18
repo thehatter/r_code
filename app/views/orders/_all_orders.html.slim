@@ -1,0 +1,20 @@
+/encoding: UTF-8
+h2 
+ | Заказы сайта 
+ = current_site.name
+
+= paginate @orders
+br
+ 
+ul
+- @orders.each do |order|
+    li
+      = order.name
+      |&nbsp
+      |&nbsp
+      = order.email
+      |&nbsp
+      |&nbsp
+      = order.address
+
+      br

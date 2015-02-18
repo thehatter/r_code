@@ -8,7 +8,7 @@
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
+#  sign_in_count          :integer          default("0"), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
@@ -16,7 +16,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  username               :string(255)
-#  admin                  :boolean          default(FALSE)
+#  admin                  :boolean          default("f")
 #
 
 class User < ActiveRecord::Base
@@ -25,9 +25,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :login
+  validates_uniqueness_of :username
 
-  has_many :sites 
+  attr_accessor :login
+  attr_accessor :unhashed_password
+
+  has_many :sites
+  has_many :orders, dependent: :destroy
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -38,5 +42,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  
+  def self.generate_login
+    login = [('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(8).join
+  end
+
+  def self.generate_password
+    password = [('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(10).join
+  end
+
+  def self.generate_email
+    email = "#{[('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a].reduce(:+).sample(8).join}@random.by"
+  end
 end
+

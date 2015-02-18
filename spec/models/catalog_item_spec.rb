@@ -4,6 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  category_id      :integer
+#  site_id          :integer
 #  title            :string(255)
 #  body             :text
 #  catalog_item_img :string(255)
@@ -12,6 +13,7 @@
 #  weight           :integer
 #  created_at       :datetime
 #  updated_at       :datetime
+#  currency         :string(255)
 #
 
 require 'spec_helper'

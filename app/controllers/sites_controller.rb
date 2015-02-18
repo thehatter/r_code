@@ -24,17 +24,18 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
+    @site = Site.find(params[:id])
   end
 
   # POST /sites
   # POST /sites.json
   def create
     @site = current_user.sites.new(site_params)
-    
+
 
     respond_to do |format|
       if @site.save
-        # @main_menu = @site.Page.create 
+        # @main_menu = @site.Page.create
 
         format.html { redirect_to @site, notice: 'Site was successfully created.' }
         format.json { render action: 'show', status: :created, location: @site }
@@ -62,6 +63,7 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.json
   def destroy
+    @site = Site.find(params[:id])
     @site.destroy
     respond_to do |format|
       format.html { redirect_to sites_url }
@@ -82,13 +84,9 @@ class SitesController < ApplicationController
       @site = Site.find(params[:id])
     end
 
-
-
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:domain, :sub_domain, :name, :theme, :user_id, :front_page_id, :remove_site_logo, :site_logo, :site_logo_cache, :image_slot_1_cache, :image_slot_1, :footer_text)
+      params.require(:site).permit(:domain, :sub_domain, :name, :theme, :user_id, :front_page_id, :remove_site_logo, :site_logo, :site_logo_cache, :image_slot_1_cache, :image_slot_1, :footer_text, :shop_active, :owner_email, :big_image_text)
     end
- 
 
 end

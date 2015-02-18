@@ -2,7 +2,7 @@ RCode::Application.routes.draw do
 
 
   mount Ckeditor::Engine => '/ckeditor'
-  
+
   devise_for :users
 
   class OwnDomain
@@ -18,7 +18,9 @@ RCode::Application.routes.draw do
     get '/' => 'pages#front'
     resources :pages
     resources :menus
-    resources :catalogs
+    resources :catalogs do
+      post :sort, on: :collection
+    end
     resources :categories do
       post :sort, on: :collection
     end
@@ -28,7 +30,6 @@ RCode::Application.routes.draw do
     resources :menu_items do
       post :sort, on: :collection
     end
-
   end
 
 
@@ -36,10 +37,14 @@ RCode::Application.routes.draw do
   root to: "welcome#index"
 
   resources :sites, path: '/admin/sites'
+  get "admin/list_for_add_owner", to: "sub_owners#list_for_add_owner"
+  get "admin/add_owner", to: "sub_owners#add_owner"
 
+  resources :line_items
+  resources :carts
+  resources :orders
 
-
-
+  get 'personal_orders', to: 'orders#personal_orders'
 
   # resources :pages, except: :show
 
@@ -62,7 +67,7 @@ RCode::Application.routes.draw do
   # resources :sites, path: '/admin/sites'
 
 
-  
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -105,7 +110,7 @@ RCode::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
