@@ -33,6 +33,7 @@ before_filter :shop_activate?
     end
 
     @order.site_id = current_site.id
+    
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
