@@ -1,0 +1,425 @@
+// white theme css
+
+
+@mixin radius_5 {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+@media (min-width: 1300px) { 
+  .container {
+    width: 1300px;
+  }
+}
+@media (min-width: 1400px) { 
+  .container {
+    width: 1400px;
+  }
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  font-size: 16px;
+  padding-bottom: 60px;
+}
+
+
+.btn span {
+  // margin: 0 5px !important;
+}
+
+.alert {
+  margin: 0;
+}
+
+.line_div_2px {
+  width: 100%;
+  height: 2px;
+  background: #F2F2F2;
+}
+
+.btn.gl_indent .glyphicon,
+a.gl_indent .glyphicon {
+  padding: 0 6px 0 0px;
+}
+
+
+
+// ==================== universal config right top links ====================
+
+.config_right_top_links_container {
+  position: relative;
+}
+.config_right_top_links {
+  position:absolute;
+  top: 0px;
+  right: 0px;
+  display: none;
+}
+.config_right_top_links_container:hover .config_right_top_links {
+  display: block;
+}
+
+
+// ==================== Header  ====================
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  // border-bottom: 2px solid #E5E5E5;
+}
+
+.header_menu {
+  position: absolute;
+  top: 50%; right: 320px;
+  height: 30px;
+  margin-top: -15px;
+}
+
+.cart {
+  position: absolute;
+  right: 0; top: 0;
+  bottom: 0;
+  background: #999;
+  color: #fff;
+  min-width: 160px;
+  text-align: center;
+
+  .link_to_cart {
+    padding: 25% 0 0 0;
+    display: block;
+  }
+
+  .items_count {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    padding: 3px 8px;
+    color: #C00072;
+    background: #fff;
+    font-size: 12px;
+  }
+
+  span {
+    font-size: 20px;
+  }
+
+  a { color: #fff;}
+}
+
+
+// ==================== user_bar ====================
+.user_bar {
+  padding: 0 0 0 0;
+  position: absolute;
+  right: 200px; top: 0px; bottom: 0;
+
+  .user_bar_in {
+    padding: 35% 0 0 0;
+
+    .btn.signin {
+      margin:20% 0 0 0;
+    }
+  }
+}
+
+// ==================== config_cog ====================
+
+.config_cog {
+  position: absolute;
+  right: 0px; top: -10px;
+  display: none;
+}
+
+div:hover > .config_cog{
+  display: block;
+}
+
+
+// ==================== editing_links ====================
+.contain_editing_links {
+  position: relative;
+}
+.editing_links {
+  position:absolute;
+  right: 0;
+  display: none;
+
+}
+.contain_editing_links:hover .editing_links {
+  display: block;
+}
+
+
+
+// ==================== Logo ====================
+
+
+.logo_container {
+  position: relative;
+  float: left;
+  .config_cog {
+    position: absolute;
+    right: 0px; top: -10px;
+    display: none;
+  }
+}
+
+
+// ==================== home_button ====================
+.home_button {
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+
+
+// ==================== menu ====================
+
+
+// .header_menu {
+//   position: absolute;
+//   bottom: 10px; right: 0px;
+// }
+
+
+.menu_links{
+  position: relative;
+  .menu_config {
+    position: absolute;
+    right: 0px; top: -10px;
+    display: none;
+  }
+
+}
+
+.menu_links:hover{
+  .menu_config {
+    display: block;
+  }
+}
+
+.left_col {
+  // padding-right: 0;
+  margin-top: 22px;
+}
+
+.vertical_menu {
+  .catalog_menu_item {
+    background: #F4F4F4;
+    display: block;
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    margin: 0px 0 5px 0;
+    ul {
+      margin: 0; padding: 0 0 0 10px;
+    }
+    .category {
+      list-style: none;
+    }
+  }
+}
+
+
+// ==================== config_menu_links ====================
+
+.menu_edit_page {
+  .config_menu_links {
+    margin: 0; padding: 0;
+
+    .menu_item {
+      list-style: none;
+      display: block;
+      padding: 6px;
+      background: #F3F3F3;
+      margin: 5px 0;
+
+      @include radius_5;
+
+      .link_title {
+        float: left;
+        font-size: 16px;
+        margin: 6px 0 0 10px;
+      }
+
+      .glyphicon {
+        cursor: pointer; 
+        margin: 6px 0 0 10px; 
+        color:#ccc; 
+        font-size: 20px;
+        float: left;
+      }
+
+      span.badge {
+        margin: 7px 0 0 10px;
+      }
+
+
+
+      .catalog_categoryes_container {
+        float: none;
+        clear: both;
+        .catalog_categoryes {
+          margin:0; padding:6px 0 0 12px;
+          .category {
+            list-style: none;
+            display: block;
+            padding: 6px;
+            background: #E7E7E7;
+            margin: 5px 0;
+
+            @include radius_5;
+          }
+        }
+      }
+
+    }
+
+  }
+}
+
+// =============================================================
+//                            big_image
+// =============================================================
+.big_image {
+  position: relative;
+  img {
+    width: 100%;
+  }
+  .big_image_text {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 10%;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+
+
+
+// ==================== page ====================
+
+.page_container {
+
+  margin: 0 0 40px 0;
+
+  .edit_page_button {
+    display: none;
+
+    margin-left: 10px;
+  }
+}
+
+.page_container:hover {
+  .edit_page_button {
+    display: block;
+  }
+}
+
+
+// ==================== catalog ====================
+
+.img_catalog {
+  position: relative;
+}
+.catalog_config_links {
+  position:absolute;
+  top: 10px;
+  right: 0px;
+  display: none;
+}
+.img_catalog:hover .catalog_config_links {
+  display: block;
+}
+
+
+.catalog_category {
+  .img {
+    img {
+      width: 100%;
+    }
+  }
+  .title {
+    a {
+      display: block;
+      text-align: center;
+      padding: 5px 0;
+    }
+  }
+}
+
+.catalog_item {
+  .img {
+    img {
+      width: 100%;
+    }
+  }
+  .title {
+    a {
+      display: block;
+      text-align: center;
+      padding: 5px 0 2px 0;
+    }
+  }
+  .price {
+      text-align: center;
+      padding: 0px 0 2px 0;
+  }
+  .button_to {
+    text-align: center;
+  }
+
+}
+
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+
+
+// =============================================================
+//                         img_catalog
+// =============================================================
+
+.img_catalog {
+  margin: 40px 0 40px 0;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+
+// =============================================================
+//                            #footer
+// =============================================================
+
+
+
+
+// =============================================================
+//                            #footer
+// =============================================================
+
+#footer {
+  padding: 20px 0 0 0;
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  background-color: #F5F5F5;
+  bottom: 0;
+
+  .col-md-12 {
+    min-height: 30px;
+  }
+}
+
+

@@ -33,8 +33,10 @@ class MenuItemsController < ApplicationController
     def load_item
       @menu_item = MenuItem.find(params[:id])
     end
-    # # Never trust parameters from the scary internet, only allow the white list through.
-    # def catalog_params
-    #   params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id)
-    # end
+
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def catalog_params
+      params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id, :catalog_id)
+    end
 end
