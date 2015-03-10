@@ -9,7 +9,6 @@ gem 'annotate', github: 'ctran/annotate_models'
 gem 'pg'
 
 
-
 gem 'friendly_id', '~> 5.0.0'
 gem 'devise'
 gem 'slim', '2.0.0'
