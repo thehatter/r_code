@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sprockets', '2.11.0'
 gem 'rails', '4.2.0'
@@ -8,7 +7,6 @@ gem 'therubyracer'
 gem 'russian'
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'pg'
-
 
 gem 'friendly_id', '~> 5.0.0'
 gem 'devise'
