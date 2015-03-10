@@ -33,6 +33,12 @@ p
     | Password --
     = SubOwner.find_by_site_id(params[:id]).password
 
+
+= link_to 'Перейти на сайт', "http://#{@site.domain}:3000"
+
+
+/ link_to("Destroy", "http://www.example.com", method: :delete)
+
 = link_to 'back', sites_path
 br
 = link_to 'edit', edit_site_path(@site)
