@@ -2,7 +2,7 @@
 # lock '3.1.0'
 
 set :application, 'r_code'
-set :repo_url, 'git@example.com:me/my_repo.git'
+# set :repo_url, 'git@example.com:me/my_repo.git'
 
 set :repo_url, 'git@github.com:thehatter/r_code.git'
 set :application, 'r_code'

@@ -7,8 +7,8 @@
 #  menu_id    :integer
 #  catalog_id :integer
 #  weight     :integer
-#  link       :string(255)
-#  title      :string(255)
+#  link       :string
+#  title      :string
 #  created_at :datetime
 #  updated_at :datetime
 #

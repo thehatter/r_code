@@ -3,21 +3,22 @@
 #
 # Table name: sites
 #
-#  id             :integer          not null, primary key
-#  domain         :string(255)
-#  sub_domain     :string(255)
-#  name           :string(255)
-#  site_logo      :string(255)
-#  user_id        :integer
-#  front_page_id  :integer
-#  footer_text    :text
-#  created_at     :datetime
-#  updated_at     :datetime
-#  image_slot_1   :string(255)
-#  theme          :string(255)
-#  owner_email    :string(255)
-#  shop_active    :boolean          default("f")
-#  big_image_text :string(255)
+#  id              :integer          not null, primary key
+#  domain          :string
+#  sub_domain      :string
+#  name            :string
+#  site_logo       :string
+#  user_id         :integer
+#  front_page_id   :integer
+#  footer_text     :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  image_slot_1    :string
+#  theme           :string
+#  owner_email     :string
+#  shop_active     :boolean          default("false")
+#  big_image_text  :string
+#  leftbar_onfront :boolean
 #
 
 class Site < ActiveRecord::Base

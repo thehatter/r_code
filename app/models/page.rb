@@ -6,9 +6,9 @@
 #  id         :integer          not null, primary key
 #  site_id    :integer
 #  menu_id    :integer
-#  title      :string(255)
-#  link_title :string(255)
-#  slug       :string(255)
+#  title      :string
+#  link_title :string
+#  slug       :string
 #  body       :text
 #  created_at :datetime
 #  updated_at :datetime

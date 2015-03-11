@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  user_id    :integer
 #  site_id    :integer
-#  password   :string(255)
+#  password   :string
 #  created_at :datetime
 #  updated_at :datetime
 #

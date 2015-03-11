@@ -5,8 +5,8 @@
 #  id         :integer          not null, primary key
 #  catalog_id :integer
 #  section_id :integer
-#  name       :string(255)
-#  slug       :string(255)
+#  name       :string
+#  slug       :string
 #  created_at :datetime
 #  updated_at :datetime
 #

@@ -5,15 +5,15 @@
 #  id               :integer          not null, primary key
 #  category_id      :integer
 #  site_id          :integer
-#  title            :string(255)
+#  title            :string
 #  body             :text
-#  catalog_item_img :string(255)
-#  slug             :string(255)
+#  catalog_item_img :string
+#  slug             :string
 #  price            :integer
 #  weight           :integer
 #  created_at       :datetime
 #  updated_at       :datetime
-#  currency         :string(255)
+#  currency         :string
 #
 
 require 'spec_helper'

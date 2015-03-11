@@ -5,9 +5,9 @@
 #  id           :integer          not null, primary key
 #  catalog_id   :integer
 #  site_id      :integer
-#  title        :string(255)
-#  category_img :string(255)
-#  slug         :string(255)
+#  title        :string
+#  category_img :string
+#  slug         :string
 #  weight       :integer
 #  created_at   :datetime
 #  updated_at   :datetime

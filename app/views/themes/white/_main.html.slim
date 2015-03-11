@@ -51,7 +51,7 @@
   .line_div_2px
 
 
-- if !is_front || menu_in_block_on_front(2)
+- if !is_front || current_site.leftbar_onfront
   - if controller.controller_name != 'categories'
     .container
       .row

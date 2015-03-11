@@ -8,7 +8,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  quantity        :integer          default("1")
-#  currency        :string(255)
+#  currency        :string
 #  order_id        :integer
 #
 

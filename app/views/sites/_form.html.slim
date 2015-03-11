@@ -42,8 +42,13 @@
                     = label :remove_site_logo, "Удалить логотип сайта"
 
           .field.form-group
-            = f.label :shop_active
+            = f.label "Магазин активизирован"
             = f.check_box(:shop_active)
+
+
+          .field.form-group
+            = f.label "Отображать левое меню на главной?"
+            = f.check_box(:leftbar_onfront)
 
 
 
