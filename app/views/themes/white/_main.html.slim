@@ -32,11 +32,12 @@
                   li = link_to('Выйти', destroy_user_session_path, :method => :delete)
             - else
               = link_to 'Войти', new_user_session_path, class: "btn btn-default signin"
-            
-        .cart
-          = render "themes/#{current_site.theme}/cart"
+        
+        - if current_site.shop_active    
+          .cart
+            = render "themes/#{current_site.theme}/cart"
 
-          / = link_to content_tag(:span, "", class: "glyphicon glyphicon-shopping-cart") + " Корзина" + content_tag(:span, current_cart.line_items.count, class: "badge"), current_cart, class: "link_to_cart"
+            / = link_to content_tag(:span, "", class: "glyphicon glyphicon-shopping-cart") + " Корзина" + content_tag(:span, current_cart.line_items.count, class: "badge"), current_cart, class: "link_to_cart"
           
 
 - if is_front? && current_site.image_slot_1?

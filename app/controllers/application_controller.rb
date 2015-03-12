@@ -56,7 +56,7 @@ private
 
   helper_method :current_url
 
-  # метод нужен для сокрытия ненужных элементов
+  # метод нужен для доступа админов и хозяев сайтов к редактированию
   def owner_user
     if authenticate_user!
       (current_user.admin? || current_user.id == current_site.user_id || subowner?) ? true : false
@@ -92,6 +92,15 @@ private
   end
 
   helper_method :shop_activate?
+
+
+  def shop_activ_class?
+    if current_site.shop_active
+      return "shop_activ"
+    end
+  end
+
+  helper_method :shop_activ_class?
 
 protected
 

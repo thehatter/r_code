@@ -5,8 +5,8 @@
       .menu_edit_page
         h1 = @menu.title
 
-        -if current_site && owner_user
-          = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки меню", edit_menu_path(@menu), class: "gl_indent"
+        / -if current_site && owner_user
+        /   = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки меню", edit_menu_path(@menu), class: "gl_indent"
 
         hr
 

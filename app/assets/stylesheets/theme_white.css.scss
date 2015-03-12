@@ -77,9 +77,13 @@ a.gl_indent .glyphicon {
 
 .header_menu {
   position: absolute;
-  top: 50%; right: 320px;
+  top: 50%; right: 120px;
   height: 30px;
   margin-top: -15px;
+}
+
+.shop_activ .header_menu {
+  right: 320px;
 }
 
 .cart {
@@ -118,7 +122,7 @@ a.gl_indent .glyphicon {
 .user_bar {
   padding: 0 0 0 0;
   position: absolute;
-  right: 200px; top: 0px; bottom: 0;
+  right: 0px; top: 0px; bottom: 0;
 
   .user_bar_in {
     padding: 35% 0 0 0;
@@ -129,6 +133,9 @@ a.gl_indent .glyphicon {
   }
 }
 
+.shop_activ .user_bar {
+  right: 200px;
+}
 // ==================== config_cog ====================
 
 .config_cog {
