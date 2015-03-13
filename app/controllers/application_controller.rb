@@ -95,7 +95,7 @@ private
 
 
   def shop_activ_class?
-    if current_site.shop_active
+    if current_site && current_site.shop_active
       return "shop_activ"
     end
   end
