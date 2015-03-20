@@ -7,6 +7,7 @@ jQuery ->
   catalogsFirstpageSorting = () ->
     $('.catalog_on_page').sortable
       helper:'clone'
+      handle:'.un_left_move'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
 

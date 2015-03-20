@@ -18,6 +18,7 @@ jQuery ->
   catFirstpageSorting = () ->
     $('.big_catalog_categoryes').sortable
       helper:'clone'
+      handle:'.un_left_move'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
 

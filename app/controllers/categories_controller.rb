@@ -13,10 +13,11 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_site.categories.new(category_params)
+    # passing catalog_id in _form view - no any magick hire! 
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to menu_url(@category.catalog.menu), notice: 'Category was successfully created.' }
+        format.html { redirect_to current_url, notice: 'Category was successfully created.' }
       else
         flash[:error] = "there was a problem"
       end
@@ -31,7 +32,7 @@ class CategoriesController < ApplicationController
     load_category
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to menu_url(@category.catalog.menu), notice: 'Category was successfully updated.' }
+        format.html { redirect_to current_url, notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

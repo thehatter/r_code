@@ -7,31 +7,13 @@
         .logo_container
           = link_to image_tag(current_site.site_logo_url(:thumb_200x400), :alt => current_site.name, :title => current_site.name), current_url, :class => 'dock-item'
           - if correct_view
-            button.config_cog.btn data-toggle="modal" data-target="#myModal"
-              span.glyphicon.glyphicon-cog
+            .single_config_button
+              a.un_nav_btn.un_btn_config href="#" data-toggle="modal" data-target="#myModal"
+
+        .header_menu.pull-right
+          .horizontal_menu.menu = render "themes/#{current_site.theme}/menu", region_id: 1
 
 
-        .header_menu.horizontal_menu.pull-right
-          = render "themes/#{current_site.theme}/menu", region_id: 1
-
-        .user_bar
-          .user_bar_in
-            - if user_signed_in?
-              .dropdown
-                button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                  span.glyphicon.glyphicon-user
-                  |  
-                  = current_user.username 
-                  span.caret
-                ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"
-                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + "Редактировать учетную запись", edit_user_registration_path, class: "gl_indent"
-                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки сайта", edit_site_path(current_site), class: "gl_indent"
-                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Мои заказы", personal_orders_path, class: "gl_indent"
-                  li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Все заказы сайта", orders_path, class: "gl_indent"
-                  li.divider
-                  li = link_to('Выйти', destroy_user_session_path, :method => :delete)
-            - else
-              = link_to 'Войти', new_user_session_path, class: "btn btn-default signin"
         
         - if current_site.shop_active    
           .cart
@@ -57,14 +39,14 @@
     .container
       .row
         .col-md-2.left_col
-          .vertical_menu = render "themes/#{current_site.theme}/menu", region_id: 2
+          .vertical_menu.menu = render "themes/#{current_site.theme}/menu", region_id: 2
         .col-md-10
           = yield
   - else
     .container
       .row
         .col-md-2.left_col
-          .vertical_menu = render "themes/#{current_site.theme}/menu", region_id: 2
+          .vertical_menu.menu = render "themes/#{current_site.theme}/menu", region_id: 2
         .col-md-10
           = yield
 - else
@@ -73,14 +55,15 @@
       .col-md-12
         = yield
 
-
-.footer#footer
-  - if correct_view
-    button.config_cog.btn data-toggle="modal" data-target="#myModal2"
-      span.glyphicon.glyphicon-cog
-  .container
-    .row
-      .col-md-12
-        = current_site.footer_text.html_safe if current_site.footer_text
+.container
+ .row
+  .footer#footer
+    - if correct_view
+      .single_config_button
+        a.un_nav_btn.un_btn_config href="#" data-toggle="modal" data-target="#myModal2"
+    .container
+      .row
+        .col-md-12
+          = current_site.footer_text.html_safe if current_site.footer_text
 
   / h2  = current_site.name

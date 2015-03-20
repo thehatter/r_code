@@ -20,6 +20,7 @@ class MenuItem < ActiveRecord::Base
   belongs_to :menu
   belongs_to :page
   belongs_to :catalog
+  belongs_to :blog
 
   # def update_item
   #   if self.page_id

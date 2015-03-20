@@ -1,0 +1,18 @@
+.page_container
+
+  - if correct_view
+      .un_header
+        .un_header_in
+          .title
+            | Блог
+
+          .un_right_btns
+            = link_to '', new_post_path(:blog_id => @blog.id), class: "un_nav_btn un_btn_page", title: "Добавить пост"
+
+
+  h1 = @blog.title 
+
+
+  - @posts.each do |post|
+    h3 = post.title
+    = post.body.html_safe

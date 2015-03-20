@@ -9,17 +9,26 @@ html
 
     / = javascript_include_tag "themes/#{current_site.theme}/#{current_site.theme}", "data-turbolinks-track" => true if current_site
     = csrf_meta_tags
-  body class="#{controller.controller_name} #{shop_activ_class?}"
+  body class="#{body_classes}"
     / - if user_signed_in?
     /   = render 'layouts/top_bar'
 
-    - flash.each do |name, msg|
-      div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
-        = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
 
-    = puts request.host
 
-    = yield
-    / = debug(params) if Rails.env.development?
 
-    = render 'layouts/login_corner'
+
+    - if correct_view
+      = render 'layouts/left_bar'
+
+
+    .main_wrapper
+      - flash.each do |name, msg|
+        .container
+          .row
+            div class= "alert alert-#{name == "notice" ? "success" : "danger"}"
+              = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+
+      = yield
+      / = debug(params) if Rails.env.development?
+
+      = render 'layouts/login_corner'

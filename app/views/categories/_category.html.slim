@@ -1,21 +1,44 @@
-.category.config_right_top_links_container
+.category_page_category
+  
+  - if correct_view
+    .un_header
+      .un_header_in
+
+        span
+          .title
+            | Раздел каталога
+
+        .un_right_btns
+          = link_to '', new_catalog_item_path(:category_id => @category.id), class: "un_nav_btn un_btn_plus", title: "Добавить товар"
+          = link_to '', edit_category_path(@category), class: "un_nav_btn un_btn_config", title: "Редактировать раздел"
+          = link_to '', category_path(@category), method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить"
+
   h1 = @category.title
-  .config_right_top_links
-    .btn-group.pull-right
-      = link_to 'Добавить позицию', new_catalog_item_path(:category_id => @category.id), class: "btn btn-success"
-      = link_to 'Редактировать', edit_category_path(@category), class: "btn btn-default"
-      = link_to 'Удалить', category_path(@category), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-danger"
+
 
   .clearfix
     .row
       .category_catalog_items.clearfix data-update-url=sort_catalog_items_url
         - @category.catalog_items.order("weight").each do |item|
           = content_tag_for :div, item, class: "catalog_item col-md-4 col-lg-3"
+
+            - if correct_view
+              .un_header_container
+                .un_header
+                  .un_header_in
+                    .un_left_move
+                    span
+                      .title Товар
+                    .un_right_btns
+                      = link_to '', edit_catalog_item_path(item), class: "un_nav_btn un_btn_config", title: "Редактировать товар"
+                      = link_to '', catalog_item_path, method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить"
+
+
+
             .img
               = link_to image_tag(item.catalog_item_img_url(:thumb_263x263), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass'
             .title = link_to item.title, catalog_item_path(item)
             .price = item.price if item.price
-            - if correct_view
-              = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog"), edit_catalog_item_path(item), class: "btn btn-default config_cog"
+
             - if current_site.shop_active
             	= button_to 'Добавить в корзину', line_items_path(catalog_item_id: item), remote: true, class: "btn btn-default"

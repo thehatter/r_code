@@ -94,14 +94,6 @@ private
   helper_method :shop_activate?
 
 
-  def shop_activ_class?
-    if current_site && current_site.shop_active
-      return "shop_activ"
-    end
-  end
-
-  helper_method :shop_activ_class?
-
 protected
 
   def configure_permitted_parameters

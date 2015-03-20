@@ -2,3 +2,8 @@
 = link_to content_tag(:span, "", class: "glyphicon glyphicon-shopping-cart") + " Корзина", current_cart, class: "link_to_cart"
 .items_count
   = current_cart.line_items.map(&:quantity).sum
+
+
+- if correct_view
+  .single_config_button
+    = link_to '', edit_site_path(current_site), class: "un_nav_btn un_btn_config", title: "Редактировать раздел"

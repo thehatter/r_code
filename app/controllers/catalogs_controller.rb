@@ -21,7 +21,7 @@ class CatalogsController < ApplicationController
     respond_to do |format|
       if @catalog.save
         @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
-        format.html { redirect_to menu_url(@catalog.menu), notice: 'Catalog was successfully created.' }
+        format.html { redirect_to current_url, notice: 'Catalog was successfully created.' }
       else
         format.html { render action: 'new', :menu_id => @menu.id }
       end

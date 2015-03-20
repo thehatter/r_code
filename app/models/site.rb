@@ -26,7 +26,7 @@ class Site < ActiveRecord::Base
   Site::THEMES = %w(white portfolio)
   validates :theme, inclusion: {in: Site::THEMES}
 
-  after_save :init_site
+  after_create :init_site
   before_save :create_subowner
 
   has_many :pages, dependent: :destroy
@@ -35,6 +35,7 @@ class Site < ActiveRecord::Base
   has_many :categories, dependent: :destroy
   has_many :catalog_items, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 
   belongs_to :user
 
@@ -50,6 +51,19 @@ class Site < ActiveRecord::Base
     #create front page for this site
     @front_page = self.pages.create(title: "Главная страница", body: "Сайт #{self.name} текст главной страницы")
     self.update(front_page_id: @front_page.id)
+
+
+    #create first catalog
+    @catalog = self.catalogs.create(title: "Тестовый каталог 1", menu_id: @side_menu.id)
+    @menu_item = MenuItem.create(link: "#", catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
+
+    @category_1 = self.categories.new(title: "Тестовый раздел каталога 1", catalog_id: @catalog.id)
+    @category_2 = self.categories.new(title: "Тестовый раздел каталога 2", catalog_id: @catalog.id)
+    @category_3 = self.categories.new(title: "Тестовый раздел каталога 3", catalog_id: @catalog.id)
+    @category_4 = self.categories.new(title: "Тестовый раздел каталога 4", catalog_id: @catalog.id)
+
+
+
   end
 
   def self.create_random_user

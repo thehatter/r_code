@@ -30,6 +30,8 @@ RCode::Application.routes.draw do
     resources :menu_items do
       post :sort, on: :collection
     end
+    resources :blogs
+    resources :posts
   end
 
 

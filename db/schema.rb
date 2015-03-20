@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311080735) do
+ActiveRecord::Schema.define(version: 20150318084842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "menu_id"
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at"
@@ -109,6 +118,7 @@ ActiveRecord::Schema.define(version: 20150311080735) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "blog_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -143,6 +153,15 @@ ActiveRecord::Schema.define(version: 20150311080735) do
   add_index "pages", ["menu_id"], name: "index_pages_on_menu_id", using: :btree
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
   add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "blog_id"
+    t.string   "title"
+    t.text     "body"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sections", force: :cascade do |t|
     t.integer  "catalog_id"

@@ -24,4 +24,14 @@ module ApplicationHelper
   end 
   # for has_and_belongs_to_many must use current_site.include?(current_user)
 
+  def body_classes
+    classes = []
+    classes << controller.controller_name
+    classes << "shop_activ" if current_site && current_site.shop_active
+    classes << "signed_in" if user_signed_in?
+    classes << "admin" if user_signed_in? && owner_user
+
+    classes.join(' ')
+  end
+
 end

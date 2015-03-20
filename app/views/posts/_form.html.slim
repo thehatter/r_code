@@ -1,0 +1,24 @@
+= form_for(@post) do |f|
+
+  -if @post.errors.any?
+    .error_explanation.bg-danger
+      h2
+        = pluralize(@post.errors.count, "error")
+        |  prohibited this page from being saved:
+      - @post.errors.full_messages.each do |msg|
+        li = msg
+
+  .col-md-5
+    .field.form-group
+      = f.label :title
+      = f.text_field :title, :class => 'form-control'
+
+    .field.form-group
+      = f.label :body
+      = cktext_area :post, :body, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '500'}
+
+
+    = f.hidden_field :blog_id, :value => @blog.id
+
+    .actions
+      = f.submit 'Сохранить', :class => 'btn btn-success'

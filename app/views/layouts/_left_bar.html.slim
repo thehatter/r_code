@@ -1,0 +1,44 @@
+.left_bar_show_btn
+  | Настройки сайта
+.left_admin_bar
+  .left_admin_bar_in
+
+    .dropdown
+      button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+        span.glyphicon.glyphicon-user
+        |  
+        = current_user.username 
+        span.caret
+      ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"
+        li = link_to content_tag(:span, "", class: "glyphicon glyphicon-pencil") + "Редактировать учетную запись", edit_user_registration_path, class: "gl_indent"
+        li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Настройки сайта", edit_site_path(current_site), class: "gl_indent"
+        li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Мои заказы", personal_orders_path, class: "gl_indent"
+        li = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + "Все заказы сайта", orders_path, class: "gl_indent"
+        li.divider
+        li = link_to('Выйти', destroy_user_session_path, :method => :delete)
+
+
+  = form_for(current_site, remote: true) do |f|
+
+      - if current_site.errors.any?
+        #error_explanation
+          h2
+            = pluralize(current_site.errors.count, "error") 
+            | prohibited this site from being saved:
+
+          ul
+            - current_site.errors.full_messages.each do |msg|
+              = msg
+
+
+      .field.form-group
+        label Имя сайта
+        = f.text_field :name, :class => 'form-control'
+      .field.form-group
+        label E-mail владельца
+        = f.text_field :owner_email, :class => 'form-control'
+
+
+      = hidden_field_tag :authenticity_token, form_authenticity_token
+
+      = f.submit 'Сохранить', :class => 'btn btn-success'

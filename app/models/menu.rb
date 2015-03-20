@@ -12,7 +12,8 @@
 
 class Menu < ActiveRecord::Base
   belongs_to :site
-  has_many :menu_items
-  has_many :pages
-  has_many :catalogs
+  has_many :menu_items, dependent: :destroy
+  has_many :pages, dependent: :destroy
+  has_many :catalogs, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 end

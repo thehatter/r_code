@@ -7,6 +7,15 @@
   border-radius: 5px;
 }
 
+@mixin transition_in_out ($time) {
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+  -ms-transition: all $time ease-in-out;
+  -o-transition: all $time ease-in-out;
+  transition: all $time ease-in-out;
+}
+
+
 @media (min-width: 1300px) { 
   .container {
     width: 1300px;
@@ -50,6 +59,8 @@ a.gl_indent .glyphicon {
 
 
 
+
+
 // ==================== universal config right top links ====================
 
 .config_right_top_links_container {
@@ -65,6 +76,60 @@ a.gl_indent .glyphicon {
   display: block;
 }
 
+// ==================== left_admin_bar  ====================
+
+.main_wrapper{
+  @include transition_in_out(0.7s);
+}
+
+body.left_admin_bar_show  .main_wrapper{
+  padding-left: 200px;
+  @include transition_in_out(0.7s);
+}
+
+.left_bar_show_btn {
+  position: fixed;
+  left: -53px; top: 60px;
+  padding: 20px 20px;
+  background: #B00000;
+  width: auto;
+  @include transition_in_out(0.7s);
+  color: #fff;
+
+
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+body.left_admin_bar_show .left_bar_show_btn {
+  left: 147px; top: 60px;
+  @include transition_in_out(0.7s);
+}
+
+.left_admin_bar {
+  position: fixed;
+  left: -200px; top: 0px; bottom: 0px;
+  width: 200px;
+  background: #262626;
+  overflow: hidden;
+  z-index: 100;
+  padding: 16px;
+  @include transition_in_out(0.7s);
+}
+
+.left_admin_bar.show {
+  left: 0px;
+  @include transition_in_out(0.7s);
+}
+
+
+.left_admin_bar_in {
+
+}
+
 
 // ==================== Header  ====================
 
@@ -77,13 +142,21 @@ a.gl_indent .glyphicon {
 
 .header_menu {
   position: absolute;
-  top: 50%; right: 120px;
+  top: 40%; right: 120px;
   height: 30px;
   margin-top: -15px;
+  min-width: 200px;
 }
 
+.admin .header_menu {
+  padding: 35px 0 0 0;
+  top: 50%;
+  margin: -75px 0 0 0;
+}
+
+
 .shop_activ .header_menu {
-  right: 320px;
+  right: 180px;
 }
 
 .cart {
@@ -133,9 +206,6 @@ a.gl_indent .glyphicon {
   }
 }
 
-.shop_activ .user_bar {
-  right: 200px;
-}
 // ==================== config_cog ====================
 
 .config_cog {
@@ -194,6 +264,13 @@ div:hover > .config_cog{
 //   bottom: 10px; right: 0px;
 // }
 
+.menu {
+  position: relative;
+}
+.admin .menu {
+  background: #EFEFEF;
+  padding: 35px 10px 10px 10px;
+}
 
 .menu_links{
   position: relative;
@@ -216,7 +293,14 @@ div:hover > .config_cog{
   margin-top: 22px;
 }
 
+.admin .left_col {
+  padding-right: 0;
+
+}
+
+
 .vertical_menu {
+
   .catalog_menu_item {
     background: #F4F4F4;
     display: block;
@@ -230,6 +314,19 @@ div:hover > .config_cog{
       list-style: none;
     }
   }
+
+}
+
+  .admin .catalog_menu_item {
+    padding: 35px 10px 20px 10px;
+    margin: 5px 0;
+    background: #FBFBFB;
+  }
+
+
+
+.horizontal_menu {
+
 }
 
 
@@ -336,18 +433,27 @@ div:hover > .config_cog{
 .img_catalog {
   position: relative;
 }
+
 .catalog_config_links {
   position:absolute;
   top: 10px;
   right: 0px;
   display: none;
 }
+
 .img_catalog:hover .catalog_config_links {
   display: block;
 }
 
+.admin .img_catalog {
+  background: #F2F2F2;
+  padding: 20px;
+}
+
+
 
 .catalog_category {
+  position: relative;
   .img {
     img {
       width: 100%;
@@ -390,6 +496,17 @@ div:hover > .config_cog{
   @extend .has-error;
 }
 
+// =============================================================
+//                         category page
+// =============================================================
+
+.admin .category_page_category {
+  position: relative;
+  background: #EFEFEF;
+  padding: 25px 20px 20px 20px;
+  margin: 22px 0;
+
+}
 
 
 // =============================================================
@@ -397,7 +514,7 @@ div:hover > .config_cog{
 // =============================================================
 
 .img_catalog {
-  margin: 40px 0 40px 0;
+  margin: 20px 0 40px 0;
 
   h1 {
     margin-bottom: 20px;
@@ -420,7 +537,6 @@ div:hover > .config_cog{
   padding: 20px 0 0 0;
   position: absolute;
   height: 60px;
-  width: 100%;
   background-color: #F5F5F5;
   bottom: 0;
 
@@ -428,5 +544,102 @@ div:hover > .config_cog{
     min-height: 30px;
   }
 }
+
+
+
+
+// =============================================================
+//                            #UN
+// =============================================================
+
+.un_header_container {
+  position: relative;
+}
+
+.un_header {
+  position: absolute;
+  top:0; right: 0; left: 0;
+  background: #C8C8C8;
+
+  height: 30px;
+}
+
+.un_header_in {
+  position: relative;
+}
+
+.un_header .title {
+  padding: 3px 0 0 10px;
+}
+
+
+.un_left_move {
+  width: 30px; height: 30px;
+  background: #999 url(un_btn_move.png) center no-repeat;
+  float: left;
+  margin: 0 5px 0 0;
+  cursor: move;
+}
+
+.un_right_btns {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.un_nav_btn {
+  display: block;
+  float: left;
+  width: 30px; height: 30px;
+  background: #999;
+}
+
+.un_btn_delete {
+  background: #BE0003 url(un_btn_delete.png) center no-repeat;
+}
+
+.un_btn_plus {
+  background: #0B5601 url(un_btn_plus.png) center no-repeat;
+}
+
+.un_btn_config {
+  background: #3366CC url(un_btn_config.png) center no-repeat;
+}
+
+.un_btn_catalog {
+  background: #6666CC url(un_btn_catalog.png) center no-repeat;
+}
+
+.un_btn_page {
+  background: #3366CC url(un_btn_page.png) center no-repeat;
+}
+.un_btn_blog {
+  background: #BE45CC url(un_btn_blog.png) center no-repeat;
+}
+
+
+.un_btns_many_container {
+
+}
+
+.un_btns_many_container .content{
+  display: none;
+  position: absolute;
+  right: 0px; top: 100%;
+  z-index: 100;
+}
+
+.un_btns_many_container:hover .content{
+  display: block;
+}
+
+
+.single_config_button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
+}
+
 
 

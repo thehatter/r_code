@@ -1,38 +1,66 @@
 - @menu = current_site_menus.find_by region_id: region_id
 - if @menu
 
-  .menu_links
-    ul.nav.nav-pills.config_menu_links.links data-update-url=sort_menu_items_url 
-      - if @menu.menu_items.any?
-        - @menu.menu_items.order("weight").each do |item|
-
-          // if item is catalog do
-          - if item.catalog_id
-            - if region_id == 1
-              = content_tag_for :li, item,  :class => "dropdown"
-                = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
-                  = item.title 
-                  <b class= 'caret'></b>
-                ul.catalog_categoryes.dropdown-menu data-update-url=sort_categories_url
-                  - item.catalog.categories.order("weight").each do |item|
-                    = content_tag_for :li, item
-                      = link_to item.title, category_path(item)
-            - else
-              = content_tag_for :li, item, class: "catalog_menu_item"
-                h4 = item.title
-                ul.catalog_categoryes data-update-url=sort_categories_url
-                  - item.catalog.categories.order("weight").each do |item|
-                    = content_tag_for :li, item
-                      = link_to item.title, category_path(item)
-
-          // if item is NOT catalog      
-          - else
-            = content_tag_for :li, item
-              = link_to item.title, item.link
-      - else
-        | Меню постое!
-
 
     - if @menu && correct_view
-      .menu_config
-        = link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, menu_path(@menu), class: "btn btn-default"
+        .un_header
+          .un_header_in
+            .title
+              | Меню
+
+            .un_right_btns
+              .un_btns_many_container.clearfix
+                .plus_many_btn.un_nav_btn.un_btn_plus
+                .content
+                  = link_to '', new_page_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_page", title: "Добавить страницу"
+                  = link_to '', new_catalog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_catalog", title: "Добавить каталог"
+                  = link_to '', new_blog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_blog", title: "Добавить блог"
+
+
+
+    .menu_links
+      ul.nav.nav-pills.config_menu_links.links data-update-url=sort_menu_items_url 
+        - if @menu.menu_items.any?
+          - @menu.menu_items.order("weight").each do |item|
+
+            // if item is catalog do
+            - if item.catalog_id
+              - if region_id == 1
+                = content_tag_for :li, item,  :class => "dropdown"
+                  = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
+                    = item.title 
+                    <b class= 'caret'></b>
+                  ul.catalog_categoryes.dropdown-menu data-update-url=sort_categories_url
+                    - item.catalog.categories.order("weight").each do |item|
+                      = content_tag_for :li, item
+                        = link_to item.title, category_path(item)
+              - else
+                = content_tag_for :li, item, class: "catalog_menu_item"
+
+                  - if correct_view
+                      .un_header
+                        .un_header_in
+                          .un_left_move
+                          .title
+                            | Каталог
+
+                          .un_right_btns
+                            = link_to '', new_category_path(:catalog_id => item.catalog.id), class: "un_nav_btn un_btn_plus", title: "Добавить категорию"
+                            = link_to '', edit_catalog_path(item.catalog), class: "un_nav_btn un_btn_config", title: "Редактировать каталог"
+                            = link_to '', item.catalog, method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить каталог"
+
+
+
+
+                  h4 = item.title
+                  ul.catalog_categoryes data-update-url=sort_categories_url
+                    - item.catalog.categories.order("weight").each do |item|
+                      = content_tag_for :li, item
+                        = link_to item.title, category_path(item)
+
+            // if item is NOT catalog      
+            - else
+              = content_tag_for :li, item
+                = link_to item.title, item.link
+        - else
+          | Меню постое!
