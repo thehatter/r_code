@@ -95,6 +95,7 @@ body.left_admin_bar_show  .main_wrapper{
   width: auto;
   @include transition_in_out(0.7s);
   color: #fff;
+  z-index: 102;
 
 
   -moz-transform: rotate(-90deg);
@@ -137,6 +138,7 @@ body.left_admin_bar_show .left_bar_show_btn {
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
+  min-height: 125px;
   // border-bottom: 2px solid #E5E5E5;
 }
 
@@ -595,26 +597,26 @@ div:hover > .config_cog{
 }
 
 .un_btn_delete {
-  background: #BE0003 url(un_btn_delete.png) center no-repeat;
+  background: #BE0003 image-url('un_btn_delete.png') center no-repeat;
 }
 
 .un_btn_plus {
-  background: #0B5601 url(un_btn_plus.png) center no-repeat;
+  background: #0B5601 image-url('un_btn_plus.png') center no-repeat;
 }
 
 .un_btn_config {
-  background: #3366CC url(un_btn_config.png) center no-repeat;
+  background: #3366CC image-url('un_btn_config.png') center no-repeat;
 }
 
 .un_btn_catalog {
-  background: #6666CC url(un_btn_catalog.png) center no-repeat;
+  background: #6666CC image-url('un_btn_catalog.png') center no-repeat;
 }
 
 .un_btn_page {
-  background: #3366CC url(un_btn_page.png) center no-repeat;
+  background: #3366CC image-url('un_btn_page.png') center no-repeat;
 }
 .un_btn_blog {
-  background: #BE45CC url(un_btn_blog.png) center no-repeat;
+  background: #BE45CC image-url('un_btn_blog.png') center no-repeat;
 }
 
 
