@@ -44,7 +44,20 @@ class Site < ActiveRecord::Base
   mount_uploader :image_slot_1, ImageSlotOneUploader
 
 
+  def create_site_static_symlink
+    File.symlink("#{Rails.root}/public/sites/#{self.id}", "#{Rails.root}/public/sites/#{self.domain}") if self.domain
+  end
+
+
   def init_site
+    #create folder for sites uploads if it not exist
+    Dir.mkdir("#{Rails.root}/public/sites") unless File.exists?("#{Rails.root}/public/sites")
+    #create folder for current site uploads
+    Dir.mkdir("#{Rails.root}/public/sites/#{self.id}")
+
+    # File.symlink("#{Rails.root}/public/sites/#{self.id}", "#{Rails.root}/public/sites/#{self.domain}") if self.domain
+
+
     @main_menu = self.menus.create(title: "Главное меню", region_id: 1)
     @side_menu = self.menus.create(title: "Дополнительное меню", region_id: 2)
 

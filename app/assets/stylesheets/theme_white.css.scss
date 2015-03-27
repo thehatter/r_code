@@ -577,7 +577,7 @@ div:hover > .config_cog{
 
 .un_left_move {
   width: 30px; height: 30px;
-  background: #999 url(un_btn_move.png) center no-repeat;
+  background: #999 image-url('un_btn_move.png') center no-repeat;
   float: left;
   margin: 0 5px 0 0;
   cursor: move;
