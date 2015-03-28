@@ -10,7 +10,7 @@ private
 # request.host != 'r-code-main.com' && request.domain != 'lvh.me' naruzhnayareklama.by
 
   def current_site
-    if request.domain == 'naruzhnayareklama.by' #'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
+    if request.domain == 'r-code-main.com' #'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
       if request.subdomain.present?
         @site = Site.where('sub_domain = ?', request.subdomain.sub(/^www./,'')).first!
       else
@@ -95,6 +95,15 @@ private
 
 
 protected
+
+  def ckeditor_pictures_scope(options = { :site_id => "#{current_site.id}" })
+    ckeditor_filebrowser_scope(options)
+  end
+
+  def ckeditor_attachment_files_scope(options = { :site_id => "#{current_site.id}" })
+    ckeditor_filebrowser_scope(options)
+  end
+
 
   def configure_permitted_parameters
    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :login, :email, :password, :password_confirmation) }

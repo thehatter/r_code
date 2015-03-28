@@ -74,9 +74,6 @@ class Site < ActiveRecord::Base
     @category_2 = self.categories.new(title: "Тестовый раздел каталога 2", catalog_id: @catalog.id)
     @category_3 = self.categories.new(title: "Тестовый раздел каталога 3", catalog_id: @catalog.id)
     @category_4 = self.categories.new(title: "Тестовый раздел каталога 4", catalog_id: @catalog.id)
-
-
-
   end
 
   def self.create_random_user

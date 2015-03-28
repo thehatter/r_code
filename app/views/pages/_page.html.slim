@@ -1,6 +1,4 @@
 .page_container
-  - if !is_front?
-    h1 = @page.title 
 
   - if is_front? && current_site.catalogs.any?
     .catalog_on_page.clearfix data-update-url=sort_catalogs_url
@@ -8,12 +6,20 @@
         = render 'catalogs/catalog', catalog: catalog
 
 
-  - if correct_view
-    = link_to content_tag(:span, "", class: "glyphicon glyphicon-cog") + " Редактировать страницу", edit_page_path(@page), class: "btn btn-default pull-right edit_page_button"
-    = link_to 'Удалить страницу', page_path(@page, :redirectto => 1), method: :delete, data: { confirm: 'Точно точно?' }, class: "btn btn-default pull-right edit_page_button"
-  - unless current_site.catalogs.any?
-    h1 = @page.title 
+  .bage_block
+    - if correct_view
+      .un_header
+        .un_header_in
 
+          span
+            .title
+              | Страница
 
-  p
-    = @page.body.html_safe
+          .un_right_btns
+            = link_to '', edit_page_path(@page), class: "un_nav_btn un_btn_config", title: "Редактировать страницу"
+            = link_to '', page_path(@page), method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить страницу"
+
+    h1 = @page.title
+
+    p
+      = @page.body.html_safe
