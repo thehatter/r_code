@@ -42,6 +42,7 @@ body {
   // margin: 0 5px !important;
 }
 
+
 .alert {
   margin: 0;
 }
@@ -59,6 +60,20 @@ a.gl_indent .glyphicon {
 
 
 
+// =============================================================
+//                           make all bootstrap flat
+// =============================================================
+.btn,
+.form-control,
+.modal-content {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.modal-footer {
+  border:none;
+}
 
 
 // ==================== universal config right top links ====================
@@ -128,9 +143,26 @@ body.left_admin_bar_show .left_bar_show_btn {
 
 
 .left_admin_bar_in {
+ color: #999;
+}
+
+.left_admin_bar_in label{
+ color: #fff;
 
 }
 
+.left_admin_bar_in .checkbox label{
+ color: #999;
+}
+
+
+.left_admin_bar_in .btn{
+ width: 100%;
+}
+
+.left_admin_bar_in input.form-control{
+ background: #F4F4F4;
+}
 
 // ==================== Header  ====================
 
@@ -531,9 +563,7 @@ div:hover > .config_cog{
 }
 
 
-// =============================================================
-//                            #footer
-// =============================================================
+
 
 
 
@@ -627,6 +657,11 @@ div:hover > .config_cog{
 }
 
 
+
+
+
+
+
 .un_btns_many_container {
 
 }
@@ -640,6 +675,14 @@ div:hover > .config_cog{
 
 .un_btns_many_container:hover .content{
   display: block;
+}
+
+
+.un_btns_many_container .content a{
+  width: 190px;
+  color: white;
+  padding: 3px 0 0 8px;
+  background-position: 165px 6px;
 }
 
 

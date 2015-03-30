@@ -17,6 +17,8 @@ gem 'carrierwave'
 gem 'mini_magick', '~> 3.8.1' 
 
 gem 'ckeditor'
+gem 'jquery-turbolinks'
+
 
 #fuck yeah!
 gem "non-stupid-digest-assets"

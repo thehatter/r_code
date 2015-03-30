@@ -1,4 +1,5 @@
-= render "themes/#{current_site.theme}/modals"
+- if correct_view
+  = render "themes/#{current_site.theme}/modals"
 
 .container
   .row

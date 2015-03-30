@@ -12,11 +12,15 @@
 
 
     .field.form-group
-      = f.cktext_area :footer_text, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru'}
+      .checkbox
+        label
+          = f.check_box(:shop_active)
+          | Магазин активизирован 
+
 
 
     = hidden_field_tag :authenticity_token, form_authenticity_token
 
   .modal-footer
-    button type="button" class="btn btn-default" data-dismiss="modal" Close
+    button type="button" class="btn btn-default" data-dismiss="modal" Закрыть
     = f.submit 'Сохранить', :class => 'btn btn-success'

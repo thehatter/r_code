@@ -12,9 +12,9 @@
               .un_btns_many_container.clearfix
                 .plus_many_btn.un_nav_btn.un_btn_plus
                 .content
-                  = link_to '', new_page_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_page", title: "Добавить страницу"
-                  = link_to '', new_catalog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_catalog", title: "Добавить каталог"
-                  = link_to '', new_blog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_blog", title: "Добавить блог"
+                  = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_page", title: "Добавить страницу"
+                  = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_catalog", title: "Добавить каталог"
+                  = link_to 'Добавить блог', new_blog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_blog", title: "Добавить блог"
 
 
 

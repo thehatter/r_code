@@ -8,8 +8,13 @@ jQuery ->
         $('body').toggleClass 'admin'
       return
 
-    $( '.left_bar_show_btn' ).click ->
+
+    $(document).on 'click', '.left_bar_show_btn', ->
       $('body').toggleClass "left_admin_bar_show"
       $('.left_admin_bar').toggleClass "show"
 
-  document.addEventListener("page:change", mainFunction);
+
+
+
+  $(document).on('page:load', mainFunction);
+  $(document).on('page:change', mainFunction);
