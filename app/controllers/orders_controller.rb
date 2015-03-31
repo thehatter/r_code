@@ -11,6 +11,10 @@ before_filter :shop_activate?
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
   def new
     @cart = current_cart
     if @cart.line_items.empty?

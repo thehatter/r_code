@@ -19,12 +19,16 @@
 #  shop_active     :boolean          default("false")
 #  big_image_text  :string
 #  leftbar_onfront :boolean
+#  currency        :string
 #
 
 class Site < ActiveRecord::Base
 
   Site::THEMES = %w(white portfolio)
   validates :theme, inclusion: {in: Site::THEMES}
+
+  Site::CURRENCIES = %w(BYR USD RUB UAH)
+  validates :currency, inclusion: {in: Site::CURRENCIES}
 
   after_create :init_site
   before_save :create_subowner

@@ -5,7 +5,7 @@ before_action :shop_activate?, only: [:create]
 	def create
 		@cart = current_cart
 		catalog_item = CatalogItem.friendly.find(params[:catalog_item_id])
-		@line_item = @cart.add_catalog_item(catalog_item.id, catalog_item.currency)
+		@line_item = @cart.add_catalog_item(catalog_item.id, catalog_item.site.currency)
 
 	  respond_to do |format|
 	    if @line_item.save

@@ -17,7 +17,9 @@
           = f.check_box(:shop_active)
           | Магазин активизирован 
 
-
+    .field.form-group
+      | Валюта: 
+      = f.select :currency, Site::CURRENCIES    
 
     = hidden_field_tag :authenticity_token, form_authenticity_token
 

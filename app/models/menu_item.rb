@@ -11,6 +11,7 @@
 #  title      :string
 #  created_at :datetime
 #  updated_at :datetime
+#  blog_id    :integer
 #
 
 class MenuItem < ActiveRecord::Base

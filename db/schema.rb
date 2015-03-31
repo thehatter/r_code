@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327092708) do
+ActiveRecord::Schema.define(version: 20150331083311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20150327092708) do
     t.boolean  "shop_active",     default: false
     t.string   "big_image_text"
     t.boolean  "leftbar_onfront"
+    t.string   "currency",        default: "BYR"
   end
 
   create_table "sub_owners", force: :cascade do |t|

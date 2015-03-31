@@ -1,0 +1,25 @@
+
+.order_id
+  | Номер заказа: 
+  = @order.id
+
+hr 
+
+ .name
+   | Имя заказчика:
+   = @order.name
+
+ .line_items
+  - @order.line_items.each do |item|
+    tr
+      td
+        .img
+          = link_to image_tag(item.catalog_item.catalog_item_img_url(:thumb_60x60), :alt => item.catalog_item.title, :title => item.catalog_item.title), catalog_item_path(item.catalog_item), :class => 'noclass'
+      td
+        = item.quantity
+        |&times;
+        = item.catalog_item.title
+        |&nbsp
+        = item.total_price
+        |&nbsp
+        = item.currency

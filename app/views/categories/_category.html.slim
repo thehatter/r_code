@@ -38,7 +38,10 @@
             .img
               = link_to image_tag(item.catalog_item_img_url(:thumb_263x263), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass'
             .title = link_to item.title, catalog_item_path(item)
-            .price = item.price if item.price
+            .price 
+              = item.price if item.price
+              |  
+              = current_site.currency
 
             - if current_site.shop_active
             	= button_to 'Добавить в корзину', line_items_path(catalog_item_id: item), remote: true, class: "btn btn-default"

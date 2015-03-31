@@ -13,6 +13,7 @@
 #  height            :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  site_id           :integer
 #
 
 class Ckeditor::Picture < Ckeditor::Asset
