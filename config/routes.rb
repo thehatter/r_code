@@ -8,7 +8,7 @@ RCode::Application.routes.draw do
   class OwnDomain
     def self.matches?(request)
       # request.subdomain != "www" && request.host = 'r-code-main.com'   #!~ /localhost|\.local|hostname\.com/
-      (request.domain.present? && request.domain != "naruzhnayareklama.by") || request.subdomain.present? && request.subdomain != "www" #{"snowboarding.by"}
+      (request.domain.present? && request.domain != "vit.by") || request.subdomain.present? && request.subdomain != "www" #{"snowboarding.by"}
     end
   end
 
