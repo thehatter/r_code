@@ -11,7 +11,7 @@ private
 
   def current_site
     if request.domain == 'vit.by' #'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
-      if request.subdomain.sub(/^www./,'') != ""
+      if request.subdomain != "www"
         @site = Site.where('sub_domain = ?', request.subdomain.sub(/^www./,'')).first!
       else
         @site = nil
