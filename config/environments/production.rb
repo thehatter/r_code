@@ -84,7 +84,7 @@ RCode::Application.configure do
       port: 587,
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: 'alx.elizarov@gmail.com',#'***MAIL-LOGIN***@gmail.com',
-      password: 'g15mg43dark'#'***MAIL-PASSWORD***'
+      user_name: 'rubytest2015@gmail.com',#'***MAIL-LOGIN***@gmail.com',
+      password: 'erjgeDGoeoe'#'***MAIL-PASSWORD***'
   }
 end
