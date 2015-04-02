@@ -68,7 +68,7 @@ class CategoriesController < ApplicationController
   private
 
     def load_category
-      @category = Category.friendly.find(params[:id])
+      @category = current_site.categories.friendly.find(params[:id])
     end
 
     def category_params

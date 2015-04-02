@@ -10,8 +10,8 @@ private
 # request.host != 'r-code-main.com' && request.domain != 'lvh.me' naruzhnayareklama.by
 
   def current_site
-    if request.domain == 'vit.by' #'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
-      if request.subdomain != "www"
+    if request.domain == 'r-code-main.com' #'snowboarding.by'#'snowboarding.by' #|| request.domain = 'lvh.me'
+      if request.subdomain != "www" && request.subdomain.present?
         @site = Site.where('sub_domain = ?', request.subdomain.sub(/^www./,'')).first!
       else
         @site = nil

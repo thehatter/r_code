@@ -56,8 +56,8 @@ class Site < ActiveRecord::Base
   def init_site
     #create folder for sites uploads if it not exist
     Dir.mkdir("#{Rails.root}/public/sites") unless File.exists?("#{Rails.root}/public/sites")
-    #create folder for current site uploads
-    Dir.mkdir("#{Rails.root}/public/sites/#{self.id}")
+    #create folder for current site uploads 
+    Dir.mkdir("#{Rails.root}/public/sites/#{self.id}") unless File.exists?("#{Rails.root}/public/sites/#{self.id}")
 
     # File.symlink("#{Rails.root}/public/sites/#{self.id}", "#{Rails.root}/public/sites/#{self.domain}") if self.domain
 
