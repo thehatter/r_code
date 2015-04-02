@@ -87,4 +87,7 @@ RCode::Application.configure do
       user_name: 'rubytest2015@gmail.com',#'***MAIL-LOGIN***@gmail.com',
       password: 'erjgeDGoeoe'#'***MAIL-PASSWORD***'
   }
+
+  config.app_main_domain = "vit.by"
+
 end

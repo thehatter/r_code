@@ -44,4 +44,6 @@ RCode::Application.configure do
       password: 'g15mg43dark'#'***MAIL-PASSWORD***'
   }
 
+  config.app_main_domain = "r-code-main.com"
+
 end
