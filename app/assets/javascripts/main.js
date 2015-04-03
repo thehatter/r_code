@@ -4,7 +4,7 @@ jQuery(function() {
       this.css("position","absolute");
       this.css("top", "50%");
 
-      var elementHeight = this.height();
+      var elementHeight = this.outerHeight();
       var elementHeight = (-elementHeight / 2)
       this.css("margin-top",  elementHeight);
 
