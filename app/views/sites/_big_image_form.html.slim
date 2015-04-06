@@ -1,4 +1,4 @@
-= form_for(current_site) do |f|
+= form_for current_site, :html => { :multipart => true } do |f|
   .modal-body
     - if current_site.errors.any?
       #error_explanation
@@ -18,6 +18,12 @@
         = f.hidden_field :image_slot_1_cache
       .form-group
         = image_tag(current_site.image_slot_1_url(:thumb_200x400)) if current_site.image_slot_1?
+
+      - unless @site.new_record?
+        .checkbox
+          = content_tag :label
+            = f.check_box :remove_image_slot_1
+            | Удалить картинку
 
     .field.form-group
       label Текст на картинке
