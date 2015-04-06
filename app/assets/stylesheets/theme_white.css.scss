@@ -59,13 +59,17 @@ a.gl_indent .glyphicon {
 }
 
 
+.relative {
+  position: relative;
+}
 
 // =============================================================
 //                           make all bootstrap flat
 // =============================================================
 .btn,
 .form-control,
-.modal-content {
+.modal-content,
+.tooltip-inner {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -74,6 +78,19 @@ a.gl_indent .glyphicon {
 .modal-footer {
   border:none;
 }
+
+
+// =============================================================
+//                            #boostrap tooltip
+// =============================================================
+
+.tooltip-inner {
+  background-color: #000; 
+  color: #fff;
+
+}
+
+.tooltip.top .tooltip-arrow {border-top-color: #000;}
 
 
 // ==================== universal config right top links ====================
@@ -624,6 +641,10 @@ div:hover > .config_cog{
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.un_right_btns .link_cont {
+  float: left; position: relative;
 }
 
 .un_nav_btn {

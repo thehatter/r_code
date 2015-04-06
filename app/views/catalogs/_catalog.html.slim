@@ -14,9 +14,12 @@
 
 
           .un_right_btns
-            = link_to '', new_category_path(:catalog_id => catalog.id), class: "un_nav_btn un_btn_plus", title: "Добавить категорию"
-            = link_to '', edit_catalog_path(catalog), class: "un_nav_btn un_btn_config", title: "Редактировать каталог"
-            = link_to '', catalog, method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить каталог"
+            .link_cont
+              = link_to '', new_category_path(:catalog_id => catalog.id), class: "un_nav_btn un_btn_plus", title: "Добавить раздел", :data => { :toggle => 'tooltip', :placement => 'top' }
+            .link_cont
+              = link_to '', edit_catalog_path(catalog), class: "un_nav_btn un_btn_config", title: "Редактировать каталог", :data => { :toggle => 'tooltip', :placement => 'top' }
+            .link_cont
+              = link_to '', catalog, method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить каталог", :data => { :toggle => 'tooltip', :placement => 'top' }
 
     h1 = catalog.title
 
@@ -31,9 +34,12 @@
                     .un_left_move
                     .title Раздел
                     .un_right_btns
-                        = link_to '',  new_catalog_item_path(:category_id => item.id), class: "un_nav_btn un_btn_plus", title: "Добавить товар"
-                        = link_to '', edit_category_path(item), class: "un_nav_btn un_btn_config", title: "Редактировать раздел"
-                        = link_to '',  category_path(item), data: { confirm: 'Точно точно?' }, method: :delete, class: "un_nav_btn un_btn_delete", title: "Удалить раздел"
+                      .link_cont  
+                        = link_to '',  new_catalog_item_path(:category_id => item.id), class: "un_nav_btn un_btn_plus", title: "Добавить товар", :data => { :toggle => 'tooltip', :placement => 'top' }
+                      .link_cont
+                        = link_to '', edit_category_path(item), class: "un_nav_btn un_btn_config", title: "Редактировать раздел", :data => { :toggle => 'tooltip', :placement => 'top' }
+                      .link_cont
+                        = link_to '',  category_path(item), data: { confirm: 'Точно точно?' }, method: :delete, class: "un_nav_btn un_btn_delete", title: "Удалить раздел", :data => { :toggle => 'tooltip', :placement => 'top' }
             .img 
               = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
             .title = link_to item.title, category_path(item)

@@ -33,6 +33,12 @@ jQuery(function() {
       $('.left_admin_bar').toggleClass("show");
     });
 
+    $('a[data-toggle="tooltip"]').tooltip({
+      animated : 'fade',
+      placement : 'bottom',
+      container: 'a'
+    });
+
 
   };
 
