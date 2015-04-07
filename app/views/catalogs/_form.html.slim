@@ -13,8 +13,9 @@
       = f.label :title
       = f.text_field :title, :class => 'form-control'
 
-
-    = f.hidden_field :menu_id, :value => @menu.id
+    - if @catalog.new_record?
+      = f.hidden_field :menu_id, :value => @menu.id
+      = f.hidden_field :onelevel_nest, :value => @onelevel_nest
 
     .actions
       = f.submit 'Сохранить', :class => 'btn btn-success'

@@ -15,6 +15,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  currency         :string
+#  catalog_id       :integer
 #
 
 class CatalogItem < ActiveRecord::Base
@@ -28,6 +29,7 @@ class CatalogItem < ActiveRecord::Base
 
 
   belongs_to :category
+  belongs_to :catalog
   belongs_to :site
   has_many   :line_items
 

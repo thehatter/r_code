@@ -7,18 +7,30 @@ class CatalogItemsController < ApplicationController
 
   def new
     @catalog_item = CatalogItem.new
-    @category = Category.find(params[:category_id])
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+    else
+      @catalog = Catalog.find(params[:catalog_id])
+    end
   end
 
 
   def create
     @catalog_item = current_site.catalog_items.new(catalog_item_params)
-    @category = Category.find(params[:catalog_item][:category_id])
+    if params[:catalog_item][:category_id]
+      @category = Category.find(params[:catalog_item][:category_id]) 
+    else
+      @catalog = Catalog.find(params[:catalog_item][:catalog_id])
+    end
     respond_to do |format|
       if @catalog_item.save
         format.html { redirect_to catalog_item_url(@catalog_item), notice: 'Catalog item was successfully created.' }
       else
-        format.html { render action: 'new', :category_id => @category.id }
+        if @category
+          format.html { render action: 'new', :category_id => @category.id }
+        else 
+          format.html { render action: 'new', :catalog_id => @catalog.id }
+        end
       end
     end
   end
@@ -64,7 +76,8 @@ class CatalogItemsController < ApplicationController
     end
 
     def catalog_item_params
-      params.require(:catalog_item).permit(:title, :category_id, :site_id, :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache, :price, :currency)
+      params.require(:catalog_item).permit(:title, :category_id, :catalog_id, :site_id, 
+        :weight, :slug, :body, :catalog_item_img, :catalog_item_img_cache, :price, :currency)
     end
 
 end

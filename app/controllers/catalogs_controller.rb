@@ -13,6 +13,7 @@ class CatalogsController < ApplicationController
   def new
     @catalog = Catalog.new
     @menu = Menu.find(params[:menu_id])
+    @onelevel_nest = params[:onelevel_nest] # 1 level catalog!
   end
 
   def create
@@ -69,7 +70,8 @@ class CatalogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalog_params
-      params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id, :weight)
+      params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id, 
+        :onelevel_nest, :weight)
     end
 
 end

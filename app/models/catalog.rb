@@ -2,15 +2,16 @@
 #
 # Table name: catalogs
 #
-#  id         :integer          not null, primary key
-#  site_id    :integer
-#  menu_id    :integer
-#  title      :string
-#  link_title :string
-#  slug       :string
-#  created_at :datetime
-#  updated_at :datetime
-#  weight     :integer
+#  id            :integer          not null, primary key
+#  site_id       :integer
+#  menu_id       :integer
+#  title         :string
+#  link_title    :string
+#  slug          :string
+#  created_at    :datetime
+#  updated_at    :datetime
+#  weight        :integer
+#  onelevel_nest :boolean          default(FALSE)
 #
 
 class Catalog < ActiveRecord::Base
@@ -23,6 +24,7 @@ class Catalog < ActiveRecord::Base
   has_many :section
   has_many :menu_items, dependent: :destroy
   has_many :categories, dependent: :destroy
+  has_many :catalog_items, dependent: :destroy
   belongs_to :menu
   belongs_to :site
 

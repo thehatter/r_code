@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331083311) do
+ActiveRecord::Schema.define(version: 20150407162455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(version: 20150331083311) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
+    t.integer  "catalog_id"
   end
+
+  add_index "catalog_items", ["catalog_id"], name: "index_catalog_items_on_catalog_id", using: :btree
 
   create_table "catalogs", force: :cascade do |t|
     t.integer  "site_id"
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150331083311) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "weight"
+    t.boolean  "onelevel_nest", default: false
   end
 
   add_index "catalogs", ["menu_id"], name: "index_catalogs_on_menu_id", using: :btree

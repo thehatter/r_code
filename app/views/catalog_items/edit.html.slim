@@ -6,4 +6,6 @@
       = render 'form'
 
       h4 имя категории
-      = @catalog_item.category.title
+      = @catalog_item.category.title if @catalog_item.category.title
+      h4 имя катадлга
+      = @catalog_item.catalog.title if @catalog_item.catalog.title

@@ -2,15 +2,16 @@
 #
 # Table name: catalogs
 #
-#  id         :integer          not null, primary key
-#  site_id    :integer
-#  menu_id    :integer
-#  title      :string
-#  link_title :string
-#  slug       :string
-#  created_at :datetime
-#  updated_at :datetime
-#  weight     :integer
+#  id            :integer          not null, primary key
+#  site_id       :integer
+#  menu_id       :integer
+#  title         :string
+#  link_title    :string
+#  slug          :string
+#  created_at    :datetime
+#  updated_at    :datetime
+#  weight        :integer
+#  onelevel_nest :boolean          default(FALSE)
 #
 
 require 'spec_helper'

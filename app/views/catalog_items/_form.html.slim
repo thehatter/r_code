@@ -18,9 +18,9 @@
     = f.label :price
     = f.text_field :price, :class => 'form-control'
 
-  .field.form-group
-    = f.label :Валюта
-    = f.select :currency, CatalogItem::CURRENCY
+  / .field.form-group
+  /   = f.label :Валюта
+  /   = f.select :currency, CatalogItem::CURRENCY
 
   fieldset.image
     legend Картинка товара
@@ -42,7 +42,10 @@
     = cktext_area :catalog_item, :body, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '400'}
 
   - if @catalog_item.new_record?
-    = f.hidden_field :category_id, :value => @category.id
+    - if @category
+      = f.hidden_field :category_id, :value => @category.id
+    - else
+      = f.hidden_field :catalog_id, :value => @catalog.id
 
   .actions
     = f.submit 'Сохранить', :class => 'btn btn-success'

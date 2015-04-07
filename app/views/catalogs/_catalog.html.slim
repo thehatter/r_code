@@ -1,18 +1,16 @@
 - catalog = @catalog if defined? @catalog
 = content_tag_for :div, catalog, class: "img_catalog"
 
+  - if !catalog.onelevel_nest
+
     - if correct_view
       .un_header
         .un_header_in
-
           .un_left_move
-
           span
             .title
               | Каталог: 
               = catalog.title
-
-
           .un_right_btns
             .link_cont
               = link_to '', new_category_path(:catalog_id => catalog.id), class: "un_nav_btn un_btn_plus", title: "Добавить раздел", :data => { :toggle => 'tooltip', :placement => 'top' }
@@ -43,3 +41,55 @@
             .img 
               = link_to image_tag(item.category_img_url(:thumb_263x263), :alt => item.title, :title => item.title), category_path(item), :class => 'noclass'
             .title = link_to item.title, category_path(item)
+
+  - else
+    - if correct_view
+      .un_header
+        .un_header_in
+          .un_left_move
+          span
+            .title
+              | Одноуровневый каталог: 
+              = catalog.title
+          .un_right_btns
+            .link_cont
+              = link_to '', new_catalog_item_path(:catalog_id => catalog.id), class: "un_nav_btn un_btn_plus", title: "Добавить товар", :data => { :toggle => 'tooltip', :placement => 'top' }
+            .link_cont
+              = link_to '', edit_catalog_path(catalog), class: "un_nav_btn un_btn_config", title: "Редактировать каталог", :data => { :toggle => 'tooltip', :placement => 'top' }
+            .link_cont
+              = link_to '', catalog, method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить каталог", :data => { :toggle => 'tooltip', :placement => 'top' }
+   
+
+    h1 = catalog.title
+
+
+    .clearfix
+      .row
+        .catalog_catalog_items.clearfix data-update-url=sort_catalog_items_url
+          - catalog.catalog_items.order("weight").each do |item|
+            = content_tag_for :div, item, class: "catalog_item col-md-4 col-lg-3"
+
+              - if correct_view
+                .un_header_container
+                  .un_header
+                    .un_header_in
+                      .un_left_move
+                      span
+                        .title Товар
+                      .un_right_btns
+                        = link_to '', edit_catalog_item_path(item), class: "un_nav_btn un_btn_config", title: "Редактировать товар"
+                        = link_to '', catalog_item_path(item), method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить"
+
+
+
+              .img
+                = link_to image_tag(item.catalog_item_img_url(:thumb_263x263), :alt => item.title, :title => item.title), catalog_item_path(item), :class => 'noclass'
+              .title = link_to item.title, catalog_item_path(item)
+              .price 
+                = item.price if item.price
+                |  
+                = current_site.currency
+
+              - if current_site.shop_active
+                = button_to 'Добавить в корзину', line_items_path(catalog_item_id: item), remote: true, class: "btn btn-default"
+

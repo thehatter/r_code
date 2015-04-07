@@ -14,6 +14,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  currency         :string
+#  catalog_id       :integer
 #
 
 require 'spec_helper'

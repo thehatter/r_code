@@ -16,10 +16,10 @@
 #  image_slot_1    :string
 #  theme           :string
 #  owner_email     :string
-#  shop_active     :boolean          default("false")
+#  shop_active     :boolean          default(FALSE)
 #  big_image_text  :string
 #  leftbar_onfront :boolean
-#  currency        :string
+#  currency        :string           default("BYR")
 #
 
 class Site < ActiveRecord::Base
