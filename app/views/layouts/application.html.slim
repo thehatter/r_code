@@ -9,7 +9,7 @@ html
 
     / = javascript_include_tag "themes/#{current_site.theme}/#{current_site.theme}", "data-turbolinks-track" => true if current_site
     = csrf_meta_tags
-  body class="#{body_classes}"
+  body class="#{body_classes}" data-no-turbolink="true"
     / - if user_signed_in?
     /   = render 'layouts/top_bar'
 
