@@ -21,7 +21,7 @@ class CatalogsController < ApplicationController
     @menu = Menu.find(params[:catalog][:menu_id])
     respond_to do |format|
       if @catalog.save
-        @menu_item = MenuItem.create(link: catalog_url(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
+        @menu_item = MenuItem.create(link: catalog_path(@catalog), catalog_id: @catalog.id, menu_id: @catalog.menu_id, title: @catalog.title)
         format.html { redirect_to current_url, notice: 'Catalog was successfully created.' }
       else
         format.html { render action: 'new', :menu_id => @menu.id }
@@ -37,7 +37,7 @@ class CatalogsController < ApplicationController
   def update
     load_catalog
     if @catalog.update(catalog_params)
-      @catalog.menu_items.update_all(link: catalog_url(@catalog), title: @catalog.title)
+      @catalog.menu_items.update_all(link: catalog_path(@catalog), title: @catalog.title)
       redirect_to menu_url(@catalog.menu)
     end
 

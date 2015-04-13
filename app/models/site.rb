@@ -33,6 +33,8 @@ class Site < ActiveRecord::Base
   after_create :init_site
   before_save :create_subowner
 
+  validates :name, presence: true
+
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :catalogs, dependent: :destroy
