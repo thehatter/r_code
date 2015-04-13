@@ -40,6 +40,27 @@ jQuery(function() {
     });
 
 
+
+    // site settings ajax indication
+    $("#edit_site_1").on("ajax:success", function(e, data, status, xhr) {
+      $('.left_admin_bar').toggleClass('grean');  
+      setTimeout(function(){
+       // toggle back after 1 second
+        $('.left_admin_bar').toggleClass('grean');  
+      },2000);
+      console.log("site conf success");
+    }).on("ajax:error", function(e, xhr, status, error) {
+      $('.left_admin_bar').toggleClass('red');  
+      setTimeout(function(){
+       // toggle back after 1 second
+        $('.left_admin_bar').toggleClass('grean');  
+      },2000);
+      console.log("erorr in site conf!");
+    });
+
+
+
+
   };
 
 

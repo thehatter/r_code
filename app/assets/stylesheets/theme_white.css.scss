@@ -158,6 +158,8 @@ body.left_admin_bar_show .left_bar_show_btn {
   @include transition_in_out(0.7s);
 }
 
+.left_admin_bar.grean {background: #0B4700;}
+.left_admin_bar.red{background: #A00000;}
 
 .left_admin_bar_in {
  color: #999;
