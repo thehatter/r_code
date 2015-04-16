@@ -13,8 +13,12 @@ jQuery(function() {
       return this;
   }
 
+  $.ajaxSetup({
+    dataType: 'json'
+  });
 
   $( document ).ready(function() {
+  
     console.log( "ready!" );
     // site settings ajax indication
     $("#edit_site_1").on("ajax:success", function(e, data, status, xhr) {
