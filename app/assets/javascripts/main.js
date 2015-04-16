@@ -1,3 +1,7 @@
+// jQuery.ajaxSetup({
+//   dataType: 'json'
+// });
+
 jQuery(function() {
 
   jQuery.fn.verticalCenter = function () {
@@ -13,15 +17,13 @@ jQuery(function() {
       return this;
   }
 
-  $.ajaxSetup({
-    dataType: 'json'
-  });
+
 
   $( document ).ready(function() {
   
     console.log( "ready!" );
     // site settings ajax indication
-    $("#edit_site_1").on("ajax:success", function(e, data, status, xhr) {
+    $(".left_admin_bar_in form.edit_site").on("ajax:success", function(e, data, status, xhr) {
       $('.left_admin_bar').toggleClass('grean');  
       setTimeout(function(){
        // toggle back after 1 second
