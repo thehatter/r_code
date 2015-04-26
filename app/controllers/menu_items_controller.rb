@@ -1,5 +1,5 @@
 class MenuItemsController < ApplicationController
-  before_filter :correct_user, :only => [:destroy, :sort]
+  before_filter :correct_user, :only => [:destroy, :sort, :create, :edit, :update]
 
 
   def sort
@@ -9,10 +9,45 @@ class MenuItemsController < ApplicationController
     end
 
     render nothing: true
-
   end
 
 
+  def new
+    @menu_item = MenuItem.new
+    @menu = Menu.find(params[:menu_id])
+  end
+
+
+  def create
+    @menu = Menu.find(params[:menu_item][:menu_id])
+    @menu_item = @menu.menu_items.new(menu_item_params)
+    respond_to do |format|
+      if @menu_item.save
+        format.html { redirect_to current_url, notice: 'Ссылка успешно создана.' }
+      else
+        format.html { render action: 'new', :menu_id => @menu.id, notice: 'Ссылка не создана!' }
+      end
+    end
+  end
+
+
+  def edit
+    load_item
+    # @menu = Menu.find(@page.menu_id)
+  end
+
+  def update
+    load_item
+    respond_to do |format|
+      if @menu_item.update(menu_item_params)
+        format.html { redirect_to current_url, notice: 'Ссылка успешно создана.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @menu_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     load_item
@@ -36,7 +71,7 @@ class MenuItemsController < ApplicationController
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def catalog_params
-      params.require(:catalog).permit(:title, :link_title, :slug, :site_id, :menu_id, :catalog_id)
+    def menu_item_params
+      params.require(:menu_item).permit(:title, :link_title, :slug, :site_id, :menu_id, :catalog_id, :link, :weight)
     end
 end

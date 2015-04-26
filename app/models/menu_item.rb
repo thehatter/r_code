@@ -16,7 +16,8 @@
 
 class MenuItem < ActiveRecord::Base
   # before_update :update_item
-
+  validates_presence_of :title
+  validates_presence_of :link
 
   belongs_to :menu
   belongs_to :page

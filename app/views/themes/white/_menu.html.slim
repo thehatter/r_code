@@ -14,8 +14,9 @@
                 .content
                   = link_to 'Добавить страницу', new_page_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_page", title: "Добавить страницу"
                   = link_to 'Добавить каталог', new_catalog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_catalog", title: "Добавить каталог"
-                  = link_to 'Добавить одноуровневый каталог', new_catalog_path(:menu_id => @menu.id, :onelevel_nest => true), class: "un_nav_btn un_btn_catalog", title: "Добавить одноуровневый каталог"
+                  = link_to 'Добавить каталог 1у', new_catalog_path(:menu_id => @menu.id, :onelevel_nest => true), class: "un_nav_btn un_btn_catalog", title: "Добавить одноуровневый каталог"
                   = link_to 'Добавить блог', new_blog_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_blog", title: "Добавить блог"
+                  = link_to 'Добавить ссылку', new_menu_item_path(:menu_id => @menu.id), class: "un_nav_btn un_btn_page", title: "Добавить ссылку"
 
 
 

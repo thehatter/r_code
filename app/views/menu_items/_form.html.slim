@@ -1,0 +1,27 @@
+= form_for(@menu_item) do |f|
+
+  -if @menu_item.errors.any?
+    .error_explanation.bg-danger
+      h2 
+        = pluralize(@menu_item.errors.count, "error") 
+        |  prohibited this page from being saved:
+      - @menu_item.errors.full_messages.each do |msg|
+        li = msg
+
+
+  .field.form-group
+    = f.label :title, :class => 'control-label' 
+    = f.text_field :title, :class => 'form-control'
+
+  .field.form-group
+    = f.label :link, :class => 'control-label' 
+    = f.text_field :link, :class => 'form-control'
+
+
+  - if @menu_item
+    = f.hidden_field :menu_id, :value => @menu.id
+
+
+
+  .actions
+    = f.submit 'Сохранить', :class => 'btn btn-lg btn-success pull-right'

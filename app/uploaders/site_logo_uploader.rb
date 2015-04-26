@@ -40,7 +40,7 @@ class SiteLogoUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb_200x400 do
-    process :resize_to_fit => [200, 400]
+    process :resize_to_fit => [400, 200]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
