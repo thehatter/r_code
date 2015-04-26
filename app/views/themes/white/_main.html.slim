@@ -33,32 +33,21 @@
         span.glyphicon.glyphicon-cog
 - else
   .line_div_2px
-  - if correct_view && !current_site.image_slot_1?
+  - if correct_view && !current_site.image_slot_1? && is_front?
     .container
       .row
         .col-md-12
           a.create_big_image href="#" data-toggle="modal" data-target="#myModal_3" + Добавить большую картинку
 
 
-
-- if !is_front || current_site.leftbar_onfront
-  - if controller.controller_name != 'categories'
-    .container
-      .row
+.container.midle
+  .row
+    - if controller.controller_name == 'categories' || (is_front? && current_site.leftbar_onfront)
         .col-md-2.left_col
           .vertical_menu.menu = render "themes/#{current_site.theme}/menu", region_id: 2
         .col-md-10
           = yield
-  - else
-    .container
-      .row
-        .col-md-2.left_col
-          .vertical_menu.menu = render "themes/#{current_site.theme}/menu", region_id: 2
-        .col-md-10
-          = yield
-- else
-  .container
-    .row
+    - else
       .col-md-12
         = yield
 

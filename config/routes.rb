@@ -30,8 +30,11 @@ RCode::Application.routes.draw do
     resources :menu_items do
       post :sort, on: :collection
     end
-    resources :blogs
-    resources :posts
+    resources :blogs, except: :show
+    resources :posts, except: :show
+
+    get "blog/:id", :to => "posts#show"
+    get "blog", :to => "blogs#show"
   end
 
 

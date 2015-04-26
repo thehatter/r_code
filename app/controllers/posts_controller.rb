@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     
     respond_to do |format|
       if @post.save
-        format.html { redirect_to blog_url(@blog), notice: 'Пост успешно создан!' }
+        format.html { redirect_to "/blog", notice: 'Пост успешно создан!' }
       else
         format.html { render action: 'new', :blog_id => @blog.id }
       end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     @blog.destroy
 
     respond_to do |format|
-      format.html { redirect_to blog_url(@blog), notice: 'Post was successfully deleted!.'}
+      format.html { redirect_to "/blog", notice: 'Post was successfully deleted!.'}
       format.json { head :no_content }
     end
   end
@@ -41,12 +41,13 @@ class PostsController < ApplicationController
   private
 
     def load_post
-      @post = Post.find(params[:id])
+      @post = current_site.blogs.first.posts.friendly.find_by_slug(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :slug, :blog_id, :body)
+      params.require(:post).permit(:title, :slug, :blog_id, :body, :post_img, 
+                                   :post_img_cache, :remove_post_img ,:summary)
     end
 
 end

@@ -9,6 +9,8 @@
 #  slug       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  summary    :text
+#  post_img   :string
 #
 
 require 'rails_helper'

@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
 
   def show
-    load_blog
+    @blog = current_site.blogs.first
     @posts = @blog.posts.all.order("created_at DESC")
   end
 
@@ -17,22 +17,29 @@ class BlogsController < ApplicationController
     @menu = Menu.find(params[:blog][:menu_id])
     respond_to do |format|
       if @blog.save
-        @menu_item = MenuItem.create(link: blog_path(@blog), blog_id: @blog.id, menu_id: @blog.menu_id, title: @blog.title)
-        format.html { redirect_to blog_url(@blog), notice: 'Блог успешно создан!' }
+        @menu_item = MenuItem.create(link: "/blog", blog_id: @blog.id, menu_id: @blog.menu_id, title: @blog.title)
+        format.html { redirect_to current_url, notice: 'Блог успешно создан!' }
       else
         format.html { render action: 'new', :menu_id => @menu.id }
       end
     end
   end
 
+
+  def edit
+    load_blog
+    @menu = @blog.menu
+  end
+
   def update
     load_blog
-    if @blog.update(catalog_params)
-      @blog.menu_items.update_all(link: blog_path(@blog), title: @blog.title)
-      redirect_to blog_url(@blog)
+    if @blog.update(blog_params)
+      redirect_to "/blog"
     end
 
   end
+
+
 
   def destroy
     load_blog

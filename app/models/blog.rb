@@ -14,6 +14,7 @@
 class Blog < ActiveRecord::Base
 
   belongs_to :site
+  belongs_to :menu
   has_many :posts, dependent: :destroy
   has_many :menu_items, dependent: :destroy
 

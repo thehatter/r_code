@@ -1,5 +1,4 @@
 = form_for(@post) do |f|
-
   -if @post.errors.any?
     .error_explanation.bg-danger
       h2
@@ -8,10 +7,31 @@
       - @post.errors.full_messages.each do |msg|
         li = msg
 
-  .col-md-5
+  .col-md-12
     .field.form-group
       = f.label :title
       = f.text_field :title, :class => 'form-control'
+
+
+    fieldset.image
+      legend Картинка
+      .form-group
+        = f.label :post_img, "Загрузить картинку:"
+        = f.file_field :post_img
+        = f.hidden_field :post_img_cache
+      .form-group
+        = image_tag(@post.post_img_url) if @post.post_img?
+      .form-group
+        - unless @post.new_record?
+          .checkbox
+            = content_tag :label
+              = f.check_box :remove_post_img
+              = label :remove_post_img, "Удалить картинку"
+
+
+    .field.form-group
+      = f.label :summary
+      = cktext_area :post, :summary, :cols => 100, :ckeditor => {:toolbar => 'mini', :language => 'ru', :height => '140'}
 
     .field.form-group
       = f.label :body

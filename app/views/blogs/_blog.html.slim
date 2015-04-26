@@ -1,4 +1,4 @@
-.page_container
+.blog_container.relative
 
   - if correct_view
       .un_header
@@ -8,11 +8,21 @@
 
           .un_right_btns
             = link_to '', new_post_path(:blog_id => @blog.id), class: "un_nav_btn un_btn_page", title: "Добавить пост"
+            = link_to '', edit_blog_path(@blog), class: "un_nav_btn un_btn_config", title: "Редактировать блог"
+            = link_to '', blog_path(@blog), method: :delete, data: { confirm: 'Точно точно?' }, class: "un_nav_btn un_btn_delete", title: "Удалить"
 
 
   h1 = @blog.title 
 
 
   - @posts.each do |post|
-    h3 = post.title
-    = post.body.html_safe
+    .post
+      = image_tag(post.post_img_url, class: "img-responsive") if post.post_img?
+      h2 = post.title
+      .date 
+        strong = post.created_at.strftime("%d %b. %Y")
+      
+
+      = post.summary.html_safe
+
+      = link_to 'continue reading →', post_path(post), class: "post_link pull-right", title: "Подробнее"

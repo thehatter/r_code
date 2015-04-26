@@ -38,7 +38,7 @@ class CatalogsController < ApplicationController
     load_catalog
     if @catalog.update(catalog_params)
       @catalog.menu_items.update_all(link: catalog_path(@catalog), title: @catalog.title)
-      redirect_to menu_url(@catalog.menu)
+      redirect_to current_url
     end
 
   end
@@ -50,7 +50,7 @@ class CatalogsController < ApplicationController
     @catalog.destroy
 
     respond_to do |format|
-      format.html { redirect_to menu_url(@menu), notice: 'Catalog was successfully deleted!.'}
+      format.html { redirect_to current_url, notice: 'Catalog was successfully deleted!.'}
       format.json { head :no_content }
     end
   end

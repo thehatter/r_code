@@ -1,7 +1,8 @@
 .page_container
-
+    .img_container = image_tag(@post.post_img_url, class: "img-responsive") if @post.post_img?
     h1 = @post.title
 
     br
+    = @post.summary.html_safe if @post.summary
     br
     = @post.body.html_safe

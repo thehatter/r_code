@@ -1,7 +1,3 @@
-// jQuery.ajaxSetup({
-//   dataType: 'json'
-// });
-
 jQuery(function() {
 
   jQuery.fn.verticalCenter = function () {
