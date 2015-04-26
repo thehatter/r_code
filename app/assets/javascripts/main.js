@@ -4,16 +4,19 @@ jQuery(function() {
       this.css("position","absolute");
       this.css("top", "50%");
 
-      var elementHeight = this.outerHeight();
-      var elementHeight = (-elementHeight / 2)
-      this.css("margin-top",  elementHeight);
+      var elementHeight = this.height();
+      var HalfOfelementHeight = ( - elementHeight / 2)
+      this.css("margin-top",  HalfOfelementHeight);
 
       // console.log(elementHeight);
+      // console.log(HalfOfelementHeight);
 
       return this;
   }
 
-
+  $(window).on('load', function() {
+    $('.logo_container').verticalCenter();
+  });
 
   $( document ).ready(function() {
   
@@ -40,8 +43,6 @@ jQuery(function() {
   var mainFunction;
   mainFunction = function() {
 
-
-    $('.logo_container').verticalCenter();
 
     // $(document).keypress(function(e) {
     //   var key;

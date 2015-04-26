@@ -34,6 +34,7 @@ class BlogsController < ApplicationController
   def update
     load_blog
     if @blog.update(blog_params)
+      @blog.menu_items.update_all(title: @blog.title)
       redirect_to "/blog"
     end
 
