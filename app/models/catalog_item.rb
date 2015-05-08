@@ -32,6 +32,7 @@ class CatalogItem < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :site
   has_many   :line_items
+  has_many :up_files, dependent: :destroy
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

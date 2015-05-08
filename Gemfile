@@ -19,6 +19,8 @@ gem 'mini_magick', '~> 3.8.1'
 gem 'ckeditor'
 gem 'jquery-turbolinks'
 
+gem 'dropzonejs-rails' 
+
 
 #fuck yeah!
 gem "non-stupid-digest-assets"

@@ -1,4 +1,25 @@
 /encoding: UTF-8
+- unless @catalog_item.new_record?
+  h4 Дополнительные картинки
+  .multiple_img_holder
+    - @catalog_item.up_files.each do |file|
+      .multiple_img_item
+        = image_tag(file.file_name_url(:thumb))
+        = link_to '', file, method: :delete, :remote => true, class: "un_nav_btn un_btn_delete", title: "Удалить каталог"
+        
+  .multiple_img_form_container
+    <form action="/up_files" id="media-dropzone" class="dropzone" enctype="multipart/form-data">
+    <div class="dz-message" data-dz-message><span>Добавьте сюда картинки</span></div>
+      <input name="authenticity_token" type="hidden" value="#{form_authenticity_token}" />
+      <input name="catalog_item_id" type="hidden" value="#{@catalog_item.id}" />
+      <div class="fallback">
+        <input name="media" type="file" multiple />
+      </div>
+    </form>
+
+
+
+
 = form_for(@catalog_item) do |f|
 
   -if @catalog_item.errors.any?
@@ -49,3 +70,6 @@
 
   .actions
     = f.submit 'Сохранить', :class => 'btn btn-success'
+
+
+

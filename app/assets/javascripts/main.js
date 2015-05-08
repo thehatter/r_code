@@ -14,9 +14,12 @@ jQuery(function() {
       return this;
   }
 
+
   $(window).on('load', function() {
     $('.logo_container').verticalCenter();
   });
+
+
 
   $( document ).ready(function() {
   
@@ -40,9 +43,12 @@ jQuery(function() {
 
   });
 
+
+
+
+
   var mainFunction;
   mainFunction = function() {
-
 
     // $(document).keypress(function(e) {
     //   var key;
@@ -64,10 +70,6 @@ jQuery(function() {
     });
 
     console.log("test");
-
-
-
-
 
   };
 

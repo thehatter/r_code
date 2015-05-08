@@ -25,7 +25,7 @@
 //= require jquery-ui/effect-bounce
 
 //= require ckeditor/init
-
+//= require dropzone
 
 //= require_directory .
 

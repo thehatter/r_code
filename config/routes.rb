@@ -33,6 +33,8 @@ RCode::Application.routes.draw do
     resources :blogs, except: :show
     resources :posts, except: :show
 
+    resources :up_files #, only: [:create]
+
     get "blog/:id", :to => "posts#show"
     get "blog", :to => "blogs#show"
   end
