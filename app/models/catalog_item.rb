@@ -22,7 +22,7 @@ class CatalogItem < ActiveRecord::Base
 
   validates_presence_of     :title
   validates_length_of       :title, minimum: 2, too_short: 'Название товара не может быть короче 2 символов'
-  
+
   validates_numericality_of :price
   validates :price, inclusion: { in: 1..2147483647,
     message: "Цена не может быть больше 2147483647" }

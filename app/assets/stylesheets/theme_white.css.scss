@@ -528,6 +528,12 @@ div:hover > .config_cog{
   }
 }
 
+
+
+// =============================================================
+//                         catalog_item
+// =============================================================
+
 .catalog_item {
   .img {
     img {
@@ -555,6 +561,30 @@ div:hover > .config_cog{
 .field_with_errors {
   @extend .has-error;
 }
+
+
+
+// =============================================================
+//                         catalog_item page
+// =============================================================
+
+.multiple_img_holder .multiple_img_item {
+  float:left;
+  padding: 5px;
+  position: relative;
+}
+
+.multiple_img_holder .multiple_img_item a {
+  position: absolute;
+  top: 5px; right:5px;
+}
+
+.all_img_item {
+	float: left;
+  padding: 5px;
+
+}
+
 
 // =============================================================
 //                         category page

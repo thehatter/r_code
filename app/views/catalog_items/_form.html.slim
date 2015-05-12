@@ -1,7 +1,7 @@
 /encoding: UTF-8
 - unless @catalog_item.new_record?
   h4 Дополнительные картинки
-  .multiple_img_holder
+  .multiple_img_holder.clearfix
     - @catalog_item.up_files.each do |file|
       .multiple_img_item
         = image_tag(file.file_name_url(:thumb))

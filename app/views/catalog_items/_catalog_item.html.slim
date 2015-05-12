@@ -9,7 +9,12 @@ h1 = @catalog_item.title
 
 .row
   .col-md-9
-    = image_tag(@catalog_item.catalog_item_img_url(:thumb_400x400), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
+    .img
+      = image_tag(@catalog_item.catalog_item_img_url(:thumb_400x400), :alt => @catalog_item.title, :title => @catalog_item.title) if @catalog_item.catalog_item_img?
+
+    - @catalog_item.up_files.each do |file|
+      .all_img_item
+        = image_tag(file.file_name_url(:thumb))
 
   .col-md-3
     = @catalog_item.price
