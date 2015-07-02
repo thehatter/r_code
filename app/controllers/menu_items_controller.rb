@@ -1,6 +1,13 @@
 class MenuItemsController < ApplicationController
-  before_filter :correct_user, :only => [:destroy, :sort, :create, :edit, :update]
+  before_filter :correct_user, :only => [:destroy, :sort, :create, :edit, :update, :change_menu]
 
+  def change_menu
+    @menu_item = MenuItem.find(params[:id])
+    @menu_item.update(menu_id: params[:menu_id])
+    
+
+    render nothing: true
+  end
 
   def sort
     params[:menu_item].each_with_index do |id, index|

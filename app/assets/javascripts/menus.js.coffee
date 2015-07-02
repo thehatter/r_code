@@ -5,11 +5,11 @@
 jQuery ->
   menuSorting = () ->
     $('.vertical_menu .config_menu_links').sortable
-      axis: 'y'
+#      axis: 'y'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
     $('.horizontal_menu .config_menu_links').sortable
-      axis: 'x'
+#      axis: 'x'
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
 

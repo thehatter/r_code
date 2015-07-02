@@ -21,6 +21,7 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require jquery-ui/sortable
+//= require jquery-ui/droppable
 //= require jquery-ui/effect-shake
 //= require jquery-ui/effect-bounce
 

@@ -30,6 +30,7 @@ RCode::Application.routes.draw do
     resources :menu_items do
       post :sort, on: :collection
     end
+    match 'menu_items/change_menu/:id', to: 'menu_items#change_menu', via: :post
     resources :blogs, except: :show
     resources :posts, except: :show
 

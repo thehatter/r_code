@@ -20,7 +20,7 @@
 
 
 
-    .menu_links
+    .menu_links data-menu-id="#{@menu.id}"
       ul.nav.nav-pills.config_menu_links.links data-update-url=sort_menu_items_url 
         - if @menu.menu_items.any?
           - @menu.menu_items.order("weight").each do |item|
@@ -28,7 +28,7 @@
             // if item is catalog do
             - if item.catalog_id
               - if region_id == 1
-                = content_tag_for :li, item,  :class => "dropdown"
+                = content_tag_for :li, item,  :class => "dropdown", data: {id:item.id}
                   = link_to item.link, :'data-toggle' => 'dropdown', :'role' => 'button' do
                     = item.title 
                     <b class= 'caret'></b>
@@ -37,7 +37,7 @@
                       = content_tag_for :li, item
                         = link_to item.title, category_path(item)
               - else
-                = content_tag_for :li, item, class: "catalog_menu_item"
+                = content_tag_for :li, item, class: "catalog_menu_item", data: {id:item.id}
 
                   - if correct_view
                       .un_header
@@ -62,7 +62,7 @@
 
             // if item is NOT catalog      
             - else
-              = content_tag_for :li, item
+              = content_tag_for :li, item, data: {id:item.id}
                 = link_to item.title, item.link
         - else
           | Меню постое!
